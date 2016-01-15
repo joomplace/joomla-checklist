@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset>
+		
+		<field name="checklist_id"
+			type="_checklist"
+			required="true"
+			label="COM_CHECKLIST_BE_INSERT_CHECKLIST_TAG"
+			description="COM_CHECKLIST_BE_INSERT_CHECKLIST_TAG_DESC" />		
+	</fieldset>
+</form>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="plugin" group="editors-xtd" version="3.0" method="upgrade">
+    <name>plg_editors-xtd_checklist_button</name>
+    <author>JoomPlace Team</author>
+    <authorEmail>support@joomplace.com</authorEmail>
+    <authorUrl>www.joomplace.com</authorUrl>
+    <copyright>(C) JoomPlace, www.joomplace.com</copyright>
+    <license>GNU/GPL http://www.gnu.org/copyleft/gpl.html</license>
+    <version>1.0.2 (build 001)</version>
+    <creationDate>April 2014</creationDate>
+    <description>Displays a button for inserting checklists into articles.</description>
+
+    <languages folder="language/en-GB">
+        <language tag="en-GB">en-GB.plg_editors-xtd_checklist_button.ini</language>
+        <language tag="en-GB">en-GB.plg_editors-xtd_checklist_button.sys.ini</language>
+    </languages>
+
+    <files>
+        <filename plugin="checklist_button">checklist_button.php</filename>
+        <folder>language</folder>
+        <filename>index.html</filename>
+    </files>
+
+</extension>

@@ -1,0 +1,62 @@
+.checklist-tagscloud
+{
+	padding:10px;
+}
+
+#checklist-tags-mod a.tag1, #checklist-tags-mod a.tag2, #checklist-tags-mod a.tag3, #checklist-tags-mod a.tag4, #checklist-tags-mod a.tag5, #checklist-tags-mod a.tag6, #checklist-tags-mod a.tag7, #checklist-tags-mod a.tag8, #checklist-tags-mod a.tag9 {
+    display: inline;
+    line-height: 100%;
+    list-style: none outside none;
+    padding-left: 4px;
+    padding-right: 4px;
+    text-align: center;
+}
+
+#checklist-tags-mod a.tag1 {
+    font-size: 90%;
+    font-weight: normal;
+}
+
+#checklist-tags-mod a.tag2 {
+    font-size: 100%;
+    font-weight: normal;
+}
+
+#checklist-tags-mod a.tag3 {
+    font-size: 125%;
+    font-weight: normal;
+}
+
+#checklist-tags-mod a.tag4 {
+    font-size: 150%;
+    font-weight: normal;
+}
+
+#checklist-tags-mod a.tag5 {
+    font-size: 175%;
+    font-weight: normal;
+}
+
+#checklist-tags-mod a.tag6 {
+    font-size: 200%;
+    font-weight: bold;
+}
+
+#checklist-tags-mod a.tag7 {
+    font-size: 225%;
+    font-weight: bold;
+}
+
+#checklist-tags-mod a.tag8 {
+    font-size: 250%;
+    font-weight: bold;
+}
+
+#checklist-tags-mod a.tag9 {
+    font-size: 265%;
+    font-weight: bold;
+}
+
+.checklist-tagscloud {
+    margin: 0 0 20px;
+}

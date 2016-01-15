@@ -1,0 +1,27 @@
+.chk-remove-chklist{
+	visibility: hidden;
+	float:right;
+	margin:6px;
+}
+
+#inputTitle
+{
+	padding:0px !important;
+}
+
+.chk-add-checklist{
+	display:none;
+}
+
+.alert-success, .alert-danger{
+	display:none;
+}
+
+.edit-mode{
+	padding:0px !important;
+	z-index:10000;
+}
+
+textarea.edit-mode{
+	height: 180px;
+}
