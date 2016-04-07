@@ -155,7 +155,8 @@ $document->addStyleDeclaration("
 	    </div>
 	  </div>
 </div>
-
+</form>
+<form id="adminForm" name="adminForm" class="form-horizontal" role="form" method="post" action="<?php echo JURI::root();?>index.php?option=com_checklist&view=frontend">
 <?php if(count($this->available_checklists)):?>
 	
 	<ul class="media-list">
