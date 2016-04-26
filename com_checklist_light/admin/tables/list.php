@@ -36,6 +36,7 @@ class LightchecklistTableList extends JTable
                 $jform = $jinput->get('jform', array(), 'ARRAY');
 
                 $this->id = $post['id'];
+                $task = $post['task'];
                 //==================================================
                 // Access rules.
                 //==================================================
@@ -59,6 +60,12 @@ class LightchecklistTableList extends JTable
                    
                     $rules = new JAccessRules($rulesArray);
                     $this->setRules($rules);
+                }
+
+                if ($task == 'list.save2copy')
+                {
+                    $this->id = NULL;
+                    $this->_db->insertObject($this->_tbl, $this, $this->_tbl_keys[0]);
                 }
 
                 $res = parent::store($updateNulls);
