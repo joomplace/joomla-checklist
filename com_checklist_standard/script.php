@@ -19,7 +19,7 @@ class com_checklistInstallerScript
 	
 		jimport( 'joomla.filesystem.folder' );
 		jimport( 'joomla.filesystem.file' );
-		$this->_extract();
+		// $this->_extract();
 		
 		$adminDir = JPATH_ROOT.DS.'administrator'.DS.'components'.DS.'com_checklist';
 		if (!JFolder::exists(JPATH_ROOT . DS . 'images'. DS . 'checklist') ) {
@@ -69,14 +69,14 @@ class com_checklistInstallerScript
     
     function update($parent)
     {
-		$this->_extract();
+		// $this->_extract();
 	}
 
 	function postflight($type, $parent)
     {
 		$app = JFactory::getApplication();
 		$db	= JFactory::getDBO();	
-		$chk_this_version = '1.0.0 (build 001)';
+		$chk_this_version = '1.1.0.003';
         $curr_date = date("Y-m-d", strtotime("-2 months"));
 
         $db->setQuery("SELECT COUNT(*) FROM `#__checklist_config`");
@@ -124,7 +124,7 @@ class com_checklistInstallerScript
 		$db->setQuery("INSERT INTO `#__checklist_templates` (`id`, `name`) VALUES ('', 'Joomplace Style'), ('', 'Default Template');");
 		$db->query();
 
-		$app->redirect(JURI::root().'administrator/index.php?option=com_checklist&task=install.plugins');
+		// $app->redirect(JURI::root().'administrator/index.php?option=com_checklist&task=install.plugins');
 	}
 		
 	function _extract(){

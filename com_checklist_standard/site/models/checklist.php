@@ -94,7 +94,12 @@ class ChecklistModelChecklist extends JModelList
 			$now_date = time();
 			$groups = ChecklistHelper::getAllowGroups();
 
-			$db->setQuery("SELECT * FROM `#__checklist_lists` WHERE `id` = '".$id."' AND UNIX_TIMESTAMP(`publish_date`) <= '".$now_date."' AND `list_access` IN (".implode(",", $groups).") AND `default` = 1");
+			$list_access = '';
+			if(count($groups)){
+				$list_access = " AND `list_access` IN (".implode(",", $groups).")";
+			}
+
+			$db->setQuery("SELECT * FROM `#__checklist_lists` WHERE `id` = '".$id."' AND UNIX_TIMESTAMP(`publish_date`) <= '".$now_date."'".$list_access." AND `default` = 1");
 			$checklist = $db->loadObject();
 
 		} else {

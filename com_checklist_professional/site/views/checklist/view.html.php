@@ -21,7 +21,7 @@ class ChecklistViewChecklist extends JViewLegacy
 		$configurationModel = JModelLegacy::getInstance('Configuration', 'ChecklistModel');
 		$this->config = $configurationModel->GetConfig();
 
-		$this->allow_edit = false;
+		$allow_edit = false;
         $user = JFactory::getUser();
 		$app = JFactory::getApplication();
 		$userid = JFactory::getApplication()->input->get('userid', 0);
@@ -33,16 +33,14 @@ class ChecklistViewChecklist extends JViewLegacy
 			$allowGroups = ChecklistHelper::getAllowGroups();
 			$this->allow_comment = (in_array($this->checklist->comment_access, $allowGroups)) ? true : false;
 
-			if($user->authorise('core.edit', 'com_checklist')){
-				$this->allow_edit = $model->checkAllowEdit($userid, $this->checklist->id);
+			$this->allow_edit = $model->checkAllowEdit($userid, $this->checklist->id);
 
-				$this->edit_mode = false;
-				if($this->allow_edit){
-					if(isset($_SESSION['edit_mode'][$this->checklist->id]) && $_SESSION['edit_mode'][$this->checklist->id]){
-						$this->edit_mode = true;
-					}
-				}			
-			}	
+			$this->edit_mode = false;
+			if($this->allow_edit){
+				if(isset($_SESSION['edit_mode'][$this->checklist->id]) && $_SESSION['edit_mode'][$this->checklist->id]){
+					$this->edit_mode = true;
+				}
+			}			
 		
 			$groups = $this->get('Groups');
 			$items  = $this->get('Items');

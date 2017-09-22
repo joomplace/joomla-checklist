@@ -44,7 +44,12 @@ class ChecklistModelProfile extends JModelList
 		$now = time();
 		$groups = ChecklistHelper::getAllowGroups();
 
-		$db->setQuery("SELECT * FROM `#__checklist_lists` WHERE `user_id` = '".$userid."' AND UNIX_TIMESTAMP(`publish_date`) <= '".$now."' AND `list_access` IN (".implode(",", $groups).") AND `default` = 1");
+		$list_access = '';
+		if(count($groups)){
+			$list_access = " AND `list_access` IN (".implode(",", $groups).")";
+		}
+
+		$db->setQuery("SELECT * FROM `#__checklist_lists` WHERE `user_id` = '".$userid."' AND UNIX_TIMESTAMP(`publish_date`) <= '".$now."'".$list_access." AND `default` = 1");
 		$checklists = $db->loadObjectList();
 
 		$checklists = $this->getRatings($checklists);

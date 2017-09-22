@@ -33,23 +33,10 @@ JHtml::_('formbehavior.chosen', 'select');
 	}
 	
 </style>
-<script type="text/javascript">
-
-Joomla.submitbutton = function(task)
- {
-  if (!document.getElementById('sampledata').value) {
-   alert('<?php echo $this->escape(JText::_('COM_CHECKLIST_CHECK_LAYOUT'));?>');
-  }
-  else {
-   Joomla.submitform(task);
-  }
- }
- 
-</script>
-<form name="adminForm" id="adminForm" action="index.php" method="post" autocomplete="off" class="form-validate" onsubmit="return false;">
+<form name="adminForm" id="adminForm" action="index.php" method="post" autocomplete="off" class="form-validate" >
 	<input type="hidden" name="option" value="<?php echo 'com_checklist'; ?>" />
 	<input type="hidden" name="task" value="" />
-	<input id="sampledata" type="hidden" name="sampledata" value="" />
+	<input type="hidden" name="sampledata" value="" />
 	<?php echo JHtml::_('form.token'); ?>
 	
 	<div id="j-main-container" class="span12 form-horizontal">

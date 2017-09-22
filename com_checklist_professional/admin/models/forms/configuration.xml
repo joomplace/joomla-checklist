@@ -139,7 +139,7 @@
 
 		<field name="disqusSubDomain" type="text" default="" size="30"
 				label="COM_CHECKLIST_DISQUS_SUB_DOMAIN" 
-                labelclass="control-label" required="true">
+                labelclass="control-label">
 		</field>
 
 		<field name="fbadmin" type="text" default="" size="30"

@@ -27,16 +27,10 @@ class ChecklistHelper
 			$db = JFactory::getDBO();
 
 			//Permissions
-			$db->setQuery("SELECT `id` FROM `#__usergroups` WHERE `title` = 'Guest'");
-			$guestId = $db->loadResult();
-
-			$db->setQuery("SELECT `id` FROM `#__usergroups` WHERE `title` = 'Public'");
-			$publicId = $db->loadResult();
-
-			$db->setQuery("SELECT `id` FROM `#__usergroups` WHERE `title` = 'Administrator'");
+			$db->setQuery("SELECT `id` FROM `#__usergroups` WHERE `title` LIKE '%Administrator%'");
 			$adminId = $db->loadResult();
 
-			$db->setQuery("SELECT `id` FROM `#__usergroups` WHERE `title` = 'Super Users'");
+			$db->setQuery("SELECT `id` FROM `#__usergroups` WHERE `title` LIKE '%Super%'");
 			$superId = $db->loadResult();
 
 			$adminArray = array ($adminId, $superId);
@@ -45,8 +39,7 @@ class ChecklistHelper
 			foreach ($user->groups as $groupId => $group) {
 
 				if(!$groupId){
-					$groups[] = $guestId;
-					$groups[] = $publicId;
+					//Nothing to do
 				} else {
 					$groups[] = $groupId;
 
@@ -57,8 +50,6 @@ class ChecklistHelper
 						$groups = array_merge($groups, $allId);
 					}
 
-					$groups[] = $guestId;
-					$groups[] = $publicId;
 					$groups[] = '-'.$user->id;
 				}
 			}

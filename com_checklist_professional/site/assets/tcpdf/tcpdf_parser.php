@@ -40,6 +40,8 @@
  * @version 1.0.014
  */
 
+defined('_JEXEC') or die('Restricted access');
+
 // include class for decoding filters
 require_once(dirname(__FILE__).'/include/tcpdf_filters.php');
 

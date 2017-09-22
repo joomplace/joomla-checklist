@@ -133,20 +133,16 @@ if($this->user_data->avatar_field != ''){
 
 <?php } else {?>
 <form action="<?php echo JRoute::_('index.php?option=com_checklist&view=lists&userid='.$this->userid.$itemid);?>" method="post">
-<div class="list-group my-checklist">
-<h4><?php echo JText::_('COM_CHECKLIST_MY_OWN_CHECKLIST');?></h4>
-
-<?php if(count($this->checklists['my'])): ?>
-
-	<?php foreach($this->checklists['my'] as $checklist):?>
-		<a href="<?php echo JRoute::_('index.php?option=com_checklist&view=checklist&id='.$checklist->id);?>" class="list-group-item">
-			<h4 class="list-group-item-heading"><?php echo $checklist->title;?><?php if($checklist->default):?> (<small><?php echo JText::_('COM_CHECKLIST_AVAILABLE');?></small>)<?php endif;?></h4>
-			<p class="list-group-item-text"><?php echo strip_tags($checklist->description_before);?></p>
-			
-		</a>
-	<?php endforeach; ?>
-
-<?php endif;?>
+<div class="list-group user-checklist">
+	
+	<?php if(count($this->checklists['user'])): ?>
+		<?php foreach($this->checklists['user'] as $checklist):?>
+			<a href="<?php echo JRoute::_('index.php?option=com_checklist&view=checklist&id='.$checklist->id.'&userid='.$this->userid);?>" class="list-group-item">		
+				<h4 class="list-group-item-heading"><?php echo $checklist->title;?><?php if($checklist->default):?> (<small><?php echo JText::_('COM_CHECKLIST_AVAILABLE');?></small>)<?php endif;?></h4>
+				<p class="list-group-item-text"><?php echo strip_tags($checklist->description_before);?></p>
+			</a>
+		<?php endforeach; ?>
+	<?php endif;?>
 </div>
 <!-- Pagination -->
 <div class="checklist-pagination">

@@ -183,7 +183,7 @@ JHtml::_('formbehavior.chosen', 'select');
 	
 </script>
 
-<form name="adminForm" id="adminForm" action="index.php" method="post" autocomplete="off" class="form-validate" onsubmit="return false;">
+<form name="adminForm" id="adminForm" action="index.php" method="post" autocomplete="off" class="form-validate" >
 	<input type="hidden" name="option" value="<?php echo 'COM_CHECKLIST'; ?>" />
 	<input type="hidden" name="view" value="<?php echo $this->getName(); ?>" />
 	<input type="hidden" name="layout" value="<?php echo $this->getLayout(); ?>" />

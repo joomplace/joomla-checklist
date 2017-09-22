@@ -19,11 +19,6 @@ class ChecklistViewEdit_checklist extends JViewLegacy
         $user = JFactory::getUser();
 		$app = JFactory::getApplication();
 		
-		if(!$user->authorise('core.create', 'com_checklist')) {
-			echo JText::_('COM_CHECKLIST_CREATE_IS_NOT_PERMISSED');
-			die;
-		}
-		
 		$model = $this->getModel();
 		$this->access_list = $model->getGroupsList('list');
 		$this->access_comment = $model->getGroupsList('comment');

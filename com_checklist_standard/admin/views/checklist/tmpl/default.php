@@ -52,7 +52,6 @@ $document->addScript(JURI::root()."components/com_checklist/assets/js/joomplace_
 	}
 
 </style>
-
 <?php echo $this->loadTemplate('menu');?>
 <div id="j-sidebar-container" class="span2">
 	<?php echo $this->sidebar; ?>

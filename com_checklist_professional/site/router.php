@@ -198,10 +198,20 @@ function ChecklistParseRoute( $segments )
 
 		for($i = 0; $i < count($segments); $i++){
 			if(strlen($segments[$i]) > 5 && substr($segments[$i], -5) == '.html'){
-				$segments[$i] = substr($segments[$i], 0, -5);
+				$old_segment = substr($segments[$i], 0, -5);
+				$segments[$i] = $db->escape($old_segment);
+				if ($segments[$i] != $old_segment) {
+					$doc = JFactory::getDocument();
+					$doc->addStyleDeclaration('
+					    .alert {
+					    	display: block !important;
+						}
+					');
+					$app = JFactory::getApplication();
+        			$app->enqueueMessage("But the meaning?", 'warning');
+				}
 			}
 		}
-
 		if($segments[0] == 'frontend'){
 			$vars['view']	= $segments[0];
 		}
@@ -289,4 +299,3 @@ function ChecklistParseRoute( $segments )
 
 	return $vars;
 }
-
