@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension type="component" version="3.0" method="upgrade" >
+<extension type="component" version="3.x" method="upgrade" >
 	<name>COM_CHECKLIST</name>
 	<creationDate>April 2014</creationDate>
 	<author>JoomPlace Team</author>
@@ -7,15 +7,39 @@
 	<license>GNU/GPL http://www.gnu.org/copyleft/gpl.html</license>
 	<authorEmail>support@joomplace.com</authorEmail>
 	<authorUrl>www.joomplace.com</authorUrl>
-	<version>1.0.0 (build 001)</version>
+	<version>1.1.0.003</version>
 	<description>This component allows creating personal checklists</description>
-	
 	<scriptfile>script.php</scriptfile>
+	  <install>
+	    <sql>
+	      <file driver="mysql" charset="utf8">sql/install.mysql.utf8.sql</file>
+	    </sql>
+	  </install>
+	  <uninstall>
+	    <sql>
+	      <file driver="mysql" charset="utf8">sql/uninstall.mysql.utf8.sql</file>
+	    </sql>
+	  </uninstall>
+	  <update>
+	    <schemas>
+	      <schemapath type="mysql">sql/updates/mysql</schemapath>
+	    </schemas>
+	  </update>
 	<files folder="site">
-		<filename>frontend.zip</filename>
-		<filename>checklist_modules.zip</filename>
-		<filename>checklist_plugins.zip</filename>
+		<folder>assets</folder>
+		<folder>controllers</folder>
+		<folder>helpers</folder>
+		<folder>language</folder>
+		<folder>models</folder>
+		<folder>views</folder>
+		<filename>checklist.php</filename>
+		<filename>controller.php</filename>
+		<filename>index.html</filename>
+		<filename>router.php</filename>
 	</files>
+	<languages folder="site/language/en-GB">
+      <language tag="en-GB">en-GB.com_checklist.ini</language>
+    </languages>
 
 	<administration>
 	<menu img="components/com_checklist/assets/images/jp_menu_pic.gif" link="index.php?option=com_checklist&amp;view=dashboard">COM_CHECKLIST</menu>
@@ -28,10 +52,29 @@
 			
 			<menu link="option=com_checklist&amp;view=dashboard" img="class:default">COM_CHECKLIST_MENU_ABOUT_CHECKLIST</menu>
 		</submenu>
+	
 	<files folder="admin">
-		<filename>backend.zip</filename>
-		<folder>installer</folder>
+		<folder>assets</folder>
+		<folder>controllers</folder>
+		<folder>helpers</folder>
+		<folder>language</folder>
+		<folder>libs</folder>
+		<folder>models</folder>
+		<folder>sql</folder>
+		<folder>tables</folder>
+		<folder>views</folder>
+		<filename>access.xml</filename>
+		<filename>changelog.txt</filename>
+		<filename>checklist.php</filename>
+		<filename>config.xml</filename>
+		<filename>controller.php</filename>
+		<filename>index.html</filename>
 	</files>
+	<languages folder="admin/language/en-GB">
+      <language tag="en-GB">en-GB.com_checklist.ini</language>
+      <language tag="en-GB">en-GB.com_checklist.sys.ini</language>
+    </languages>
+
 	</administration>
 	<updateservers>
 		<!-- Note: No spaces or linebreaks allowed between the server tags -->

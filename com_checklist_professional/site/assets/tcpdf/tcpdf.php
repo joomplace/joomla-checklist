@@ -107,6 +107,8 @@
  * @version 6.0.089
  */
 
+defined('_JEXEC') or die('Restricted access');
+
 // TCPDF configuration
 require_once(dirname(__FILE__).'/tcpdf_autoconfig.php');
 // TCPDF static font methods and data

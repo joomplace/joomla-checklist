@@ -17,10 +17,11 @@ class ChecklistViewLists extends JViewLegacy
 	function display($tpl = null) 
 	{
 		$model = $this->getModel();
-		
+
+		$allow_edit = false;
         $user = JFactory::getUser();
 		$app = JFactory::getApplication();
-
+		
 		$this->itemid = $app->input->get('Itemid');
 
 		$userid = JFactory::getApplication()->input->get('userid', 0);
@@ -29,17 +30,21 @@ class ChecklistViewLists extends JViewLegacy
 		$this->uname = '';
 		if($userid){
 			$this->uname = $this->get('Uname');
-		}		
+		}
 
 		if(!$user->id && !$userid){	
 			$app->redirect(JRoute::_('index.php?option=com_users&view=login', 'This area is for registered users only. Please log in to access it.'));
-		}
-		
-		$this->allow_edit = $user->authorise('core.create', 'com_checklist');		
+		} else if($user->id || $userid){
+			
+			if($userid && $userid == $user->id) $allow_edit = true;
+			if(!$userid && $user->id) $allow_edit = true;
+			
+			$this->allow_edit = $allow_edit;
+			$this->pagination = $this->get('Pagination');
+			$this->checklists = $this->get('Checklists');
 
-		$this->pagination = $this->get('Pagination');
-		$this->checklists = $this->get('Checklists');
-		
+		}
+
 		$uid = ($userid) ? $userid : $user->id;
 		$this->uid = $uid;
 		

@@ -53,6 +53,8 @@
  * @version 1.0.005
  */
 
+defined('_JEXEC') or die('Restricted access');
+
 // definitions
 if (!defined('PDF417DEFS')) {
 

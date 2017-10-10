@@ -19,7 +19,7 @@ class com_checklistInstallerScript
 	
 		jimport( 'joomla.filesystem.folder' );
 		jimport( 'joomla.filesystem.file' );
-		$this->_extract();
+		// $this->_extract();
 		
 		$adminDir = JPATH_ROOT.DS.'administrator'.DS.'components'.DS.'com_checklist';
 		if (!JFolder::exists(JPATH_ROOT . DS . 'images'. DS . 'checklist') ) {
@@ -69,23 +69,31 @@ class com_checklistInstallerScript
     
     function update($parent)
     {
-		$this->_extract();
+		// $this->_extract();
 	}
 
 	function postflight($type, $parent)
     {
 		$app = JFactory::getApplication();
 		$db	= JFactory::getDBO();	
-		$chk_this_version = '1.0.0 (build 001)';
+		$chk_this_version = '1.1.0.003';
         $curr_date = date("Y-m-d", strtotime("-2 months"));
 
         $db->setQuery("SELECT COUNT(*) FROM `#__checklist_config`");
 		if(!$db->loadResult()){
-			$db->SetQuery("INSERT INTO `#__checklist_config` (`setting_name`, `setting_value`) VALUES ('component_version', '".$chk_this_version."'), ('social_google_plus_use', '1'), ('social_google_plus_size', 'medium'), ('social_google_plus_annotation', 'inline'), ('social_google_plus_language', 'en-US'), ('social_twitter_use', '1'), ('social_twitter_size', 'standart'), ('social_twitter_annotation', 'horizontal'), ('social_twitter_language', 'en'), ('social_linkedin_use', '0'), ('social_linkedin_annotation', 'none'), ('social_facebook_use', '1'), ('social_facebook_verb', 'like'), ('social_facebook_layout', 'button_count'), ('social_facebook_font', 'tahoma'), ('useDisqus', '0'), ('disqusSubDomain', ''), ('fbadmin', ''), ('fbappid', ''), ('useNotification', '1'), ('emailsNotification', ''), ('moderateChecklist', '1')");
+			$db->SetQuery("INSERT INTO `#__checklist_config` (`setting_name`, `setting_value`) VALUES ('component_version', '".$chk_this_version."'), ('social_google_plus_use', '1'), ('social_google_plus_size', 'medium'), ('social_google_plus_annotation', 'inline'), ('social_google_plus_language', 'en-US'), ('social_twitter_use', '1'), ('social_twitter_size', 'standart'), ('social_twitter_annotation', 'horizontal'), ('social_twitter_language', 'en'), ('social_linkedin_use', '0'), ('social_linkedin_annotation', 'none'), ('social_facebook_use', '1'), ('social_facebook_verb', 'like'), ('social_facebook_layout', 'button_count'), ('social_facebook_font', 'tahoma'), ('useDisqus', '0'), ('disqusSubDomain', ''), ('fbadmin', ''), ('fbappid', ''), ('useNotification', '1'), ('emailsNotification', ''), ('print_option', '0'), ('pdf_option', '0'), ('rating_option', '1')");
 			$db->execute();
 		} else {
 			$db->setQuery("UPDATE `#__checklist_config` SET `setting_value` = '".$chk_this_version."' WHERE `setting_name` = 'component_version'");
 			$db->execute();
+
+			$db->setQuery("SELECT COUNT(*) FROM `#__checklist_config` WHERE `setting_name` = 'print_option'");
+			$exists = $db->loadResult();
+
+			if(!$exists){
+				$db->SetQuery("INSERT INTO `#__checklist_config` (`setting_name`, `setting_value`) VALUES ('print_option', '0'), ('pdf_option', '0'), ('rating_option', '1')");
+				$db->execute();
+			}
 		}
 
 		$db->setQuery("SELECT COUNT(id) FROM `#__checklist_dashboard_items`");
@@ -124,7 +132,10 @@ class com_checklistInstallerScript
 		$db->setQuery("INSERT INTO `#__checklist_templates` (`id`, `name`) VALUES ('', 'Joomplace Style'), ('', 'Default Template');");
 		$db->query();
 
-		$app->redirect(JURI::root().'administrator/index.php?option=com_checklist&task=install.plugins');
+		$db->setQuery("CREATE TABLE IF NOT EXISTS `#__checklist_rating` (`id` int(18) NOT NULL AUTO_INCREMENT, `checklist_id` int(18) NOT NULL, `user_id` int(18) NOT NULL, `rate` tinyint(1) NOT NULL, PRIMARY KEY (`id`)) DEFAULT CHARSET=utf8");
+		$db->execute();
+
+		// $app->redirect(JURI::root().'administrator/index.php?option=com_checklist&task=install.plugins');
 	}
 		
 	function _extract(){

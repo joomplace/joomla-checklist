@@ -123,7 +123,12 @@ class ChecklistModelFrontend extends JModelList
 			$order_by = "ORDER BY l.".$filter_order." ".$filter_order_Dir;
 		}
 
-		$db->setQuery("SELECT DISTINCT l.* FROM `#__checklist_lists` as l LEFT JOIN `#__users` as u ON u.`id` = l.`user_id` LEFT JOIN `#__checklist_list_tags` as lt ON lt.`checklist_id` = l.`id` LEFT JOIN `#__checklist_tags` as t ON t.`id` = lt.`tag_id` WHERE (l.`language` = '".$lang_code."' OR l.`language` = '*' OR l.`language` = '') AND l.`default` = '1' AND UNIX_TIMESTAMP(l.`publish_date`) <= '".$now_date."' AND l.`list_access` IN (".implode(",", $groups).")".$where_string." GROUP BY l.`id` ".$order_by.$limit_string);
+		$list_access = '';
+		if(count($groups)){
+			$list_access = " AND l.`list_access` IN (".implode(",", $groups).")";
+		}
+
+		$db->setQuery("SELECT DISTINCT l.* FROM `#__checklist_lists` as l LEFT JOIN `#__users` as u ON u.`id` = l.`user_id` LEFT JOIN `#__checklist_list_tags` as lt ON lt.`checklist_id` = l.`id` LEFT JOIN `#__checklist_tags` as t ON t.`id` = lt.`tag_id` WHERE (l.`language` = '".$lang_code."' OR l.`language` = '*' OR l.`language` = '') AND l.`default` = '1' AND UNIX_TIMESTAMP(l.`publish_date`) <= '".$now_date."'".$list_access.$where_string." GROUP BY l.`id` ".$order_by.$limit_string);
 		$available_checklists = $db->loadObjectList();
 		$available_checklists = $this->getRatings($available_checklists);
 

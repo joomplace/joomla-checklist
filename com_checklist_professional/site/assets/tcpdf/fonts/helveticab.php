@@ -1,5 +1,16 @@
 <?php
+/**
+ * Font file for TCPDF.
+ * @author Nicola Asuni
+ * @package com.tecnick.tcpdf
+ * @version 4.9.005
+ * @since 2004-10-27
+ */
+
 // TCPDF FONT FILE DESCRIPTION
+
+defined('_JEXEC') or die('Restricted access');
+
 $type='core';
 $name='Helvetica-Bold';
 $up=-100;

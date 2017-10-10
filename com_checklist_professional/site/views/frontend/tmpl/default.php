@@ -111,9 +111,8 @@ if($this->config->rating_option){
 	</tbody>
 </table>
 <div style="clear:both"><br/></div>
-	
 </form>
-<form id="adminForm" name="adminForm" class="form-horizontal" role="form" method="post" action="<?php echo JURI::root();?>index.php?option=com_checklist&view=frontend">
+<form id="adminForm" name="adminForm" class="form-horizontal" role="form" method="post" action="/<?php echo JURI::root(true);?>index.php?option=com_checklist&view=frontend">
 <?php if(count($this->available_checklists)):?>
 	
 	<?php if($this->available_checklists[0]->lists['liststyle'] == 'list'){?>

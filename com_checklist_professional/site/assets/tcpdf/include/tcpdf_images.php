@@ -49,6 +49,9 @@
  * @version 1.0.003
  * @author Nicola Asuni - info@tecnick.com
  */
+
+defined('_JEXEC') or die('Restricted access');
+
 class TCPDF_IMAGES {
 
 	/**

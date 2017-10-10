@@ -73,7 +73,12 @@ class ChecklistModelTag extends JModelList
 		$now = time();
 		$groups = ChecklistHelper::getAllowGroups();
 		
-		$db->setQuery("SELECT l.* FROM `#__checklist_lists` as l LEFT JOIN `#__checklist_list_tags` as lt ON lt.`checklist_id` = l.`id` WHERE lt.`tag_id` = '".$tag_id."' AND l.`default` = '1' AND UNIX_TIMESTAMP(l.`publish_date`) <= '".$now."' AND l.`list_access` IN (".implode(",", $groups).") ".$limit_string);
+		$list_access = '';
+		if(count($groups)){
+			$list_access = " AND l.`list_access` IN (".implode(",", $groups).")";
+		}
+
+		$db->setQuery("SELECT l.* FROM `#__checklist_lists` as l LEFT JOIN `#__checklist_list_tags` as lt ON lt.`checklist_id` = l.`id` WHERE lt.`tag_id` = '".$tag_id."' AND l.`default` = '1' AND UNIX_TIMESTAMP(l.`publish_date`) <= '".$now."'".$list_access.$limit_string);
 		$checklists = $db->loadObjectList();
 
 		return $checklists;
