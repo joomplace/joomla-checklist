@@ -79,8 +79,6 @@
  * @version 1.0.010
  */
 
-defined('_JEXEC') or die('Restricted access');
-
 // definitions
 if (!defined('QRCODEDEFS')) {
 

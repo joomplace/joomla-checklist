@@ -42,8 +42,6 @@
  * @version 1.0.001
  */
 
-defined('_JEXEC') or die('Restricted access');
-
 // include the TCPDF class
 require_once(dirname(__FILE__).'/tcpdf.php');
 // include PDF parser class

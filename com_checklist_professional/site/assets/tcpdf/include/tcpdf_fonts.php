@@ -45,9 +45,6 @@
  * @version 1.0.013
  * @author Nicola Asuni - info@tecnick.com
  */
-
-defined('_JEXEC') or die('Restricted access');
-
 class TCPDF_FONTS {
 
 	/**

@@ -43,8 +43,6 @@
 * @version 1.0.008
 */
 
-defined('_JEXEC') or die('Restricted access');
-
 // custom definitions
 if (!defined('DATAMATRIXDEFS')) {
 
