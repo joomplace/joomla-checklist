@@ -14,10 +14,11 @@
 defined( '_JEXEC' ) or die( 'Restricted access' );
 $sec_tbl = 1;
 
+$document = JFactory::getDocument();
+$document->addStyleSheet(JURI::root()."modules/mod_checklist_lastten/tmpl/style.css");
+
 ?>
 <div class="moduletable checklist_container cmodule">
-<table width="95%" border="0" cellspacing="0" cellpadding="1" align="center" class="table table-striped">
-<tr class="row<?php echo $sec_tbl;?>"><td><b><?php echo JText::_('MOD_CHECKLIST_MOD_TITLE');?></b></td><td width="30%"><b><?php echo JText::_('MOD_CHECKLIST_MOD_AUTHOR');?></b></td></tr>
 <?php
 
 if(count($checklists)){
@@ -33,16 +34,15 @@ if(count($checklists)){
 			$usr_d = JText::_('MOD_CHECKLIST_MOD_NO_AUTHOR');
 		}
 		
-		echo "<tr><td class='row".$sec_tbl.$moduleclass_sfx."'><a href='".JRoute::_('index.php?option=com_checklist&view=checklist&id='.$one_checklist->checklist_id)."'>".$one_checklist->title."</a></td><td class='row".$sec_tbl.$moduleclass_sfx."'>".$usr_d."</td></tr>";
+		echo "<div class='checklist-row row".$sec_tbl."'><div class='checklist-title'><a href='".JRoute::_('index.php?option=com_checklist&view=checklist&id='.$one_checklist->checklist_id)."'>".$one_checklist->title."</a></div><div class='checklist-author'><span>".JText::_('MOD_CHECKLIST_CHECKLIST_AUTHOR')."</span>".$usr_d."</div></div><div style='clear:both;'></div>";
 		if ($sec_tbl == 1) $sec_tbl = 0;
 		else $sec_tbl = 1;
 	}
 	if (count($checklists) == $v_content_count) {
-		echo "<tr><td class='row".$sec_tbl.$moduleclass_sfx."'>" . JText::_('MOD_CHECKLIST_MOD_SOON') . "</td><td class='row".$sec_tbl.$moduleclass_sfx."'>&nbsp;</td></tr>";
+		echo "<div class='checklist-row'>" . JText::_('MOD_CHECKLIST_MOD_SOON') . "</div>";
 	}
 	
 }
 
 ?>
-</table>
 </div>
