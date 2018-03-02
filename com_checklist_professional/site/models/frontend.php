@@ -63,8 +63,8 @@ class ChecklistModelFrontend extends JModelList
         $name_search = $app->getUserStateFromRequest('frontend.filter.name_search', 'name_search');
         $this->setState('filter.name_search', $name_search);
 
-        $publish_search = $app->getUserStateFromRequest('frontend.filter.publish_search', 'publish_search');
-        $this->setState('filter.publish_search', $publish_search);
+        $publish_search = $app->getUserStateFromRequest('frontend.filter.publish_date', 'publish_date');
+        $this->setState('filter.publish_date', $publish_search);
 
         $description_search = $app->getUserStateFromRequest('frontend.filter.description_search', 'description_search');
         $this->setState('filter.description_search', $description_search);
@@ -81,23 +81,24 @@ class ChecklistModelFrontend extends JModelList
         $where = array();
 
         if ($title_search) {
-            $where[] = "LOWER(l.`title`) LIKE '%" . strtolower($title_search) . "%'";
+            $where[] = "LOWER(l.`title`) LIKE '%" . $db->escape(strtolower($title_search), true) . "%'";
         }
 
         if ($tag_search) {
-            $where[] = "LOWER(t.`name`) LIKE '%" . strtolower($tag_search) . "%'";
+            $where[] = "LOWER(t.`name`) LIKE '%" . $db->escape(strtolower($tag_search)) . "%'";
         }
 
         if ($name_search) {
-            $where[] = "LOWER(u.`name`) LIKE '%" . strtolower($name_search) . "%'";
+            $where[] = "LOWER(u.`name`) LIKE '%" . $db->escape(strtolower($name_search)) . "%'";
         }
 
         if ($publish_search) {
-            $where[] = "l.`publish_date` = '" . $publish_search . "'";
+            $date = JFactory::getDate($publish_search);
+            $where[] = "l.`publish_date` = " . $db->quote($date->toSql(), false);
         }
 
         if ($description_search) {
-            $where[] = "(LOWER(l.`description_before`) LIKE '%" . strtolower($description_search) . "%' OR LOWER(l.`description_after`) LIKE '%" . strtolower($description_search) . "%')";
+            $where[] = "(LOWER(l.`description_before`) LIKE '%" . $db->escape(strtolower($description_search)) . "%' OR LOWER(l.`description_after`) LIKE '%" . $db->escape(strtolower($description_search)) . "%')";
         }
 
         $where_string = '';
@@ -119,7 +120,7 @@ class ChecklistModelFrontend extends JModelList
 
         $order_by = "ORDER BY l.`title`, l.`id`";
         if ($filter_order != 'rating') {
-            $order_by = "ORDER BY l." . $filter_order . " " . $filter_order_Dir;
+            $order_by = "ORDER BY l." . $db->quoteName($filter_order) . " " . $db->escape($filter_order_Dir);
         }
 
         $list_access = '';
