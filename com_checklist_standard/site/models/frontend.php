@@ -59,7 +59,7 @@ class ChecklistModelFrontend extends JModelList
         $this->setState('filter.name_search', $name_search);
 
         $publish_search = $app->getUserStateFromRequest('frontend.filter.publish_date', 'publish_date');
-        $this->setState('filter.publish_date    ', $publish_search);
+        $this->setState('filter.publish_date', $publish_search);
 
         $description_search = $app->getUserStateFromRequest('frontend.filter.description_search', 'description_search');
         $this->setState('filter.description_search', $description_search);
