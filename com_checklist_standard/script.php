@@ -91,7 +91,7 @@ class com_checklistInstallerScript
 
         $db->setQuery("SELECT COUNT(id) FROM `#__checklist_dashboard_items`");
         if (!$db->loadResult()) {
-            $db->setQuery("INSERT INTO `#__checklist_dashboard_items` (`id`, `title`, `url`, `icon`, `published`) VALUES (1, 'User checklists', 'index.php?option=com_checklist&view=lists', '" . JURI::root() . "media/com_checklist/preferences_contact_list.png', 1), (2, 'Available checklists', 'index.php?option=com_checklist&view=lists&defaultlist=1', '" . JURI::root() . "media/com_checklist/to_do_list_checked3.png', 1), (3, 'User list', 'index.php?option=com_checklist&view=users', '" . JURI::root() . "media/com_checklist/users_2.png', 1), (4, 'Configuration', 'index.php?option=com_checklist&view=configuration', '" . JURI::root() . "media/com_checklist/settings.png', 1), (5, 'Tags', 'index.php?option=com_checklist&view=tags', '" . JURI::root() . "media/com_checklist/rss_tag.png', 1);");
+            $db->setQuery("INSERT INTO `#__checklist_dashboard_items` (`id`, `title`, `url`, `icon`, `published`) VALUES (1, 'User checklists', 'index.php?option=com_checklist&view=lists', 'media/com_checklist/preferences_contact_list.png', 1), (2, 'Available checklists', 'index.php?option=com_checklist&view=lists&defaultlist=1', 'media/com_checklist/to_do_list_checked3.png', 1), (3, 'User list', 'index.php?option=com_checklist&view=users', 'media/com_checklist/users_2.png', 1), (4, 'Configuration', 'index.php?option=com_checklist&view=configuration', 'media/com_checklist/settings.png', 1), (5, 'Tags', 'index.php?option=com_checklist&view=tags', 'media/com_checklist/rss_tag.png', 1);");
             $db->execute();
         }
 
