@@ -77,7 +77,7 @@ class com_checklistInstallerScript
     {
         $app = JFactory::getApplication();
         $db = JFactory::getDBO();
-        $chk_this_version = '1.1.0.003';
+        $chk_this_version = '1.1.0.004';
         $curr_date = date("Y-m-d", strtotime("-2 months"));
 
         $db->setQuery("SELECT COUNT(*) FROM `#__checklist_config`");
