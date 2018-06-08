@@ -149,7 +149,7 @@ class LightchecklistTableList extends JTable
         return $this->title;
     }
     //----------------------------------------------------------------------------------------------------
-    protected function _getAssetParentId($table = null, $id = null)
+    protected function _getAssetParentId(Joomla\CMS\Table\Table $table = NULL, $id = NULL)
     {
         $assetsTable = JTable::getInstance('Asset', 'JTable');
         
