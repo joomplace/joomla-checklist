@@ -9,6 +9,7 @@
 defined('_JEXEC') or die('Restricted Access');
 JHtml::_('bootstrap.tooltip');
 
+$user = JFactory::getUser();
 $document = JFactory::getDocument();
 
 $document->addStyleSheet(JURI::root()."components/com_lightchecklist/assets/css/default_template/checklist.css");
@@ -70,7 +71,7 @@ $tag = str_replace("-", "_", $tag);
 <?php if($this->checklist):?>
 <div id="checklist">
 	<header itemscope="" itemtype="http://schema.org/WebApplication">
-		<h1 itemprop="name"><?php echo $this->checklist->title?></h1>
+		<h1 itemprop="name"><?php echo $this->checklist->title?>&nbsp;(<?php echo $user->name; ?>)</h1>
 	</header>
 	
     <div class="progress progress-striped">
@@ -120,8 +121,6 @@ $tag = str_replace("-", "_", $tag);
 <div style="clear: both;"></div>
 <div class="checklist-social">
 <?php
-	
-	$user = JFactory::getUser();
 	$itemid = JFactory::getApplication()->input->get('Itemid', 0);
 	$itemid = ($itemid) ? $itemid : '';
 
