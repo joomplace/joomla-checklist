@@ -47,23 +47,25 @@ class LightchecklistControllerChecklist extends JControllerForm
 							<textarea placeholder="Tips" id="inputTips'.$lastid.'" rows="3" class="form-control"></textarea>
 						</div>
 					</div>
-					<div>
-						<a href="javascript: void(0);" gid="'.$lastid.'" class="chr-dialog-window">Edit with Markdown Editor</a>&nbsp;<img src="'.JURI::root().'components/com_lightchecklist/assets/images/ajax-loader.gif" style="display:none;" id="ajax-loader-editor'.$lastid.'"/>
-					</div>
-					<div class="form-group">
-						<div class="col-sm-12">
-							<label for="">
-								<input type="checkbox" id="inputOptional'.$lastid.'" value="1" class="chk-optional"> Optional
-							</label>
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="col-sm-offset-2 col-sm-12">
-							<button groupid="'.$lastid.'" class="btn btn-sm chk-save-item" type="button">Save</button>
-							<button class="btn btn-sm chk-close-item-form" type="button">Cancel</button>
-							<img id="ajax-loader'.$lastid.'" style="display:none;" src="'.JURI::root().'components/com_lightchecklist/assets/images/ajax-loader.gif">
-						</div>
-					</div>
+                    <div style="margin:5px;" class="checklist-group-tools">
+                        <div>
+                            <a href="javascript: void(0);" gid="'.$lastid.'" class="chr-dialog-window">Edit with Markdown Editor</a>&nbsp;<img src="'.JURI::root().'components/com_lightchecklist/assets/images/ajax-loader.gif" style="display:none;" id="ajax-loader-editor'.$lastid.'"/>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label for="">
+                                    <input type="checkbox" id="inputOptional'.$lastid.'" value="1" class="chk-optional"> Optional
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-12">
+                                <button groupid="'.$lastid.'" class="btn btn-sm chk-save-item" type="button">Save</button>
+                                <button class="btn btn-sm chk-close-item-form" type="button">Cancel</button>
+                                <img id="ajax-loader'.$lastid.'" style="display:none;" src="'.JURI::root().'components/com_lightchecklist/assets/images/ajax-loader.gif">
+                            </div>
+                        </div>
+                    </div>
 				</form>
 			</div>
 			

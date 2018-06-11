@@ -57,8 +57,7 @@ $document->addStyleSheet(JURI::root().'administrator/components/com_checklist/as
                 <li id="fat-menu" class="dropdown">
                     <a href="#" id="help" role="button" class="dropdown-toggle" data-toggle="dropdown"><?php echo JText::_('COM_CHECKLIST_SUBMENU_HELP') ?><b class="caret"></b></a>
                     <ul class="dropdown-menu" role="menu" aria-labelledby="help">
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="http://www.joomplace.com/" target="_blank"><?php echo JText::_('COM_CHECKLIST_SUBMENU_HELP') ?></a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="http://www.joomplace.com/forum/joomla-components/goals.html" target="_blank"><?php echo JText::_('COM_CHECKLIST_ADMINISTRATION_SUPPORT_FORUM') ?></a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="https://www.joomplace.com/forum/joomla-components/checklist.html" target="_blank"><?php echo JText::_('COM_CHECKLIST_ADMINISTRATION_SUPPORT_FORUM') ?></a></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="http://www.joomplace.com/support/helpdesk/" target="_blank"><?php echo JText::_('COM_CHECKLIST_ADMINISTRATION_SUPPORT_DESC') ?></a></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="http://www.joomplace.com/support/helpdesk/post-purchase-questions/ticket/create" target="_blank"><?php echo JText::_('COM_CHECKLIST_ADMINISTRATION_SUPPORT_REQUEST') ?></a></li>
                     </ul>
