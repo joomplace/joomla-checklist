@@ -802,8 +802,7 @@ input.form-control{
 	height: 30px !important;
 }
 
-
-.chk-add-group, .chk-add-item-form, .alert{
+.chk-edit-group-form, .chk-add-group, .chk-add-item-form, .alert{
 	display:none;
 }
 

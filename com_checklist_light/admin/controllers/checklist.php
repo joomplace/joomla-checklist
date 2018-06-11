@@ -270,6 +270,27 @@ class LightchecklistControllerChecklist extends JControllerForm
 			die;
 		}
 		
+		public function ajaxupdategroup(){
+                    
+			$db = JFactory::getDBO();			
+			$title = JFactory::getApplication()->input->getString('title');						
+			$checklist_id = JFactory::getApplication()->input->get('id');
+                        
+			if(!$this->checkAccess($checklist_id)) exit();
+                        
+			$groupid = JFactory::getApplication()->input->get('groupid');
+                        
+			$db->setQuery("UPDATE `#__checklist_groups` SET `title` = ".$db->quote($title)." WHERE `id` = ".$groupid." AND `checklist_id` = ".$checklist_id);
+			$db->query();
+			
+			$json_array = array();
+			$json_array['title'] = $title;			
+			$json_array['groupid'] = $groupid;			
+			$json = json_encode($json_array);
+			echo $json;
+			die;
+		}
+		
 		public function ajaxsaveitem(){
 			
 			$db = JFactory::getDBO();
