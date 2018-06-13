@@ -79,15 +79,61 @@ class com_checklistInstallerScript
 		$chk_this_version = '1.1.0.003';
         $curr_date = date("Y-m-d", strtotime("-2 months"));
 
+        $configDefaultParams = array(
+            'component_version' => $chk_this_version,
+            'social_google_plus_use' => 1,
+            'social_google_plus_size' =>'medium',
+            'social_google_plus_annotation' => 'inline',
+            'social_google_plus_language' => 'en-US',
+            'social_twitter_use' => 1,
+            'social_twitter_size' => 'standart',
+            'social_twitter_annotation' => 'horizontal',
+            'social_twitter_language' => 'en',
+            'social_linkedin_use' => 0,
+            'social_linkedin_annotation' => 'none',
+            'social_facebook_use' => 1,
+            'social_facebook_verb' => 'like',
+            'social_facebook_layout' => 'button_count',
+            'social_facebook_font' => 'tahoma',
+            'useDisqus' => 0,
+            'disqusSubDomain' => '',
+            'fbadmin' => '',
+            'fbappid' => '',
+            'moderateChecklist' => 1,
+            'useNotification' => 1,
+            'emailsNotification' => ''
+        );
+        
         $db->setQuery("SELECT COUNT(*) FROM `#__checklist_config`");
 		if(!$db->loadResult()){
-			$db->SetQuery("INSERT INTO `#__checklist_config` (`setting_name`, `setting_value`) VALUES ('component_version', '".$chk_this_version."'), ('social_google_plus_use', '1'), ('social_google_plus_size', 'medium'), ('social_google_plus_annotation', 'inline'), ('social_google_plus_language', 'en-US'), ('social_twitter_use', '1'), ('social_twitter_size', 'standart'), ('social_twitter_annotation', 'horizontal'), ('social_twitter_language', 'en'), ('social_linkedin_use', '0'), ('social_linkedin_annotation', 'none'), ('social_facebook_use', '1'), ('social_facebook_verb', 'like'), ('social_facebook_layout', 'button_count'), ('social_facebook_font', 'tahoma'), ('useDisqus', '0'), ('disqusSubDomain', ''), ('fbadmin', ''), ('fbappid', ''), ('useNotification', '1'), ('emailsNotification', ''), ('moderateChecklist', '1')");
+            $query = 'INSERT INTO `#__checklist_config` (`setting_name`, `setting_value`) VALUES ';
+            foreach($configDefaultParams as $p => $value) {
+                $query.="('".$p."', '".$value."'),";
+            }
+			$db->SetQuery(substr($query, 0, -1));            
 			$db->execute();
+            
 		} else {
-			$db->setQuery("UPDATE `#__checklist_config` SET `setting_value` = '".$chk_this_version."' WHERE `setting_name` = 'component_version'");
-			$db->execute();
+            // check all config params
+            $db->setQuery("SELECT setting_name FROM `#__checklist_config`");
+            $dbsettings = $db->loadColumn();
+            $query = 'INSERT INTO `#__checklist_config` (`setting_name`, `setting_value`) VALUES ';
+            $count = 0;
+            foreach($configDefaultParams as $p => $value) {
+                if(!in_array($p, $dbsettings)) {
+                    $count++;
+                    $query.="('".$p."', '".$value."'),";
+                } elseif($p=='component_version') {
+                    $db->setQuery("UPDATE `#__checklist_config` SET `setting_value` = '".$chk_this_version."' WHERE `setting_name` = 'component_version'");
+                    $db->execute();
+                }
+            }
+            if($count) {
+                $db->SetQuery(substr($query, 0, -1));            
+                $db->execute(); 
+            }
 		}
-
+        
 		$db->setQuery("SELECT COUNT(id) FROM `#__checklist_dashboard_items`");
 		if(!$db->loadResult()){
 			$db->setQuery("INSERT INTO `#__checklist_dashboard_items` (`id`, `title`, `url`, `icon`, `published`) VALUES (1, 'User checklists', 'index.php?option=com_checklist&view=lists', '".JURI::root()."media/com_checklist/preferences_contact_list.png', 1), (2, 'Available checklists', 'index.php?option=com_checklist&view=lists&defaultlist=1', '".JURI::root()."media/com_checklist/to_do_list_checked3.png', 1), (3, 'User list', 'index.php?option=com_checklist&view=users', '".JURI::root()."media/com_checklist/users_2.png', 1), (4, 'Configuration', 'index.php?option=com_checklist&view=configuration', '".JURI::root()."media/com_checklist/settings.png', 1), (5, 'Tags', 'index.php?option=com_checklist&view=tags', '".JURI::root()."media/com_checklist/rss_tag.png', 1);");
