@@ -99,10 +99,15 @@ if($this->user_data->avatar_field != ''){
 <div class="alert alert-success"></div>
 <div class="alert alert-danger"></div>
 
+<?php
+if($user->authorise('core.create', 'com_checklist')) {
+    
+?>
+
 <p>
 	<a href="<?php echo JRoute::_('index.php?option=com_checklist&view=edit_checklist&tmpl=component');?>" type="button" class="btn btn-primary btn-lg various btn-warning" data-fancybox-type="iframe"><?php echo JText::_('Create your own checklist')?></a>
 </p>
-
+<?php } ?>
 <form action="<?php echo JRoute::_('index.php?option=com_checklist&view=lists'.$itemid);?>" method="post">
 
 <div class="list-group my-checklist">
@@ -172,6 +177,7 @@ if($this->user_data->avatar_field != ''){
 	var chk_confirm = "<?php echo JText::_('COM_CHECKLIST_CONFIRM');?>";
 	var chk_cancel = "<?php echo JText::_('COM_CHECKLIST_CANCEL');?>";
 	var checklist_was_successfully_removed = "<?php echo JText::_('COM_CHECKLIST_WAS_SUCCESSFULLY_REMOVED');?>";
+    var com_checklist_you_not_authorized = "<?php echo JText::_('COM_CHECKLIST_YOU_NOT_AUTHORIZED');?>";
 	var chk_checklist_name = "<?php echo JText::_('COM_CHECKLIST_CHECKLIST_NAME');?>";
 	var chk_checklist_name_placeholder = "<?php echo JText::_('COM_CHECKLIST_NAME_PLACEHOLDER');?>";
 	var chk_checklist_description = "<?php echo JText::_('COM_CHECKLIST_CHECKLIST_DESCRIPTION');?>";
