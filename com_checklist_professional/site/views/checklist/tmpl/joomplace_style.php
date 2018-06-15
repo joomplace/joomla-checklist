@@ -881,7 +881,7 @@ $tag = str_replace("-", "_", $tag);
 		
 		bindDialogLinks: function(){
 			
-			jQuery('.chr-dialog-window').bind("click", function(){
+			jQuery('.chr-dialog-window').off('click').on("click", function(){
 				var gid = jQuery(this).attr("gid");
 				jQuery('#ajax-loader-editor' + gid).show();
 				Checklist.doAjax('checklist.getEditor', {gid: gid}, Checklist.showInZebraDialog, this);
