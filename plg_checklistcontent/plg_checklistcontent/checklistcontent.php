@@ -57,7 +57,6 @@ class plgContentChecklistcontent extends JPlugin {
 			
 			JLoader::register('ChecklistHelper', JPATH_SITE . '/components/com_checklist/helpers/checklist.php');
 
-
 			$app = JFactory::getApplication();
 			$app->input->set('id', $checklist_id);
 
@@ -65,11 +64,10 @@ class plgContentChecklistcontent extends JPlugin {
 			$model = JModelLegacy::getInstance('Checklist', 'ChecklistModel');
 
 			$this->viewClass($model);
-		
-			if(!empty($this->checklist)){
+
+			if(isset($this->checklist) && isset($this->checklist->template)){
 				$db->setQuery("SELECT `name` FROM `#__checklist_templates` WHERE `id` = '".$this->checklist->template."'");
 				$template = $db->loadResult();
-
 				$template = str_replace(" ", "_", strtolower(trim($template)));
 			} else {
 				$template = 'unavailable';
