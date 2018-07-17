@@ -126,8 +126,12 @@ class ChecklistTableList extends JTable
                                 $db->insertObject('#__checklist_list_tags', $object, 'id');
                         }
                 }
-
-                $author_id = $post['author_id'];
+                //post can be deleted in future
+                if(empty($post['author_id'])) {
+                    $author_id = $jform['author_id'];
+                } else {
+                    $author_id = $post['author_id'];
+                }
                 $db->setQuery("UPDATE `#__checklist_lists` SET `user_id` = '".$author_id."' WHERE `id` = '".$this->id."'");
                 $db->execute();
 

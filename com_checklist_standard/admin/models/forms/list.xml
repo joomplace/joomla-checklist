@@ -46,10 +46,18 @@
 				<option value="0">COM_CHECKLIST_NO</option>
 				<option value="1">COM_CHECKLIST_YES</option>
 		</field>
-		<field name="author" type="text" default="" size="30"
-				label="COM_CHECKLIST_AUTHOR" 
-                labelclass="control-label" required="false">
-		</field>
+                <field
+                    name="author_id"
+                    type="sql"
+                    default=""
+                    label="COM_CHECKLIST_AUTHOR"
+                    query="SELECT `id`,`name` FROM `#__users`"
+                    key_field="id"
+                    value_field="name"
+                    required="false"
+                    >
+                    <option value="0">COM_CHECKLIST_SELECT_AUTHOR</option>
+                </field>
 		<field name="language" type="contentlanguage" label="JFIELD_LANGUAGE_LABEL"
 			description="COM_CONTENT_FIELD_LANGUAGE_DESC" class="selectlist">
 			<option value="*">JALL</option>

@@ -119,12 +119,19 @@ Joomla.submitbutton = function(task)
 		        </div>
 		        <div class="control-group">
 	                <div class="control-label">
-					    <?php echo $this->form->getLabel('author'); ?>
+					    <?php echo $this->form->getLabel('author_id'); ?>
 	                </div>
 					<div class="controls">
-						<?php echo $this->author; ?>
+						<?php 
+                        if(!empty($this->item->user_id)) {
+                            $user_id = $this->item->user_id;
+                        } else {
+                            $user = JFactory::getUser(); 
+                            $user_id = $user->id;
+                        }
+                        echo $this->form->getInput('author_id', null, $user_id); 
+                        ?>
 					</div>
-				</div>
 				<div class="control-group">
 	                <div class="control-label">
 					    <?php echo $this->form->getLabel('language'); ?>
