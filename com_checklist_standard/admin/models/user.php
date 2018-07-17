@@ -55,15 +55,12 @@ class ChecklistModelUser extends JModelAdmin
 		return $item;
 	}
 
-	public function getItem()
+	public function getItem($pk = NULL)
 	{
 		$db = JFactory::getDBO();
-
-		$id = JFactory::getApplication()->input->get('user_id');
-		$db->setQuery("SELECT u.* FROM `#__users` as u WHERE u.`id` = '".$id."'");
+		$pk = JFactory::getApplication()->input->getInt('user_id', 0);
+		$db->setQuery("SELECT u.* FROM `#__users` as u WHERE u.`id` = '".$pk."'");
 		$item = $db->loadObject();
-
 		return $item;
-
 	}
 }
