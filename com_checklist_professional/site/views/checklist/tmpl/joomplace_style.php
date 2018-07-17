@@ -1018,7 +1018,7 @@ $tag = str_replace("-", "_", $tag);
 		} else if(task == 'pdf'){
 
 			var pdfURL = '<?php echo JURI::root();?>index.php?option=com_checklist&task=checklist.pdf&checklist_id=<?php echo $this->checklist->id;?>';
-			var params = "menubar=no,location=no,resizable=yes,scrollbars=yes,status=yes";
+            var params = "menubar=no,location=no,resizable=yes,scrollbars=yes,status=yes,width=400,height=300";
 			var pdfWin = window.open(pdfURL, 'pdfWin', params);
 
 		}
