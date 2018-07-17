@@ -90,7 +90,7 @@ $search 	= $this->escape($this->state->get('filter.search'));
                                 </td>
                                 <td>
                                     <?php
-                                        echo("<img src='".$item->icon."'>");
+                                        echo("<img src='".DIRECTORY_SEPARATOR.$item->icon."'>");
                                     ?>
                                 </td>
 								<td>
