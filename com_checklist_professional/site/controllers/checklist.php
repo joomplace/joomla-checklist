@@ -67,13 +67,15 @@ class ChecklistControllerChecklist extends JControllerAdmin
 			$db->setQuery("SELECT * FROM `#__checklist_lists` WHERE `id` = '".$checklist_id."'");
 			$checklist = $db->loadObject();
 
+            $fontFamily = 'dejavusans';
+
 			$pdf->setFontSubsetting(false);
-			$pdf->SetFont('helvetica', 'B', 15, '', false);
+			$pdf->SetFont($fontFamily, 'B', 15, '', false);
 			$pdf->Write(5, $pdf->cleanText($checklist->title), '', 0);
 			$pdf->Ln();
 			$pdf->Ln();
 
-			$pdf->SetFont('helvetica', '', 10, '', false);
+			$pdf->SetFont($fontFamily, '', 10, '', false);
 			$pdf->Write(5, $pdf->cleanText($checklist->description_before), '', 0);
 			$pdf->Ln();
 			$pdf->Ln();
@@ -84,7 +86,7 @@ class ChecklistControllerChecklist extends JControllerAdmin
 			if(count($groups)){
 				foreach ($groups as $group) {
 
-					$pdf->SetFont('helvetica', 'B', 12, '', false);
+					$pdf->SetFont($fontFamily, 'B', 12, '', false);
 					$pdf->Write(5, $pdf->cleanText($group->title), '', 0);
 					$pdf->Ln();
 					$pdf->Ln();
@@ -95,7 +97,7 @@ class ChecklistControllerChecklist extends JControllerAdmin
 					if(count($items)){
 						foreach ($items as $ii => $item) {
 
-							$pdf->SetFont('helvetica', 'U', 10, '', false);
+							$pdf->SetFont($fontFamily, 'U', 10, '', false);
 							$pdf->CheckBox('task_'.$group->id.'_'.$item->id, 5, false, array(), array(), 'OK');
 
 							$pdf->setTextColor(54, 145, 212);
@@ -103,7 +105,7 @@ class ChecklistControllerChecklist extends JControllerAdmin
 							$pdf->Ln();
 							
 							$pdf->setTextColor(0, 0, 0);
-							$pdf->SetFont('helvetica', 'I', 8, '', false);
+							$pdf->SetFont($fontFamily, 'I', 8, '', false);
 							$pdf->Write(5, $pdf->cleanText($item->tips), '', 0);
 							$pdf->Ln();
 							$pdf->Ln();
@@ -113,8 +115,8 @@ class ChecklistControllerChecklist extends JControllerAdmin
 					
 				}
 			}
-			
-			$pdf->SetFont('helvetica', '', 10, '', false);
+
+			$pdf->SetFont($fontFamily, '', 10, '', false);
 			$pdf->Write(5, $pdf->cleanText($checklist->description_after), '', 0);
 			$pdf->Ln();
 			$pdf->Ln();

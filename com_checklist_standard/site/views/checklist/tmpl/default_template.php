@@ -98,11 +98,15 @@ $tag = str_replace("-", "_", $tag);
 				<li <?php if($item->optional){?> class="li-handle optional" <?php } else {?> class="li-handle" <?php }?> itemid="<?php echo $item->id;?>">
 					<input type="checkbox" id="<?php echo $item->input_id;?>" tabindex="<?php echo ($i+1);?>" class="chk-checkbox">
 					<label for="<?php echo $item->label_for;?>"><?php echo $item->task;?>
-					<a data-toggle="collapse" data-parent="#chk-main" class="checklist-info-icon" id="details-<?php echo $item->input_id;?>"><span class="glyphicon glyphicon-info-sign"></span></a>			
-					</label>
-					<ul class="panel-collapse collapse">
-						<?php echo $item->tips;?>
-					</ul>
+                        <?php if(trim($item->tips) == ''){ ?>
+					        <a data-toggle="collapse" data-parent="#chk-main" class="checklist-info-icon" id="details-<?php echo $item->input_id;?>"><span class="glyphicon glyphicon-info-sign"></span></a>
+                        <?php } ?>
+                    </label>
+                    <?php if(trim($item->tips) == ''){ ?>
+                        <ul class="panel-collapse collapse">
+                            <?php echo $item->tips;?>
+                        </ul>
+                    <?php } ?>
 				</li>
 				<?php endforeach;?>
 				<?php endif;?>
