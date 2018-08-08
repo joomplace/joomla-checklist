@@ -135,30 +135,34 @@ class ChecklistControllerLists extends JControllerAdmin
 		}
 				
 		public function remove(){
-			
-			$db = JFactory::getDBO();
-			$id = JFactory::getApplication()->input->get('id');
-			
-			$db->setQuery("DELETE FROM `#__checklist_lists` WHERE `id` = '".$id."'");
-						
-			if($db->query()){
-			
-				$db->setQuery("DELETE FROM `#__checklist_groups` WHERE `checklist_id` = '".$id."'");
-				$db->query();
-				
-				$db->setQuery("DELETE FROM `#__checklist_items` WHERE `checklist_id` = '".$id."'");
-				$db->query();
+			$user = JFactory::getUser();
+            if($user->authorise('core.remove', 'com_checklist')) {
+                $db = JFactory::getDBO();
+                $id = JFactory::getApplication()->input->get('id');
 
-				//remove requests
-				$db->setQuery("DELETE FROM `#__checklist_requests` WHERE `checklist_id` = '".$id."'");
-				$db->query();
+                $db->setQuery("DELETE FROM `#__checklist_lists` WHERE `id` = '".$id."'");
 
-				//remove tags assings
-				$db->setQuery("DELETE FROM `#__checklist_list_tags` WHERE `checklist_id` = '".$id."'");
-				$db->query();
-				
-			}
-			echo 'success';
+                if($db->query()){
+
+                    $db->setQuery("DELETE FROM `#__checklist_groups` WHERE `checklist_id` = '".$id."'");
+                    $db->query();
+
+                    $db->setQuery("DELETE FROM `#__checklist_items` WHERE `checklist_id` = '".$id."'");
+                    $db->query();
+
+                    //remove requests
+                    $db->setQuery("DELETE FROM `#__checklist_requests` WHERE `checklist_id` = '".$id."'");
+                    $db->query();
+
+                    //remove tags assings
+                    $db->setQuery("DELETE FROM `#__checklist_list_tags` WHERE `checklist_id` = '".$id."'");
+                    $db->query();
+
+                }
+                echo 'success';
+            } else {
+                echo 'permission';
+            }
 			die;
 			
 		}

@@ -21,6 +21,16 @@ $document->addScript(JURI::root()."components/com_checklist/assets/tagmanager-ma
 
 $editor = JFactory::getEditor();
 
+$access = false;
+
+if(!empty($this->item->id) && $user->authorise('core.edit', 'com_checklist')) {
+    $access = true;
+} elseif(empty($this->item->id) && $user->authorise('core.create', 'com_checklist')) {
+    $access = true;
+} else {
+    echo '<div class="alert alert-danger" style="display:block;">'.JText::_('COM_CHECKLIST_YOU_NOT_AUTHORIZED').'</div>';
+}
+if($access) {
 ?>
 <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
 
@@ -265,3 +275,4 @@ $editor = JFactory::getEditor();
 
 	Checklist.onInitApplication();
 </script>
+<?php } //access?>
