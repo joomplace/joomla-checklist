@@ -2037,8 +2037,15 @@ class TCPDF {
 	public function decodeHTML( $string ) {
 
 		$string = strtr( $string, array_flip($this->get_html_translation_table_my( ) ) );
-		$string = preg_replace( "/&#([0-9]+);/me", "chr('\\1')", $string );
-		return $string;
+        $string = preg_replace_callback(
+            '|&#([0-9]+);|',
+            function ($matches) {
+                return chr('\\1');
+            },
+            $string
+        );
+
+        return $string;
 		
 	}
 
