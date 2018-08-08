@@ -59,7 +59,7 @@ class plgUserChecklistuser extends JPlugin
 		$app = JFactory::getApplication();
 		$db = JFactory::getDBO();
 		
-		$db->setQuery("SELECT id FROM `#__checklist_users` WHERE `user_id` = ".$user['id']);
+		$db->setQuery("SELECT user_id FROM `#__checklist_users` WHERE `user_id` = ".$user['id']);
 		$exists = $db->loadResult();
 		
 		if ($exists){

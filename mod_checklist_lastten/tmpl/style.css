@@ -1,0 +1,37 @@
+.checklist-row
+{
+	padding:15px;
+}
+
+.row0
+{
+	border-top: 1px solid #ddd;
+    line-height: 18px;
+    text-align: left;
+    vertical-align: top;
+    background-color: #f9f9f9;
+}
+
+.row1
+{
+	border-top: 1px solid #ddd;
+    line-height: 18px;
+    text-align: left;
+    vertical-align: top;
+}
+
+.checklist-author, .checklist-author span
+{
+	font-size:12px;
+}
+
+.checklist-author span
+{
+	color:#aaa;
+}
+
+.checklist-title a
+{
+	font-size: 16px;
+	margin-bottom:3px;
+}
