@@ -106,11 +106,13 @@ $tag = str_replace("-", "_", $tag);
 				<li <?php if($item->optional){?> class="li-handle optional" <?php } else {?> class="li-handle" <?php }?> itemid="<?php echo $item->id;?>">
 					<input type="checkbox" id="<?php echo $item->input_id;?>" tabindex="<?php echo ($i+1);?>" class="chk-checkbox">
 					<label for="<?php echo $item->label_for;?>"><?php echo $item->task;?></label>
-					<em id="details-<?php echo $item->input_id;?>" class="checklist-info-icon"></em>
-					<ul class="checklist-section-details" style="max-height: 500px;">
-						<?php echo $item->tips;?>
-					</ul>
-				</li>
+                    <?php if(trim($item->tips) == ''){ ?>
+                        <em id="details-<?php echo $item->input_id;?>" class="checklist-info-icon"></em>
+                        <ul class="checklist-section-details" style="max-height: 500px;">
+                            <?php echo $item->tips;?>
+                        </ul>
+                    <?php } ?>
+                </li>
 				<?php endforeach;?>
 				<?php endif;?>
 			</ul>
