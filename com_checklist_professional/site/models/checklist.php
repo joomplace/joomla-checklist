@@ -89,7 +89,7 @@ class ChecklistModelChecklist extends JModelList
 		$db->setQuery("SELECT `user_id` FROM `#__checklist_lists` WHERE `id` = '".$id."'");
 		$userid = $db->loadResult();
 
-		if(($user->id && $user->id != $userid) || !$user->id){
+        if(($user->id && $user->id != $userid) || !(int)$user->id){
 
 			$now_date = time();
 			$groups = ChecklistHelper::getAllowGroups();
@@ -97,17 +97,22 @@ class ChecklistModelChecklist extends JModelList
 			$list_access = '';
 			if(count($groups)){
 				$list_access = " AND `list_access` IN (".implode(",", $groups).")";
-			}
+            } else {
+                //guest
+                return false;
+            }
 
-			$db->setQuery("SELECT * FROM `#__checklist_lists` WHERE `id` = '".$id."' AND UNIX_TIMESTAMP(`publish_date`) <= '".$now_date."'".$list_access." AND `default` = 1");
+            $db->setQuery("SELECT * FROM `#__checklist_lists` WHERE `id` = '".$id."' AND UNIX_TIMESTAMP(`publish_date`) <= '".$now_date."'".$list_access." AND `default` = 1");
 			$checklist = $db->loadObject();
 
 		} else {
-
 			$db->setQuery("SELECT * FROM `#__checklist_lists` WHERE `id` = '".$id."'");
 			$checklist = $db->loadObject();
-
 		}
+
+        if(!$checklist){
+            return false;
+        }
 
 		if(!empty($checklist)){
 			$db->setQuery("SELECT COUNT(`id`) FROM `#__checklist_requests` WHERE `user_id` = '".$user->id."' AND `checklist_id` = '".$id."'");

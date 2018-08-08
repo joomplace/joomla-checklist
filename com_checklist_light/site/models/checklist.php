@@ -89,7 +89,7 @@ class LightchecklistModelChecklist extends JModelList
 		$db->setQuery("SELECT `user_id` FROM `#__checklist_lists` WHERE `id` = '".$id."'");
 		$userid = $db->loadResult();
 
-		if(($user->id && $user->id != $userid) || !$user->id){
+        if(($user->id && $user->id != $userid) || !(int)$user->id){
 
 			$now_date = time();
 			$groups = LightchecklistHelper::getAllowGroups();
@@ -98,13 +98,15 @@ class LightchecklistModelChecklist extends JModelList
 			$checklist = $db->loadObject();
 
 		} else {
-
 			$db->setQuery("SELECT * FROM `#__checklist_lists` WHERE `id` = '".$id."'");
 			$checklist = $db->loadObject();
-
 		}
 
-		if(!empty($checklist)){
+        if(!$checklist){
+            return false;
+        }
+
+        if(!empty($checklist)){
 			$db->setQuery("SELECT COUNT(`id`) FROM `#__checklist_requests` WHERE `user_id` = '".$user->id."' AND `checklist_id` = '".$id."'");
 	   		$already_sent = $db->loadResult();
 
