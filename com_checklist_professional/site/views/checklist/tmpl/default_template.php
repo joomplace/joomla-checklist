@@ -240,7 +240,7 @@ $tag = str_replace("-", "_", $tag);
 
 <div id="checklist">
 	<header itemscope="" itemtype="http://schema.org/WebApplication">
-		<h1 itemprop="name"><?php echo $this->checklist->title?></h1>
+		<h1 itemprop="name"><?php echo $this->checklist->title?>&nbsp;(<?php echo $user->name; ?>)</h1>
 	</header>
 	
     <div class="progress progress-striped">
