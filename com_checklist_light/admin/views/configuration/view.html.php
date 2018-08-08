@@ -89,9 +89,8 @@ class LightchecklistViewConfiguration extends JViewLegacy
 			JHTML::_('select.option', 'vi', 'Vietnamese'),
 			JHTML::_('select.option', 'zu', 'Zulu'),
 			);
-		
-		$this->googlePlusLanguageOptions = JHTML::_('select.genericlist', $googlePlusLanguageOptions,'social_google_plus_language', 'class="text_area" style="max-width: 300px;" size="1" ', 'value', 'text');
-		
+
+        $this->googlePlusLanguageOptions = JHTML::_('select.genericlist', $googlePlusLanguageOptions,'jform[social_google_plus_language]', 'class="text_area" style="max-width: 300px;" size="1" ', 'value', 'text', $this->item->social_google_plus_language);
 
 		$twitterLanguageOptions = array(
 			JHTML::_('select.option', 'en', 'English'),
@@ -128,10 +127,10 @@ class LightchecklistViewConfiguration extends JViewLegacy
 			JHTML::_('select.option', 'uk', 'Ukrainian'),
 			JHTML::_('select.option', 'ur', 'Urdu'),
 			);
-		
-		$this->twitterLanguageOptions = JHTML::_('select.genericlist', $twitterLanguageOptions,'social_twitter_language', 'class="text_area" style="max-width: 300px;" size="1" ', 'value', 'text');
 
-		$facebookFontOptions = array(
+        $this->twitterLanguageOptions = JHTML::_('select.genericlist', $twitterLanguageOptions,'jform[social_twitter_language]', 'class="text_area" style="max-width: 300px;" size="1" ', 'value', 'text', $this->item->social_twitter_language);
+
+        $facebookFontOptions = array(
 			JHTML::_('select.option', 'arial', 'arial'),
 			JHTML::_('select.option', 'lucida grande', 'lucida grande'),
 			JHTML::_('select.option', 'segoe ui', 'segoe ui'),
@@ -140,7 +139,7 @@ class LightchecklistViewConfiguration extends JViewLegacy
 			JHTML::_('select.option', 'verdana', 'verdana'),
 			);
 
-		$this->facebookFontOptions = JHTML::_('select.genericlist', $facebookFontOptions,'social_facebook_font', 'class="text_area" style="max-width: 300px;" size="1" ', 'value', 'text');
+        $this->facebookFontOptions = JHTML::_('select.genericlist', $facebookFontOptions,'jform[social_facebook_font]', 'class="text_area" style="max-width: 300px;" size="1" ', 'value', 'text', $this->item->social_facebook_font);
 
 		$this->addToolbar();
 		parent::display($tpl);
