@@ -89,9 +89,7 @@ $search 	= $this->escape($this->state->get('filter.search'));
                                     <?php echo $item->url; ?>
                                 </td>
                                 <td>
-                                    <?php
-                                        echo("<img src='".$item->icon."'>");
-                                    ?>
+                                    <?php echo("<img src='".DIRECTORY_SEPARATOR.$item->icon."'>"); ?>
                                 </td>
 								<td>
                                     <?php echo JHtml::_('jgrid.published', $item->published, $i, 'dashboard_items.', $canChange);?>
