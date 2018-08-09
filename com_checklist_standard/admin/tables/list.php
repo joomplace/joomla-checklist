@@ -154,7 +154,7 @@ class ChecklistTableList extends JTable
         return $this->title;
     }
     //----------------------------------------------------------------------------------------------------
-    protected function _getAssetParentId($table = null, $id = null)
+    protected function _getAssetParentId(Joomla\CMS\Table\Table $table = null, $id = null)
     {
         $assetsTable = JTable::getInstance('Asset', 'JTable');
         

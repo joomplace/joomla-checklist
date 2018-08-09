@@ -114,22 +114,18 @@ class ChecklistControllerGeneral extends JControllerLegacy
 		header('Cache-Control: no-cache, must-revalidate');
 		header('Pragma: no-cache');
 		header('Content-Type: text/html; charset=utf-8');
-		
-		jimport ('joomla.filesystem.file');
-		
-		echo '<h2>' . JText::_('COM_CHECKLIST_BE_CONTROL_PANEL_CHANGELOG') . '</h2>';
-		
-		if (!JFile::exists(JPATH_SITE.'/administrator/components/com_checklist/changelog.txt'))
-		{
-			echo JText::_('COM_CHECKLIST_BE_CONTROL_PANEL_CHANGELOG_NO_FILE');
-		}
-		else
-		{
-			echo '<pre style="font-size:12px;">';
-			echo 	JFile::read(JPATH_SITE.'/administrator/components/com_checklist//changelog.txt');
-			echo '</pre>';
-		}
-		
-		jexit();
-	}
+
+        $msg = JText::_('COM_CHECKLIST_BE_CONTROL_PANEL_CANNOT_LOAD_CHANGELOG');
+        if(function_exists('file_get_contents')) {
+            $html = file_get_contents('https://www.joomplace.com/joomla-components/checklist-extension.html');
+            if($html) {
+                $ch = preg_match("/id=\"change\"[^>]+>(((?!div>)[\s\S])*)<\/div>/", $html, $m);
+                if($ch && !empty($m[1])) {
+                    $msg = $m[1];
+                }
+            }
+        }
+        echo $msg;
+        jexit();
+    }
 }
