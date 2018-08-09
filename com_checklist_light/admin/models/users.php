@@ -19,7 +19,7 @@ class LightchecklistModelUsers extends JModelList
 		parent::__construct($config);
 	}
 	
-	protected function populateState()
+	protected function populateState($ordering = null, $direction = null)
 	{
 		$search = $this->getUserStateFromRequest('com_lightchecklist.filter.search', 'filter_search');
 		$this->setState('filter.search', $search);
