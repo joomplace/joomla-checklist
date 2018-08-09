@@ -121,13 +121,14 @@ var Checklist = {
 	},
 	
 	removeChecklist: function(html, object){
-		
-		if(html == 'success')
-		jQuery(object).parent().parent().remove();
-			
-		Checklist.setErrorMsg('success', checklist_was_successfully_removed);
-		return true;
-		
+
+		if(html == 'success') {
+            jQuery(object).parent().parent().remove();
+            Checklist.setErrorMsg('success', checklist_was_successfully_removed);
+        } else if(html == 'permission') {
+            Checklist.setErrorMsg('danger', com_checklist_you_not_authorized);
+        }
+        return true;
 	},
 	
 	doAjax: function(task, params, feedback, object){

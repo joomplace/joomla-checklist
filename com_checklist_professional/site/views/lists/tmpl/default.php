@@ -99,9 +99,11 @@ if($this->user_data->avatar_field != ''){
 <div class="alert alert-success"></div>
 <div class="alert alert-danger"></div>
 
+<?php if($user->authorise('core.create', 'com_checklist')) { ?>
 <p>
 	<a href="<?php echo JRoute::_('index.php?option=com_checklist&view=edit_checklist&tmpl=component');?>" type="button" class="btn btn-primary btn-lg various btn-warning" data-fancybox-type="iframe"><?php echo JText::_('Create your own checklist')?></a>
 </p>
+<?php } ?>
 
 <form action="<?php echo JRoute::_('index.php?option=com_checklist&view=lists'.$itemid);?>" method="post">
 
