@@ -111,13 +111,28 @@ $document->addScript(JURI::root()."components/com_checklist/assets/js/joomplace_
 				<?php if(count($this->groups)):?>
 				<?php foreach($this->groups as $group):?>
 				<section class="checklist-section" id="<?php echo $group->section_id;?>" groupid="<?php echo $group->id;?>">
-					<h2 class="checklist-section-header"><?php echo $group->title;?>
-						<span class="chk-add-item">
+                    <h2 class="checklist-section-header">
+                        <span id="group-name<?php echo $group->id;?>"><?php echo $group->title;?>
+                        <span class="chk-add-item">
+                            <img src="<?php echo JURI::root();?>components/com_checklist/assets/images/pencil2.png" style="cursor:pointer;" groupid="<?php echo $group->id;?>" onclick="Checklist.openEditGroupForm(this);">&nbsp;
 							<img src="<?php echo JURI::root();?>components/com_checklist/assets/images/minus.png" style="cursor:pointer;" class="chk-ajax-remove-group">&nbsp;<img src="<?php echo JURI::root();?>components/com_checklist/assets/images/list_add.png" style="cursor:pointer;" class="chk-open-item-form">
 						</span>
 					</h2>
 
-					<div class="chk-add-item-form">
+                    <div class="chk-edit-group-form" id="edit-group-name_<?php echo $group->id;?>">
+                        <form class="form-horizontal" style="margin-top:15px;">
+                            <div class="form-group-checklist">
+                                <label for="inputEditGroup" class="col-sm-2 control-label"><?php echo JText::_('COM_CHECKLIST_EDIT_GROUP_NAME')?></label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="inputEditGroup<?php echo $group->id;?>" placeholder="<?php echo JText::_('COM_CHECKLIST_EDIT_GROUP_NAME_PLACEHOLDER')?>" value="<?php echo $group->title;?>" style="margin-right:10px;">
+                                    <button type="button" class="btn btn-default" groupid="<?php echo $group->id;?>" onclick="Checklist.ajaxEditGroup(this);"><?php echo JText::_('COM_CHECKLIST_CONFIRM')?></button>
+                                    <button type="button" class="btn btn-default" groupid="<?php echo $group->id;?>" onclick="Checklist.closeEditGroupForm(this);"><?php echo JText::_('COM_CHECKLIST_CANCEL')?></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="chk-add-item-form">
 						<form class="form-horizontal">
 							<div class="form-group">
 								<div class="col-sm-12">
@@ -226,8 +241,38 @@ $document->addScript(JURI::root()."components/com_checklist/assets/js/joomplace_
 			jQuery(".chk-add-group").slideUp(1000);
 			return true;
 		},
-		
-		ajaxSaveGroup: function(){
+
+        openEditGroupForm: function(element){
+            var groupid = jQuery(element).attr("groupid");
+            jQuery("#edit-group-name_" + groupid).slideDown(300);
+            return true;
+        },
+
+        closeEditGroupForm: function(element){
+            Checklist.resetErrorMsg();
+            var groupid = jQuery(element).attr("groupid");
+            jQuery("#edit-group-name_" + groupid).slideUp(300);
+            return true;
+        },
+
+        ajaxEditGroup: function(element){
+            var checklist_id = jQuery("#checklist_id").val();
+            var groupid = jQuery(element).attr("groupid");
+            var title = jQuery("#inputEditGroup" + groupid).val();
+            Checklist.doAjax('checklist.ajaxupdategroup', {id: checklist_id, groupid: groupid, title: title}, Checklist.showEditedGroup, element);
+        },
+
+        showEditedGroup: function(json, element){
+            var data = JSON.parse(json);
+            var groupid = data['groupid'];
+            var title = data['title'];
+            jQuery("#group-name" + groupid).html(title);
+            jQuery("#edit-group-name_" + groupid).slideUp(300);
+            Checklist.setErrorMsg("success", "<?php echo JText::_('COM_CHECKLIST_GROUP_NAME_WAS_SUCCESSFULLY_EDITED')?>");
+            return true;
+        },
+
+        ajaxSaveGroup: function(){
 			Checklist.resetErrorMsg();
 			var inputGroup = jQuery("#inputGroup").val();
 			var checklist_id = jQuery("#checklist_id").val();
