@@ -53,7 +53,8 @@ class ChecklistModelList extends JModelAdmin
 
 	public function getAuthor()
 	{
-		$db = JFactory::getDBO();
+        //seems not needed now
+        $db = JFactory::getDBO();
 		$id = JFactory::getApplication()->input->get('id', 0);
 
 		$author_id = 0;
