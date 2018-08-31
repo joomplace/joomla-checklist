@@ -76,7 +76,7 @@ class LightchecklistModelLists extends JModelList
 		if($default == '1'){
 			$today = time();
 			$session->set('com_lightchecklist.defaultlist', 1);
-			$query->where('l.`default` = 1');
+            $query->where($db->qn('l.default') .'='. $db->q('1'));
 			$query->where('UNIX_TIMESTAMP(l.`publish_date`) <= '.$today);
 		} else {
 			$session->set('com_lightchecklist.defaultlist', 0);

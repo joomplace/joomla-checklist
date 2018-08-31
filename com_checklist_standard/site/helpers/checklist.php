@@ -36,7 +36,7 @@ class ChecklistHelper
 			$adminArray = array ($adminId, $superId);
 					
 			$groups = array();
-			foreach ($user->groups as $groupId => $group) {
+			foreach ($user->groups as $groupId) {
 
 				if(!$groupId){
 					//Nothing to do
