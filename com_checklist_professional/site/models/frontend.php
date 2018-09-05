@@ -167,7 +167,10 @@ class ChecklistModelFrontend extends JModelList
             $available_checklists = $this->sortByRating($available_checklists, $filter_order_Dir);
         }
 
-        $available_checklists[0]->lists = $lists;
+        if(isset($available_checklists[0]) && is_object($available_checklists[0])) {
+            $available_checklists[0]->lists = $lists;
+        }
+
         return $available_checklists;
     }
 
