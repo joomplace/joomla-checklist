@@ -376,7 +376,7 @@ $tag = str_replace("-", "_", $tag);
 					<img src="<?php echo JURI::root();?>components/com_checklist/assets/images/trash_recyclebin_empty_closed_w.png" class="chk-tools" onclick="Checklist.ajaxRemoveItem(this, event);"/><img src="<?php echo JURI::root();?>components/com_checklist/assets/images/pencil2.png" class="chk-tools pencil" onclick="Checklist.editItem(this, event);"/>
 					<?php } ?>
 					</label>
-                    <?php if(trim($item->tips) == ''){ ?>
+                    <?php if(trim(strip_tags($item->tips))){ ?>
                         <em id="details-<?php echo $item->input_id;?>" class="checklist-info-icon"></em>
                         <ul class="checklist-section-details" style="max-height: 500px;">
                             <?php echo $item->tips;?>
