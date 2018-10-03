@@ -182,6 +182,12 @@ you can use the generic selector below, but it's slower:
 			        transition: max-height .4s ease;
 			font-size: 12px;
 		}
+		.checklist-section-details {
+			display: none;
+		}
+		#checklist em.open + .checklist-section-details{
+			display: block;
+		}
 			#checklist #chk-main .checklist-section-details li:first-child {
 				padding: 10px 0px 0;
 				font-size: .95em;
