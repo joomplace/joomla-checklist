@@ -153,7 +153,10 @@ class ChecklistModelFrontend extends JModelList
 
         $lists['liststyle'] = $liststyle;
 
-        $available_checklists[0]->lists = $lists;
+        if(isset($available_checklists[0]) && is_object($available_checklists[0])) {
+            $available_checklists[0]->lists = $lists;
+        }
+
         return $available_checklists;
     }
 
