@@ -78,6 +78,6 @@
 	</administration>
 	<updateservers>
 		<!-- Note: No spaces or linebreaks allowed between the server tags -->
-		<server type="extension" priority="1" name="Checklist Update Site">http://www.joomplace.com/updates/updates.xml</server>
+		<server type="extension" priority="1" name="Checklist Update Site">https://www.joomplace.com/updates/collections.xml</server>
 	</updateservers>
 </extension>
