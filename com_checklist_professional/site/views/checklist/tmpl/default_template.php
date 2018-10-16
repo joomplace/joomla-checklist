@@ -374,14 +374,14 @@ $tag = str_replace("-", "_", $tag);
 				<li <?php if($item->optional){?> class="li-handle optional" <?php } else {?> class="li-handle" <?php }?> itemid="<?php echo $item->id;?>">
 					<input type="checkbox" id="<?php echo $item->input_id;?>" tabindex="<?php echo ($i+1);?>" class="chk-checkbox">
 					<label for="<?php echo $item->label_for;?>"><?php echo $item->task;?>
-                        <?php if(trim($item->tips) == ''){ ?>
+                        <?php if(trim(strip_tags($item->tips))){ ?>
                             <a data-toggle="collapse" data-parent="#chk-main" class="checklist-info-icon" id="details-<?php echo $item->input_id;?>"><span class="glyphicon glyphicon-info-sign"></span></a>
                             <?php if($this->allow_edit && $this->edit_mode){?>
                                 <img src="<?php echo JURI::root();?>components/com_checklist/assets/images/trash_recyclebin_empty_closed_w.png" class="chk-tools" onclick="Checklist.ajaxRemoveItem(this, event);"/><img src="<?php echo JURI::root();?>components/com_checklist/assets/images/pencil2.png" class="chk-tools pencil" onclick="Checklist.editItem(this, event);"/>
                             <?php } ?>
                         <?php } ?>
                     </label>
-                    <?php if(trim($item->tips) == ''){ ?>
+                    <?php if(trim(strip_tags($item->tips))){ ?>
                         <ul class="panel-collapse collapse">
                             <?php echo $item->tips;?>
                         </ul>
