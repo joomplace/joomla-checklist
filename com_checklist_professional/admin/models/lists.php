@@ -76,7 +76,7 @@ class ChecklistModelLists extends JModelList
 		if($default == '1'){
 			$today = time();
 			$session->set('com_checklist.defaultlist', 1);
-			$query->where('l.`user_id` = 0');
+            $query->where($db->qn('l.default') .'='. $db->q('1'));
 			$query->where('UNIX_TIMESTAMP(l.`publish_date`) <= '.$today);
 		} else {
 			$session->set('com_checklist.defaultlist', 0);
