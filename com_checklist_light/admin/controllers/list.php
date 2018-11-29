@@ -14,7 +14,7 @@ jimport('joomla.application.component.controllerform');
 class LightchecklistControllerList extends JControllerForm
 {
     
-	public function cancel(){
+	public function cancel($key = NULL){
 
 		$app = JFactory::getApplication();
 		$session = JFactory::getSession();
