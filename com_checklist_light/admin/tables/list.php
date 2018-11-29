@@ -94,38 +94,35 @@ class LightchecklistTableList extends JTable
                 $tags = $post['tags'];
                 $tags_array = array();
                 if($tags != ''){
-                        $tags_array = explode(",", $tags);
+                    $tags_array = explode(",", $tags);
                 }
 
-                if(count($tags_array) && $this->id){
-                        foreach ($tags_array as $tag) {
+                $db->setQuery("DELETE FROM `#__checklist_list_tags` WHERE `checklist_id` = '".$this->id."'");
+                $db->execute();
 
-                                $tag = trim($tag);
-                                $db->setQuery("SELECT `id` FROM `#__checklist_tags` WHERE `name` = '".$tag."'");
-                                $tag_id = $db->loadResult();
+                if(!empty($tags_array) && $this->id){
+                    foreach ($tags_array as $tag) {
+                        $tag = trim($tag);
+                        $db->setQuery("SELECT `id` FROM `#__checklist_tags` WHERE `name` = '".$tag."'");
+                        $tag_id = (int)$db->loadResult();
 
-                                $tag_obj = new stdClass;
-                                $tag_obj->id = ($tag_id) ? $tag_id : '';
-                                $tag_obj->name = $tag;
-                                $tag_obj->default = 0;
-                                $tag_obj->slug = '';
-
-                                if(!$tag_id){
-                                        $db->insertObject('#__checklist_tags', $tag_obj, 'id');
-                                        $tag_id = $db->insertid();
-                                }
-
-                                $db->setQuery("DELETE FROM `#__checklist_list_tags` WHERE `tag_id` = '".$tag_id."' AND `checklist_id` = '".$this->id."'");
-                                $db->execute();
-
-                                $object = new stdClass;
-                                $object->id = '';
-                                $object->checklist_id = $this->id;
-                                $object->tag_id = $tag_id;
-                                $object->isnew = 1;
-
-                                $db->insertObject('#__checklist_list_tags', $object, 'id');
+                        if(!$tag_id){
+                            $tag_obj = new stdClass;
+                            $tag_obj->id = '';
+                            $tag_obj->name = $tag;
+                            $tag_obj->default = 0;
+                            $tag_obj->slug = '';
+                            $db->insertObject('#__checklist_tags', $tag_obj, 'id');
+                            $tag_id = $db->insertid();
                         }
+
+                        $object = new stdClass;
+                        $object->id = '';
+                        $object->checklist_id = $this->id;
+                        $object->tag_id = $tag_id;
+                        $object->isnew = 1;
+                        $db->insertObject('#__checklist_list_tags', $object, 'id');
+                    }
                 }
 
                 $author_id = $post['author_id'];
