@@ -60,7 +60,7 @@ class ChecklistControllerEditprofile extends JControllerAdmin
 			jimport('joomla.filesystem.folder');
 
 			$userid = JFactory::getApplication()->input->get("userid");
-			$avatar_file = $_FILES['avatar_file'];
+            $avatar_file = JFactory::getApplication()->input->files->get('avatar_file', array(), 'array');
 			$avatar_filename = $avatar_file['name'];
 			$avatar_file_tmpname = $avatar_file['tmp_name'];
 

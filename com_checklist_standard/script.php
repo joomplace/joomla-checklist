@@ -10,55 +10,52 @@
  */
 // Don't allow access
 defined('_JEXEC') or die('Restricted access');
-if (!defined('DS'))
-    define('DS', '/');
 
 class com_checklistInstallerScript
 {
 
     function install()
     {
-
         jimport('joomla.filesystem.folder');
         jimport('joomla.filesystem.file');
         // $this->_extract();
 
-        $adminDir = JPATH_ROOT . DS . 'administrator' . DS . 'components' . DS . 'com_checklist';
-        if (!JFolder::exists(JPATH_ROOT . DS . 'images' . DS . 'checklist')) {
-            JFolder::create(JPATH_ROOT . DS . 'images' . DS . 'checklist');
+        $adminDir = JPATH_ROOT . DIRECTORY_SEPARATOR . 'administrator' . DIRECTORY_SEPARATOR . 'components' . DIRECTORY_SEPARATOR . 'com_checklist';
+        if (!JFolder::exists(JPATH_ROOT . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'checklist')) {
+            JFolder::create(JPATH_ROOT . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'checklist');
         }
 
-        if (!JFolder::exists(JPATH_ROOT . DS . 'images' . DS . 'checklist' . DS . 'avatar')) {
-            JFolder::create(JPATH_ROOT . DS . 'images' . DS . 'checklist' . DS . 'avatar');
+        if (!JFolder::exists(JPATH_ROOT . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'checklist' . DIRECTORY_SEPARATOR . 'avatar')) {
+            JFolder::create(JPATH_ROOT . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'checklist' . DIRECTORY_SEPARATOR . 'avatar');
         }
 
-        if (!JFolder::exists(JPATH_ROOT . DS . 'media' . DS . 'com_checklist')) {
-            JFolder::create(JPATH_ROOT . DS . 'media' . DS . 'com_checklist');
+        if (!JFolder::exists(JPATH_ROOT . DIRECTORY_SEPARATOR . 'media' . DIRECTORY_SEPARATOR . 'com_checklist')) {
+            JFolder::create(JPATH_ROOT . DIRECTORY_SEPARATOR . 'media' . DIRECTORY_SEPARATOR . 'com_checklist');
         }
 
-        if (!JFile::exists(JPATH_SITE . DS . 'media' . DS . 'com_checklist' . DS . 'preferences_contact_list.png')) {
-            JFile::copy($adminDir . DS . 'assets' . DS . 'images' . DS . 'preferences_contact_list.png', JPATH_SITE . DS . 'media' . DS . 'com_checklist' . DS . 'preferences_contact_list.png');
+        if (!JFile::exists(JPATH_SITE . DIRECTORY_SEPARATOR . 'media' . DIRECTORY_SEPARATOR . 'com_checklist' . DIRECTORY_SEPARATOR . 'preferences_contact_list.png')) {
+            JFile::copy($adminDir . DIRECTORY_SEPARATOR . 'assets' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'preferences_contact_list.png', JPATH_SITE . DIRECTORY_SEPARATOR . 'media' . DIRECTORY_SEPARATOR . 'com_checklist' . DIRECTORY_SEPARATOR . 'preferences_contact_list.png');
         }
 
-        if (!JFile::exists(JPATH_SITE . DS . 'media' . DS . 'com_checklist' . DS . 'rss_tag.png')) {
-            JFile::copy($adminDir . DS . 'assets' . DS . 'images' . DS . 'rss_tag.png', JPATH_SITE . DS . 'media' . DS . 'com_checklist' . DS . 'rss_tag.png');
+        if (!JFile::exists(JPATH_SITE . DIRECTORY_SEPARATOR . 'media' . DIRECTORY_SEPARATOR . 'com_checklist' . DIRECTORY_SEPARATOR . 'rss_tag.png')) {
+            JFile::copy($adminDir . DIRECTORY_SEPARATOR . 'assets' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'rss_tag.png', JPATH_SITE . DIRECTORY_SEPARATOR . 'media' . DIRECTORY_SEPARATOR . 'com_checklist' . DIRECTORY_SEPARATOR . 'rss_tag.png');
         }
 
-        if (!JFile::exists(JPATH_SITE . DS . 'media' . DS . 'com_checklist' . DS . 'settings.png')) {
-            JFile::copy($adminDir . DS . 'assets' . DS . 'images' . DS . 'settings.png', JPATH_SITE . DS . 'media' . DS . 'com_checklist' . DS . 'settings.png');
+        if (!JFile::exists(JPATH_SITE . DIRECTORY_SEPARATOR . 'media' . DIRECTORY_SEPARATOR . 'com_checklist' . DIRECTORY_SEPARATOR . 'settings.png')) {
+            JFile::copy($adminDir . DIRECTORY_SEPARATOR . 'assets' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'settings.png', JPATH_SITE . DIRECTORY_SEPARATOR . 'media' . DIRECTORY_SEPARATOR . 'com_checklist' . DIRECTORY_SEPARATOR . 'settings.png');
         }
 
-        if (!JFile::exists(JPATH_SITE . DS . 'media' . DS . 'com_checklist' . DS . 'to_do_list_checked3.png')) {
-            JFile::copy($adminDir . DS . 'assets' . DS . 'images' . DS . 'to_do_list_checked3.png', JPATH_SITE . DS . 'media' . DS . 'com_checklist' . DS . 'to_do_list_checked3.png');
+        if (!JFile::exists(JPATH_SITE . DIRECTORY_SEPARATOR . 'media' . DIRECTORY_SEPARATOR . 'com_checklist' . DIRECTORY_SEPARATOR . 'to_do_list_checked3.png')) {
+            JFile::copy($adminDir . DIRECTORY_SEPARATOR . 'assets' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'to_do_list_checked3.png', JPATH_SITE . DIRECTORY_SEPARATOR . 'media' . DIRECTORY_SEPARATOR . 'com_checklist' . DIRECTORY_SEPARATOR . 'to_do_list_checked3.png');
         }
 
-        if (!JFile::exists(JPATH_SITE . DS . 'media' . DS . 'com_checklist' . DS . 'users_2.png')) {
-            JFile::copy($adminDir . DS . 'assets' . DS . 'images' . DS . 'users_2.png', JPATH_SITE . DS . 'media' . DS . 'com_checklist' . DS . 'users_2.png');
+        if (!JFile::exists(JPATH_SITE . DIRECTORY_SEPARATOR . 'media' . DIRECTORY_SEPARATOR . 'com_checklist' . DIRECTORY_SEPARATOR . 'users_2.png')) {
+            JFile::copy($adminDir . DIRECTORY_SEPARATOR . 'assets' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'users_2.png', JPATH_SITE . DIRECTORY_SEPARATOR . 'media' . DIRECTORY_SEPARATOR . 'com_checklist' . DIRECTORY_SEPARATOR . 'users_2.png');
         }
 
-        JFile::copy($adminDir . DS . "index.html", JPATH_SITE . DS . 'media' . DS . 'com_checklist' . DS . 'index.html');
-        JFile::copy($adminDir . DS . "index.html", JPATH_SITE . DS . 'images' . DS . 'checklist' . DS . 'index.html');
-        JFile::copy($adminDir . DS . "index.html", JPATH_SITE . DS . 'images' . DS . 'checklist' . DS . 'avatar' . DS . 'index.html');
+        JFile::copy($adminDir . DIRECTORY_SEPARATOR . "index.html", JPATH_SITE . DIRECTORY_SEPARATOR . 'media' . DIRECTORY_SEPARATOR . 'com_checklist' . DIRECTORY_SEPARATOR . 'index.html');
+        JFile::copy($adminDir . DIRECTORY_SEPARATOR . "index.html", JPATH_SITE . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'checklist' . DIRECTORY_SEPARATOR . 'index.html');
+        JFile::copy($adminDir . DIRECTORY_SEPARATOR . "index.html", JPATH_SITE . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'checklist' . DIRECTORY_SEPARATOR . 'avatar' . DIRECTORY_SEPARATOR . 'index.html');
 
         $this->_installDatabase();
     }
@@ -191,7 +188,7 @@ class com_checklistInstallerScript
         }
 
         // Copy site language file
-        JFile::copy(JPATH_SITE . DS . 'components' . DS . 'com_checklist' . DS . 'language' . DS . 'en-GB' . DS . 'en-GB.com_checklist.ini', JPATH_SITE . DS . 'language' . DS . 'en-GB' . DS . 'en-GB.com_checklist.ini');
+        JFile::copy(JPATH_SITE . DIRECTORY_SEPARATOR . 'components' . DIRECTORY_SEPARATOR . 'com_checklist' . DIRECTORY_SEPARATOR . 'language' . DIRECTORY_SEPARATOR . 'en-GB' . DIRECTORY_SEPARATOR . 'en-GB.com_checklist.ini', JPATH_SITE . DIRECTORY_SEPARATOR . 'language' . DIRECTORY_SEPARATOR . 'en-GB' . DIRECTORY_SEPARATOR . 'en-GB.com_checklist.ini');
 
         //Delete frontend archive
         JFile::delete(JPATH_SITE . '/components/com_checklist/frontend.zip');
@@ -209,8 +206,8 @@ class com_checklistInstallerScript
         }
 
         // Copy admin language files
-        JFile::copy(JPATH_SITE . DS . 'administrator' . DS . 'components' . DS . 'com_checklist' . DS . 'language' . DS . 'en-GB' . DS . 'en-GB.com_checklist.ini', JPATH_SITE . DS . 'administrator' . DS . 'language' . DS . 'en-GB' . DS . 'en-GB.com_checklist.ini');
-        JFile::copy(JPATH_SITE . DS . 'administrator' . DS . 'components' . DS . 'com_checklist' . DS . 'language' . DS . 'en-GB' . DS . 'en-GB.com_checklist.sys.ini', JPATH_SITE . DS . 'administrator' . DS . 'language' . DS . 'en-GB' . DS . 'en-GB.com_checklist.sys.ini');
+        JFile::copy(JPATH_SITE . DIRECTORY_SEPARATOR . 'administrator' . DIRECTORY_SEPARATOR . 'components' . DIRECTORY_SEPARATOR . 'com_checklist' . DIRECTORY_SEPARATOR . 'language' . DIRECTORY_SEPARATOR . 'en-GB' . DIRECTORY_SEPARATOR . 'en-GB.com_checklist.ini', JPATH_SITE . DIRECTORY_SEPARATOR . 'administrator' . DIRECTORY_SEPARATOR . 'language' . DIRECTORY_SEPARATOR . 'en-GB' . DIRECTORY_SEPARATOR . 'en-GB.com_checklist.ini');
+        JFile::copy(JPATH_SITE . DIRECTORY_SEPARATOR . 'administrator' . DIRECTORY_SEPARATOR . 'components' . DIRECTORY_SEPARATOR . 'com_checklist' . DIRECTORY_SEPARATOR . 'language' . DIRECTORY_SEPARATOR . 'en-GB' . DIRECTORY_SEPARATOR . 'en-GB.com_checklist.sys.ini', JPATH_SITE . DIRECTORY_SEPARATOR . 'administrator' . DIRECTORY_SEPARATOR . 'language' . DIRECTORY_SEPARATOR . 'en-GB' . DIRECTORY_SEPARATOR . 'en-GB.com_checklist.sys.ini');
 
         //Delete backend archive
         JFile::delete(JPATH_SITE . '/administrator/components/com_checklist/backend.zip');

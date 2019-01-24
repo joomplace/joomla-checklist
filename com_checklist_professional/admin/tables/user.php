@@ -23,34 +23,32 @@ class ChecklistTableUser extends JTable
      */
     function __construct(&$db) 
     {
-            parent::__construct('#__checklist_users', 'user_id', $db);
+        parent::__construct('#__checklist_users', 'user_id', $db);
     }
 
-	function store($updateNulls = false){
-
+    function store($updateNulls = false)
+    {
         $db = JFactory::getDBO();
-        $post = JRequest::get('post');
+        $jinput = JFactory::getApplication()->input;
+        $jform = $jinput->get('jform', array(), 'ARRAY');
 
         $row = new stdClass;
-
-        $row->user_id = $post['jform']['user_id'];
-        $row->website_field = $post['jform']['website_field'];
-        $row->twitter_field = $post['jform']['twitter_field'];
-        $row->facebook_field = $post['jform']['facebook_field'];
-        $row->google_field = $post['jform']['google_field'];
-        $row->description_field = $post['jform']['description_field'];
+        $row->user_id = $jform['user_id'];
+        $row->website_field = $jform['website_field'];
+        $row->twitter_field = $jform['twitter_field'];
+        $row->facebook_field = $jform['facebook_field'];
+        $row->google_field = $jform['google_field'];
+        $row->description_field = $jform['description_field'];
         $db->updateObject('#__checklist_users', $row, 'user_id');
 
         $item = new stdClass;
-
-        $item->id = $post['jform']['user_id'];
-        $item->name = $post['jform']['name'];
-        $item->username = $post['jform']['username'];
-        $item->email = $post['jform']['email'];
+        $item->id = $jform['user_id'];
+        $item->name = $jform['name'];
+        $item->username = $jform['username'];
+        $item->email = $jform['email'];
         $db->updateObject('#__users', $item, 'id');
 
         return true;
-
-	}
+    }
 
 }

@@ -331,35 +331,43 @@ class ChecklistControllerChecklist extends JControllerAdmin
 			die;
 		}
 
-		public function switchEditMode()
-		{
-			$checklist_id = JFactory::getApplication()->input->get('id');
-			if(!$this->checkAccess($checklist_id)) return false;
+    public function switchEditMode()
+    {
+        $checklist_id = JFactory::getApplication()->input->getInt('id', 0);
+        if(!$this->checkAccess($checklist_id)){
+            return false;
+        }
 
-			if(!isset($_SESSION['edit_mode'][$checklist_id])){
-				$_SESSION['edit_mode'][$checklist_id] = 1;
-			}
+        $session = JFactory::getSession();
+        $edit_mode = $session->get('edit_mode.'.$checklist_id, '');
+        if(!$edit_mode){
+            $session->set('edit_mode.'.$checklist_id, 1);
+        }
 
-			$sefUrl = JRoute::_('index.php?option=com_checklist&view=checklist&id='.$checklist_id);
+        $sefUrl = JRoute::_('index.php?option=com_checklist&view=checklist&id='.$checklist_id);
+        echo $sefUrl;
 
-			echo $sefUrl;
-			die;
-		}
+        die;
+    }
 
-		public function switchViewMode()
-		{
-			$checklist_id = JFactory::getApplication()->input->get('id');
-			if(!$this->checkAccess($checklist_id)) return false;
+    public function switchViewMode()
+    {
+        $checklist_id = JFactory::getApplication()->input->getInt('id', 0);
+        if(!$this->checkAccess($checklist_id)){
+            return false;
+        }
 
-			if(isset($_SESSION['edit_mode'][$checklist_id])){
-				unset($_SESSION['edit_mode'][$checklist_id]);
-			}
+        $session = JFactory::getSession();
+        $edit_mode = $session->get('edit_mode.'.$checklist_id, '');
+        if($edit_mode){
+            $session->clear('edit_mode.'.$checklist_id);
+        }
 
-			$sefUrl = JRoute::_('index.php?option=com_checklist&view=checklist&id='.$checklist_id);
+        $sefUrl = JRoute::_('index.php?option=com_checklist&view=checklist&id='.$checklist_id);
+        echo $sefUrl;
 
-			echo $sefUrl;
-			die;
-		}
+        die;
+    }
 
 		public function sendRequest()
 		{

@@ -36,16 +36,14 @@ class JFormFieldTags extends JFormFieldList
 		// Initialise variables.
 		$options = array();
 
-		$db		= JFactory::getDbo();
-		
+		$db	= JFactory::getDbo();
 		$query	= "(SELECT '- Select tag -' AS `text`, '0' AS `value` FROM `#__users` LIMIT 0, 1) UNION (SELECT `name` AS `text`, `id` AS `value` FROM `#__checklist_tags`)";
 		$db->setQuery($query);
-
 		$options = $db->loadObjectList();
 
 		// Check for a database error.
 		if ($db->getErrorNum()) {
-			JError::raiseWarning(500, $db->getErrorMsg());
+            JFactory::getApplication()->enqueueMessage($db->getErrorMsg(), 'error');
 		}
 		
 		return $options; 
