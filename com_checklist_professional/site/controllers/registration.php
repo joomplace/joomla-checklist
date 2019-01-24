@@ -15,23 +15,21 @@ jimport('joomla.application.component.controlleradmin');
  */
 class ChecklistControllerRegistration extends JControllerAdmin
 {
-		
+
 	public function register()
 	{
-
 		$params = JComponentHelper::getParams('com_users');
+        $jinput = JFactory::getApplication()->input;
 
 		// Initialise the table with JUser.
 		$user = new JUser;
-		$data = JRequest::get('post');
+		$data = array();
 				
 		// Prepare the data for the user object.
-		
-		$data['name'] = $data['uname'];
-		$data['email'] = JStringPunycode::emailToPunycode($data['email1']);
-		$username = $data['username'];
-		$data['password'] = $sendpassword = $data['password1'];
-		
+		$data['name'] = $jinput->getString('uname');
+		$data['email'] = JStringPunycode::emailToPunycode($jinput->getString('email1'));
+		$username = $jinput->getString('username');
+		$data['password'] = $sendpassword = $jinput->getString('password1');
 		$data['activation'] = '';
 		$data['block'] = 0;
 	
@@ -59,13 +57,12 @@ class ChecklistControllerRegistration extends JControllerAdmin
 		$db = JFactory::getDbo();
 		
 		$row = new stdClass;
-
 		$row->user_id = $user->id;
-		$row->website_field = $data['website_field'];
-		$row->twitter_field = $data['twitter_field'];
-		$row->facebook_field = $data['facebook_field'];
-		$row->google_field = $data['google_field'];
-		$row->description_field = $data['description_field'];
+		$row->website_field = $jinput->getString('website_field');
+		$row->twitter_field = $jinput->getString('twitter_field');
+		$row->facebook_field = $jinput->getString('facebook_field');
+		$row->google_field = $jinput->getString('google_field');
+		$row->description_field = $jinput->getString('description_field');
 		$row->avatar_field = '';
 
 		$db->insertObject('#__checklist_users', $row, 'user_id');

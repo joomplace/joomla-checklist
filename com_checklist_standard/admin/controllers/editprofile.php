@@ -23,10 +23,9 @@ class ChecklistControllerEditprofile extends JControllerForm
 			jimport('joomla.filesystem.file');
 			jimport('joomla.filesystem.folder');
 
-			$post = JRequest::get("post");
-			$userid = $post['jform']['user_id'];
-
-			$avatar_file = $_FILES['avatar_file'];
+			$jinput = JFactory::getApplication()->input;
+            $userid = $jinput->getInt('user_id', 0);
+            $avatar_file = $jinput->files->get('avatar_file', array(), 'array');
 			$avatar_filename = $avatar_file['name'];
 			$avatar_file_tmpname = $avatar_file['tmp_name'];
 

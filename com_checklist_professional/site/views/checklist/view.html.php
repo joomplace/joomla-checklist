@@ -37,7 +37,9 @@ class ChecklistViewChecklist extends JViewLegacy
 
 			$this->edit_mode = false;
 			if($this->allow_edit){
-				if(isset($_SESSION['edit_mode'][$this->checklist->id]) && $_SESSION['edit_mode'][$this->checklist->id]){
+                $session = JFactory::getSession();
+                $edit_mode = $session->get('edit_mode.'.$this->checklist->id, '');
+				if($edit_mode){
 					$this->edit_mode = true;
 				}
 			}			

@@ -25,16 +25,14 @@ class ChecklistControllerRatings extends JControllerAdmin
 		return $model;
 	}
 
-	public function delete(){
-
-		$db = JFactory::getDBO();
-		$option = "com_checklist";
-
-		$post = JRequest::get('post');
-		$cid = $post['cid'];
+	public function delete()
+    {
+        $app = JFactory::getApplication();
+        $cid = $app->input->get('cid', array(), 'ARRAY');
 		
-		if (count( $cid )) {
+		if(!empty( $cid )) {
 			$cids = implode( ',', $cid );
+            $db = JFactory::getDBO();
 			$query = "DELETE FROM `#__checklist_rating`"
 			. "\n WHERE id IN ( $cids )"
 			;
@@ -44,11 +42,8 @@ class ChecklistControllerRatings extends JControllerAdmin
 				exit();
 			}
 		}
-		
-		$app = JFactory::getApplication();
-		$app->redirect('index.php?option=com_checklist&view=ratings');
 
+		$app->redirect('index.php?option=com_checklist&view=ratings');
 		return true;
 	}
-
 }

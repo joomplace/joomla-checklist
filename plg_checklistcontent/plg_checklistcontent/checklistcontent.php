@@ -122,12 +122,13 @@ class plgContentChecklistcontent extends JPlugin {
 
 			$allowGroups = ChecklistHelper::getAllowGroups();
 			$this->allow_comment = (in_array($this->checklist->comment_access, $allowGroups)) ? true : false;
-
 			$this->allow_edit = $model->checkAllowEdit($userid, $this->checklist->id);
-
 			$this->edit_mode = false;
+
 			if($this->allow_edit){
-				if(isset($_SESSION['edit_mode'][$this->checklist->id]) && $_SESSION['edit_mode'][$this->checklist->id]){
+				$session = JFactory::getSession();
+                $edit_mode = $session->get('edit_mode.'.$this->checklist->id, '');
+				if($edit_mode){
 					$this->edit_mode = true;
 				}
 			}			
@@ -143,13 +144,12 @@ class plgContentChecklistcontent extends JPlugin {
 							$group->items[] = $item;
 						}
 					}
-					
 				}
 			}
 			
 			$this->groups = $groups;
-					
 			$this->authorized = false;
+
 			if($user->id){
 				$this->authorized = true;
 				$this->checkedList = $model->getCheckedList($this->checklist->id);
@@ -206,9 +206,7 @@ class plgContentChecklistcontent extends JPlugin {
 			}
 
 			$this->fbOpengraphMeta($e);
-			
 		}
-
 	}
 
 	private function fbOpengraphMeta($e)
