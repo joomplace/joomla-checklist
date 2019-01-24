@@ -1,7 +1,0 @@
-To add more characters to JoomBlogSet font load 
-
-JoomBlogSet.json 
-
-into 
-
-http://icomoon.io/app/
