@@ -1,4 +1,5 @@
 <?php
+defined('_JEXEC') or die('Restricted access');
 //============================================================+
 // File name   : tcpdf_barcodes_2d.php
 // Version     : 1.0.015

@@ -1,4 +1,5 @@
 <?php
+defined('_JEXEC') or die('Restricted access');
 //============================================================+
 // File name   : datamatrix.php
 // Version     : 1.0.008

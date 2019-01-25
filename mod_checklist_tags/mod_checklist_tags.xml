@@ -2,12 +2,12 @@
 <extension version="3.0" type="module" client="site" method="upgrade">
 	<name>Checklist Tag cloud</name>
 	<author>JoomPlace Team</author>
-	<creationDate>April 2014</creationDate>
+	<creationDate>February 2019</creationDate>
 	<copyright>(C) JoomPlace, www.joomplace.com</copyright>
 	<license>GNU/GPL http://www.gnu.org/copyleft/gpl.html</license>
 	<authorEmail>support@joomplace.com</authorEmail>
 	<authorUrl>www.joomplace.com</authorUrl>
-	<version>1.0.0</version>
+	<version>1.1.1</version>
 	<description></description>
 	<files>
 		<filename module="mod_checklist_tags">mod_checklist_tags.php</filename>

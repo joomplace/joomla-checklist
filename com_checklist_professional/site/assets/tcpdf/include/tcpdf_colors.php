@@ -1,4 +1,5 @@
 <?php
+defined('_JEXEC') or die('Restricted access');
 //============================================================+
 // File name   : tcpdf_colors.php
 // Version     : 1.0.004

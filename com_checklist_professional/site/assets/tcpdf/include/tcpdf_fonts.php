@@ -1,4 +1,5 @@
 <?php
+defined('_JEXEC') or die('Restricted access');
 //============================================================+
 // File name   : tcpdf_fonts.php
 // Version     : 1.0.013
