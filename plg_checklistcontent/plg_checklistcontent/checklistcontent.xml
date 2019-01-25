@@ -2,12 +2,12 @@
 <extension version="3.0" type="plugin" group="content" method="upgrade">
 	<name>Content - Checklist</name>
 	<author>JoomPlace Team</author>
-	<creationDate>April 2014</creationDate>
+	<creationDate>February 2019</creationDate>
 	<copyright>(C) JoomPlace, www.joomplace.com</copyright>
 	<license>GNU/GPL http://www.gnu.org/copyleft/gpl.html</license>
 	<authorEmail>support@jomplace.com</authorEmail>
 	<authorUrl>www.jomplace.com</authorUrl>
-	<version>1.0.0 (build 001)</version>
+	<version>1.1.1</version>
 	<description></description>
 	<files>
 		<filename plugin="checklistcontent">checklistcontent.php</filename>
@@ -15,5 +15,4 @@
 	</files>
 	<config>
 	</config>
-
 </extension>

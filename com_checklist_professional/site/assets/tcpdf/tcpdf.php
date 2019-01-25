@@ -1,4 +1,5 @@
 <?php
+defined('_JEXEC') or die('Restricted access');
 //============================================================+
 // File name   : tcpdf.php
 // Version     : 6.0.089

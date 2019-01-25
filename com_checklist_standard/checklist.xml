@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="component" version="3.x" method="upgrade" >
 	<name>COM_CHECKLIST</name>
-	<creationDate>April 2014</creationDate>
+	<creationDate>February 2019</creationDate>
 	<author>JoomPlace Team</author>
 	<copyright>(C) JoomPlace, www.joomplace.com</copyright>
 	<license>GNU/GPL http://www.gnu.org/copyleft/gpl.html</license>
 	<authorEmail>support@joomplace.com</authorEmail>
 	<authorUrl>www.joomplace.com</authorUrl>
-	<version>1.1.1.004</version>
+	<version>1.1.1</version>
 	<description>This component allows creating personal checklists</description>
 	<scriptfile>script.php</scriptfile>
 	  <install>
@@ -78,6 +78,6 @@
 	</administration>
 	<updateservers>
 		<!-- Note: No spaces or linebreaks allowed between the server tags -->
-		<server type="extension" priority="1" name="Checklist Update Site">https://www.joomplace.com/updates/collections.xml</server>
+		<server type="collection" priority="1" name="Joomplace Update Site">https://www.joomplace.com/updates/collections.xml</server>
 	</updateservers>
 </extension>

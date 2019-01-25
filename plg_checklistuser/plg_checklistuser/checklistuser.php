@@ -14,7 +14,6 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 
 jimport('joomla.plugin.plugin');
 
-
 class plgUserChecklistuser extends JPlugin
 {
 	
@@ -53,7 +52,6 @@ class plgUserChecklistuser extends JPlugin
 		}
 	}
 
-	
 	public function onUserAfterDelete($user, $succes, $msg)
 	{
 		$app = JFactory::getApplication();
@@ -68,5 +66,4 @@ class plgUserChecklistuser extends JPlugin
 		}
 	}
 
-	
 }
