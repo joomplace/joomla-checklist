@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<extension type="package" version="3.x" method="upgrade">
+    <name>Joomla Checklist Professional Package</name>
+    <author>Joomplace Team</author>
+    <creationDate>February 2019</creationDate>
+    <packagename>checklist_professional</packagename>
+    <authorEmail>support@joomplace.com</authorEmail>
+    <authorUrl>www.joomplace.com</authorUrl>
+    <copyright>(C) JoomPlace, www.joomplace.com</copyright>
+    <license>GNU/GPL http://www.gnu.org/copyleft/gpl.html</license>
+    <version>1.1.1</version>
+    <files folder="packages">
+        <file type="component" id="com_checklist">com_checklist_professional.zip</file>
+        <file type="module" id="checklist" client="site">mod_checklist_lastten.zip</file>
+        <file type="module" id="checklist" client="site">mod_checklist_tags.zip</file>
+        <file type="plugin" id="checklist-xtd-button" group="content">plg_checklist_button.zip</file>
+        <file type="plugin" id="checklist-xtd-button" group="content">plg_checklistcontent.zip</file>
+        <file type="plugin" id="updater" group="installer">plg_checklistuser.zip</file>
+    </files>
+    <updateservers>
+        <server type="collection" priority="1" name="Joomplace Update Site">http://www.joomplace.com/updates/collections.xml</server>
+    </updateservers>
+</extension>
