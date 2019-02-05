@@ -14,12 +14,17 @@ class ChecklistControllerSampledata extends JControllerAdmin
 		return parent::getModel($name, $prefix, array('ignore_request' => true));
 	}
 
-	public function install() 
-	{
+	public function install()
+    {
         $app = JFactory::getApplication();
-		$post = $app->input->post;
-		$this->getModel()->installSampledata($post);
-        $app->redirect('index.php?option=com_checklist&view=sampledata', JText::_('COM_CHECKLIST_INSTALL_SAMPLEDATA_SUCCESS'), 'message');
+        $sampledata = $app->input->get('sampledata');
+
+        if (!empty($sampledata)) {
+            $this->getModel()->installSampledata($sampledata);
+            $app->redirect('index.php?option=com_checklist&view=sampledata', JText::_('COM_CHECKLIST_INSTALL_SAMPLEDATA_SUCCESS'), 'message');
+        } else {
+            $app->redirect('index.php?option=com_checklist&view=sampledata', JText::_('COM_CHECKLIST_INSTALL_SAMPLEDATA_ERROR'), 'warning');
+        }
 	}
 
 	public function cancel() 
