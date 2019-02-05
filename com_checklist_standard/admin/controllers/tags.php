@@ -13,6 +13,7 @@ jimport('joomla.application.component.controlleradmin');
 
 class ChecklistControllerTags extends JControllerAdmin
 {
+    
     protected $text_prefix = 'COM_CHECKLIST_TAG';
 	
 	public function __construct($config = array())
