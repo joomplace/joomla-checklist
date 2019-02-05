@@ -86,9 +86,9 @@ class ChecklistTableList extends JTable
             $db->execute();
         }
 
-        $tags = $jinput->get('tags', '');
+        $tags = $jinput->get('tags', '','STRING');
         $tags_array = array();
-        if($tags != ''){
+        if(!empty($tags)){
             $tags_array = explode(",", $tags);
         }
 
