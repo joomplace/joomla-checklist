@@ -13,13 +13,7 @@ jimport('joomla.application.component.controlleradmin');
 
 class ChecklistControllerTags extends JControllerAdmin
 {
-    /**
-	 * The prefix to use with controller messages.
-	 *
-	 * @var    string
 
-	 * @since   3.7.0
-	 */
 	protected $text_prefix = 'COM_CHECKLIST_TAG';
 	
 	public function __construct($config = array())
