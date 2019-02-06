@@ -34,7 +34,26 @@ class ChecklistControllerChecklist extends JControllerForm
 			$section_id = str_replace(" ", "-", $title);
 			
 			$html = '<section id="'.$section_id.'" class="checklist-section" groupid="'.$lastid.'">
-			<h2 class="checklist-section-header">'.$title.'<span class="chk-add-item"><img style="cursor:pointer;" src="'.JURI::root().'components/com_checklist/assets/images/minus.png" class="chk-ajax-remove-group" />&nbsp;<img style="cursor:pointer;" src="'.JURI::root().'components/com_checklist/assets/images/list_add.png" class="chk-open-item-form" /></span></h2>
+			<h2 class="checklist-section-header">
+                <span id="group-name'.$lastid.'">'.$title.'</span>
+                <span class="chk-add-item">
+                    <img src="'.JURI::root().'components/com_checklist/assets/images/pencil2.png" style="cursor:pointer;" groupid="'.$lastid.'" onclick="Checklist.openEditGroupForm(this);">&nbsp;
+				    <img src="'.JURI::root().'components/com_checklist/assets/images/minus.png" style="cursor:pointer;" class="chk-ajax-remove-group">&nbsp;
+					<img src="'.JURI::root().'components/com_checklist/assets/images/list_add.png" style="cursor:pointer;" class="chk-open-item-form">
+				</span>
+			</h2>
+			<div class="chk-edit-group-form" id="edit-group-name_'.$lastid.'">
+                <form class="form-horizontal" style="margin-top:15px;">
+                    <div class="form-group-checklist">
+                        <label for="inputEditGroup" class="col-sm-2 control-label">'.JText::_('COM_CHECKLIST_EDIT_GROUP_NAME').'</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputEditGroup'.$lastid.'" placeholder="'.JText::_('COM_CHECKLIST_EDIT_GROUP_NAME_PLACEHOLDER').'" value="'.$title.'" style="margin-right:10px;">
+                            <button type="button" class="btn btn-default" groupid="'.$lastid.'" onclick="Checklist.ajaxEditGroup(this);">'.JText::_('COM_CHECKLIST_CONFIRM').'</button>
+                            <button type="button" class="btn btn-default" groupid="'.$lastid.'" onclick="Checklist.closeEditGroupForm(this);">'.JText::_('COM_CHECKLIST_CANCEL').'</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
 			<div class="chk-add-item-form">
 				<form class="form-horizontal">
 					<div class="form-group">

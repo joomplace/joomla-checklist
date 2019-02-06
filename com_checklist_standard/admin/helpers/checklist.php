@@ -57,7 +57,7 @@ class ChecklistHelper
         public static function addChecklistSubmenu($vName)
         {
             JHtmlSidebar::addEntry(
-                JText::_('COM_CHECKLIST_SUBMENU_UNAVAILABLE_LISTS'),
+                JText::_('COM_CHECKLIST_SUBMENU_LISTS'),
                 'index.php?option=com_checklist&view=lists&defaultlist=0',
                 $vName == 'user_lists'
             );
