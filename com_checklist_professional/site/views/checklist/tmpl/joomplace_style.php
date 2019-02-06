@@ -397,15 +397,16 @@ $tag = str_replace("-", "_", $tag);
 <?php endif;?>
 
 <div style="clear: both;"></div>
+<?php
+    $itemid = JFactory::getApplication()->input->get('Itemid', 0);
+    $itemid = ($itemid) ? $itemid : '';
 
+    $userid = JFactory::getApplication()->input->get('userid', 0);
+    $userid = ($userid) ? $userid : $user->id;?>
 <?php if(!$print):?>
 <div class="checklist-social">
 <?php
-	$itemid = JFactory::getApplication()->input->get('Itemid', 0);
-	$itemid = ($itemid) ? $itemid : '';
 
-	$userid = JFactory::getApplication()->input->get('userid', 0);
-	$userid = ($userid) ? $userid : $user->id;
 
 	$pageLink = JRoute::_('index.php?option=com_checklist&view=checklist&id='.$this->checklist->id.'&userid='.$userid.'&Itemid='.$itemid, false, -1);
 
