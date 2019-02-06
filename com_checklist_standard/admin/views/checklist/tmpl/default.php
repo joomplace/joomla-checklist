@@ -112,7 +112,7 @@ $document->addScript(JURI::root()."components/com_checklist/assets/js/joomplace_
 				<?php foreach($this->groups as $group):?>
 				<section class="checklist-section" id="<?php echo $group->section_id;?>" groupid="<?php echo $group->id;?>">
                     <h2 class="checklist-section-header">
-                        <span id="group-name<?php echo $group->id;?>"><?php echo $group->title;?>
+                        <span id="group-name<?php echo $group->id;?>"><?php echo $group->title;?></span>
                         <span class="chk-add-item">
                             <img src="<?php echo JURI::root();?>components/com_checklist/assets/images/pencil2.png" style="cursor:pointer;" groupid="<?php echo $group->id;?>" onclick="Checklist.openEditGroupForm(this);">&nbsp;
 							<img src="<?php echo JURI::root();?>components/com_checklist/assets/images/minus.png" style="cursor:pointer;" class="chk-ajax-remove-group">&nbsp;<img src="<?php echo JURI::root();?>components/com_checklist/assets/images/list_add.png" style="cursor:pointer;" class="chk-open-item-form">
@@ -384,7 +384,7 @@ $document->addScript(JURI::root()."components/com_checklist/assets/js/joomplace_
 		
 		removeGroup: function(html, object){
 			
-			jQuery(object).parent().parent().parent().remove();
+			jQuery(object).closest('.checklist-section').remove();
 			jQuery('body').css("cursor", "default");
 			setTimeout(Checklist.bindClickToTips, 500);
 			Checklist.setErrorMsg("success", "<?php echo JText::_('COM_CHECKLIST_GROUP_WAS_SUCCESSFULLY_REMOVED')?>");
@@ -685,11 +685,13 @@ $document->addScript(JURI::root()."components/com_checklist/assets/js/joomplace_
 		},
 		
 		bindItemHeaderTools: function(){
-			
-			jQuery(".chk-ajax-remove-group").bind("click", function(){
-				var groupid = jQuery(this).parent().parent().parent().attr("groupid");
-				Checklist.ajaxRemoveGroup(this, groupid);
-			});
+
+            jQuery('.chk-ajax-remove-group').each(function () {
+                jQuery(this).on('click', function(){
+                    var groupid = jQuery(this).closest('.checklist-section').attr('groupid');
+                    Checklist.ajaxRemoveGroup(this, groupid);
+                });
+            });
 			jQuery(".chk-open-item-form").bind("click", function(){
 				Checklist.openItemForm(this);
 			});
