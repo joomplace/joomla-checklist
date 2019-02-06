@@ -552,7 +552,7 @@ $document->addScript(JURI::root()."components/com_checklist/assets/js/joomplace_
 				} 
 			});
 
-			jQuery( "#chk-main" ).disableSelection();
+			//jQuery( "#chk-main" ).disableSelection();
 		},
 		
 		stopGroupDraggable: function(e,ui){
