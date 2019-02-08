@@ -15,7 +15,7 @@ class ChecklistModelSampledata extends JModelAdmin
 		parent::__construct($config);
 	}
 	
-	public function installSampledata($post)
+	public function installSampledata($sampledata)
 	{
 		$db = JFactory::getDBO();
 
