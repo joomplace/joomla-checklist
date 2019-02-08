@@ -35,7 +35,7 @@ $document->addStyleSheet(JURI::root().'administrator/components/com_checklist/as
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?option=com_checklist&view=tags"><?php echo JText::_('COM_CHECKLIST_SUBMENU_TAGS');?></a></li>
 
                         <li role="presentation" class="nav-header"><?php echo JText::_('COM_CHECKLIST_MENUHEADER_LISTS');?></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?option=com_checklist&view=lists"><?php echo JText::_('COM_CHECKLIST_SUBMENU_UNAVAILABLE_LISTS');?></a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?option=com_checklist&view=lists"><?php echo JText::_('COM_CHECKLIST_SUBMENU_LISTS');?></a></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?option=com_checklist&view=lists&defaultlist=1"><?php echo JText::_('COM_CHECKLIST_SUBMENU_DEFAULT_LIST');?></a></li>
                     
                         <li role="presentation" class="nav-header"><?php echo JText::_('COM_CHECKLIST_MENUHEADER_USERS');?></li>
