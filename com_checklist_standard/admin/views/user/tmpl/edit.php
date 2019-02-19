@@ -55,7 +55,7 @@ Joomla.submitbutton = function(task)
 	                </div>
 					<div class="controls">
 						<input type="file" name="avatar_file" class="btn" id="avatar">
-						<button onclick="Checklist.uploadFile();" type="button" class="btn btn-primary btn-lg"><?php echo JText::_('COM_CHECKLIST_UPLOAD_PROFILE');?></button>
+                        <!--<button onclick="Checklist.uploadFile();" type="button" class="btn btn-primary btn-lg"><?php echo JText::_('COM_CHECKLIST_UPLOAD_PROFILE');?></button>-->
 						<img src="<?php echo JURI::root();?>components/com_checklist/assets/images/ajax-loader.gif" style="display: none;" id="ajax_loader_profile">
 					</div>
 				</div>
@@ -151,27 +151,20 @@ Joomla.submitbutton = function(task)
 	<?php echo JHtml::_('form.token'); ?>	
 	</div>
 </form>
-<iframe src="javascript:void(0);" style="display:none;" id="_fileUpload" name="_fileUpload"></iframe>
-
+<!--<iframe src="javascript:void(0);" style="display:none;" id="_fileUpload" name="_fileUpload"></iframe>-->
 <script type="text/javascript">
-
-var form = document.adminForm;
-	
-var Checklist = {};
-
-Checklist.uploadFile = function(){
-		
-	var filename = document.getElementById("avatar").value;
-
-	if(filename != ''){
-		form.target = "_fileUpload";
-		form.task.value = "editprofile.uploadFile";
-
-		form.submit();
-		document.getElementById("ajax_loader_profile").style.display = "inline";
-	} else {
-		alert('<?php echo JText::_('COM_CHECKLIST_PLEASE_SELECT_AN_IMAGE');?>');
-		return false;
-	}
-}
+    /*var form = document.adminForm;
+	var Checklist = {};
+    Checklist.uploadFile = function(){
+        var filename = document.getElementById("avatar").value;
+        if(filename != ''){
+            form.target = "_fileUpload";
+            form.task.value = "editprofile.uploadFile";
+            form.submit();
+            document.getElementById("ajax_loader_profile").style.display = "inline";
+        } else {
+            alert('<?php echo JText::_('COM_CHECKLIST_PLEASE_SELECT_AN_IMAGE');?>');
+            return false;
+        }
+    }*/
 </script>
