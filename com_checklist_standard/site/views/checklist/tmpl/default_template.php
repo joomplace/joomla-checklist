@@ -131,6 +131,8 @@ $tag = str_replace("-", "_", $tag);
 	$userid = JFactory::getApplication()->input->get('userid', 0);
 	$userid = ($userid) ? $userid : $user->id;
 
+    $custom_metatags = json_decode($this->checklist->custom_metatags);
+
 	$pageLink = JRoute::_('index.php?option=com_checklist&view=checklist&id='.$this->checklist->id.'&userid='.$userid.'&Itemid='.$itemid, false, -1);
 
 ?>
@@ -146,9 +148,14 @@ $tag = str_replace("-", "_", $tag);
 
 		<?php if($this->config->social_twitter_use):?>
 		<!-- Twitter -->
-		<div class="checklist-social-btn">
-			<a href="http://twitter.com/share" class="twitter-share-button" data-url="<?php echo $pageLink ?>" data-size="<?php echo $this->config->social_twitter_size ?>" data-count="<?php echo $this->config->social_twitter_annotation?>" data-lang="<?php echo $this->config->social_twitter_language ?>">Tweet</a>
-		</div>
+        <div class="checklist-social-btn">
+            <a href="https://twitter.com/intent/tweet" class="twitter-share-button"
+               data-text="<?php echo $custom_metatags->{'twitter:title'}; ?>"
+               data-url="<?php echo $pageLink ?>"
+               data-size="<?php echo $this->config->social_twitter_size ?>"
+               data-count="<?php echo $this->config->social_twitter_annotation?>"
+               data-lang="<?php echo $this->config->social_twitter_language ?>">Tweet</a>
+        </div>
 		<?php endif;?>
 
 		<?php if($this->config->social_linkedin_use):?>
