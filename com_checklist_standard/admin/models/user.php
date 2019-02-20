@@ -55,7 +55,7 @@ class ChecklistModelUser extends JModelAdmin
 		return $item;
 	}
 
-	public function getItem()
+	public function getItem($pk = NULL)
 	{
 		$db = JFactory::getDBO();
 
