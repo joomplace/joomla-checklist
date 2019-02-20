@@ -66,7 +66,7 @@ class ChecklistTableList extends JTable
         $res = parent::store($updateNulls);
 
         $alias = ($this->alias != '') ? $this->alias : $this->title;
-        $alias = str_replace(" ", "-", mb_strtolower($alias));
+        $alias = addslashes(str_replace(" ", "-", mb_strtolower($alias)));
 
         $db->setQuery("UPDATE `#__checklist_lists` SET `alias` = '".$alias."' WHERE `id` = '".$this->id."'");
         $db->execute();
