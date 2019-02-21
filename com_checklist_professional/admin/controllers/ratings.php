@@ -34,7 +34,7 @@ class ChecklistControllerRatings extends JControllerAdmin
 			$cids = implode( ',', $cid );
             $db = JFactory::getDBO();
 			$query = "DELETE FROM `#__checklist_rating`"
-			. "\n WHERE id IN ( $cids )"
+			. "\n WHERE `checklist_id` IN ( $cids )"
 			;
 			$db->setQuery( $query );
 			if (!$db->execute()) {
