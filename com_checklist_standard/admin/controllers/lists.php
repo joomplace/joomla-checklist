@@ -11,6 +11,8 @@ defined('_JEXEC') or die('Restricted access');
 
 jimport('joomla.application.component.controlleradmin');
 
+use Joomla\Utilities\ArrayHelper;
+
 class ChecklistControllerLists extends JControllerAdmin
 {
 	
@@ -27,7 +29,12 @@ class ChecklistControllerLists extends JControllerAdmin
 
 	public function delete()
 	{
-		$return = parent::delete();
+        $cid = $this->input->get('cid', array(), 'array');
+
+        $return = parent::delete();
+
+        $cid = ArrayHelper::toInteger($cid);
+        $this->deleteRating($cid);
 
 		$app = JFactory::getApplication();
 		$session = JFactory::getSession();
@@ -38,9 +45,28 @@ class ChecklistControllerLists extends JControllerAdmin
 		} else {
 			$app->redirect('index.php?option=com_checklist&view=lists&defaultlist=0');
 		}
-		
 
 		return $return;
 	}
+
+	private function deleteRating($cid=array())
+    {
+        $db = JFactory::getDbo();
+        $query = $db->getQuery(true);
+
+	    foreach ($cid as $id)
+	    {
+	        $query->clear();
+	        $conditions = array(
+	            $db->qn('checklist_id') .'='. $db->q($id)
+	        );
+	        $query->delete($db->qn('#__checklist_rating'))
+	            ->where($conditions);
+	        $db->setQuery($query)
+	            ->execute();
+        }
+
+	    return true;
+    }
 
 }
