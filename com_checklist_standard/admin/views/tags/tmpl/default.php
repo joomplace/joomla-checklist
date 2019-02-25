@@ -96,7 +96,7 @@ $document->addStyleSheet(JURI::root()."components/com_checklist/assets/tagmanage
 					<th width="1%" class="nowrap center hidden-phone">
 						<input type="checkbox" name="checkall-toggle" value="" title="<?php echo JText::_('JGLOBAL_CHECK_ALL'); ?>" onclick="Joomla.checkAll(this)" />
 					</th>
-					<th width="30%">
+					<th width="50%">
 						<?php echo JHtml::_('grid.sort', 'COM_CHECKLIST_TAG_NAME', 'name', $listDirn, $listOrder); ?> 
 					</th>
 					<th width="50%">
