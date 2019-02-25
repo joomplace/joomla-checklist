@@ -83,7 +83,7 @@ $editor = JFactory::getEditor();
 					<th width="1%" class="nowrap center hidden-phone">
 						<input type="checkbox" name="checkall-toggle" value="" title="<?php echo JText::_('JGLOBAL_CHECK_ALL'); ?>" onclick="Joomla.checkAll(this)" />
 					</th>
-					<th width="30%">
+					<th width="50%">
 						<?php echo JHtml::_('grid.sort', 'COM_CHECKLIST_TITLE', 'title', $listDirn, $listOrder); ?> 
 					</th>
 					<th width="10%">
