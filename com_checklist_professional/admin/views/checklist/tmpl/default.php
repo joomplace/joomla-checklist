@@ -311,7 +311,7 @@ $document->addScript(JURI::root()."components/com_checklist/assets/js/joomplace_
 		
 		closeItemForm: function(object){
 			Checklist.resetErrorMsg();
-			jQuery(object).parent().parent().parent().parent().parent().find(".chk-add-item-form").hide();
+			jQuery(object).closest(".chk-add-item-form").hide();
 		},
 		
 		ajaxSaveItem: function(object, groupid){
