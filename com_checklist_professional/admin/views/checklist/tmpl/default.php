@@ -698,7 +698,8 @@ $document->addScript(JURI::root()."components/com_checklist/assets/js/joomplace_
 			jQuery(".chk-close-item-form").bind("click", function(){
 				Checklist.closeItemForm(this);
 			});
-			jQuery(".chk-save-item").bind("click", function(){
+			jQuery(".chk-save-item").bind("click", function(event){
+                event.stopImmediatePropagation();
 				var groupid = jQuery(this).attr("groupid");
 				Checklist.ajaxSaveItem(this, groupid);
 			});
