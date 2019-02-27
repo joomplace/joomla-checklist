@@ -54,7 +54,7 @@ class ChecklistViewList extends JViewLegacy
 		JToolBarHelper::apply('list.apply', 'JTOOLBAR_APPLY');
 		JToolBarHelper::save('list.save', 'JTOOLBAR_SAVE');
 		JToolBarHelper::custom('list.save2new', 'save-new.png', 'save-new_f2.png', 'JTOOLBAR_SAVE_AND_NEW', false);
-		JToolBarHelper::custom('list.save2copy', 'save-copy.png', 'save-copy_f2.png', 'JTOOLBAR_SAVE_AS_COPY', false);
+		//JToolBarHelper::custom('list.save2copy', 'save-copy.png', 'save-copy_f2.png', 'JTOOLBAR_SAVE_AS_COPY', false);
 		JToolBarHelper::cancel('list.cancel', 'JTOOLBAR_CANCEL');
 		JToolBarHelper::divider();
 		JToolBarHelper::help('JHELP_COMPONENTS_WEBLINKS_LINKS_EDIT');
