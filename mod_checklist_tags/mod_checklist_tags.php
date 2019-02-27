@@ -11,8 +11,6 @@
 
 defined('_JEXEC') or die('Restricted access');
 
-if(!defined('JB_COM_PATH'))
-
 require_once(dirname(__FILE__).'/helper.php');
 
 $mainframe = JFactory::getApplication();
