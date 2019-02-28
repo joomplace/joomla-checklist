@@ -95,14 +95,20 @@ if($access) {
 				<div class="form-group">
 					<label for="inputDescription_before" class="col-sm-2 control-label"><?php echo JText::_('COM_CHECKLIST_CHECKLIST_DESCRIPTION_BEFORE')?></label>
 					<div class="col-sm-10">
-						<?php echo $editor->display( 'description_before', $this->item->description_before, '100%', '30', '10', '10', array('pagebreak', 'readmore', 'image', 'article', 'checklist_button') )?>
+						<?php echo $editor->display( 'description_before', $this->item->description_before, '100%', '30', '10', '10',
+                            array('pagebreak', 'readmore', 'image', 'article',
+                                'checklist_button', 'quiz', 'comparisonchart', 'testimonial', 'goals',
+                                'habits', 'plans', 'surveyforce', 'html5flippingbook_button') )?>
 						
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="inputDescription_after" class="col-sm-2 control-label"><?php echo JText::_('COM_CHECKLIST_CHECKLIST_DESCRIPTION_AFTER')?></label>
 					<div class="col-sm-10">
-						<?php echo $editor->display( 'description_after', $this->item->description_after, '100%', '50', '50', '50', array('pagebreak', 'readmore', 'image', 'article', 'checklist_button') )?>
+						<?php echo $editor->display( 'description_after', $this->item->description_after, '100%', '50', '50', '50',
+                            array('pagebreak', 'readmore', 'image', 'article',
+                                'checklist_button', 'quiz', 'comparisonchart', 'testimonial', 'goals',
+                                'habits', 'plans', 'surveyforce', 'html5flippingbook_button') )?>
 					</div>
 				</div>
 			</div>
