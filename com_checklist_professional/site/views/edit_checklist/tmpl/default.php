@@ -19,7 +19,11 @@ $document->addScript(JURI::root()."components/com_checklist/assets/js/lists.js")
 $document->addStyleSheet(JURI::root()."components/com_checklist/assets/tagmanager-master/tagmanager.css");
 $document->addScript(JURI::root()."components/com_checklist/assets/tagmanager-master/tagmanager.js");
 
-$editor = JFactory::getEditor();
+$editor_name = JFactory::getConfig()->get('editor', 'none');
+$editor = JFactory::getEditor($editor_name);
+if($editor_name == 'none'){
+    JHtml::_('behavior.core');
+}
 
 $access = false;
 
