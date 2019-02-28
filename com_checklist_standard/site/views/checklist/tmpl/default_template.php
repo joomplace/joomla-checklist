@@ -317,6 +317,19 @@ $tag = str_replace("-", "_", $tag);
 	
 	Checklist.initApplication();
 
+	jQuery(function ($) {
+        //fix Purity iii (demo site)
+        if($('#t3-content').length){
+            $('#checklist').find('.caret').each(function(){
+                $(this).on('click', function(e){
+                    e.preventDefault();
+                    e.stopPropagation();
+                    $(this).closest('.checklist-section').find('.checklist-section-list').toggle();
+                });
+            });
+        }
+    });
+
 </script>
 
 <?php if ($this->config->social_google_plus_use == 1) { ?>
