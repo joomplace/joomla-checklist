@@ -137,7 +137,7 @@ class ChecklistControllerLists extends JControllerAdmin
 		public function remove(){
 
             $user = JFactory::getUser();
-            if($user->authorise('core.remove', 'com_checklist')) {
+            if($user->authorise('core.delete', 'com_checklist')) {
                 $db = JFactory::getDBO();
                 $id = JFactory::getApplication()->input->getInt('id', 0);
                 $db->setQuery("DELETE FROM `#__checklist_lists` WHERE `id` = '".$id."'");
