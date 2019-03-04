@@ -8,6 +8,7 @@
 */
 defined('_JEXEC') or die('Restricted Access');
 JHtml::_('bootstrap.tooltip');
+JHtml::_('behavior.core');
 
 $itemid = ($this->itemid) ? "&Itemid=".$this->itemid : "";
 $user = JFactory::getUser();
@@ -105,7 +106,7 @@ if($this->user_data->avatar_field != ''){
 </p>
 <?php } ?>
 
-<form action="<?php echo JRoute::_('index.php?option=com_checklist&view=lists'.$itemid);?>" method="post">
+<form name="adminForm" id="adminForm" action="<?php echo htmlspecialchars(JUri::getInstance()->toString()); ?>" method="post">
 
 <div class="list-group my-checklist">
 <h4><?php echo JText::_('COM_CHECKLIST_MY_OWN_CHECKLIST');?></h4>
@@ -134,7 +135,7 @@ if($this->user_data->avatar_field != ''){
 </form>
 
 <?php } else {?>
-<form action="<?php echo JRoute::_('index.php?option=com_checklist&view=lists&userid='.$this->userid.$itemid);?>" method="post">
+<form name="adminForm" id="adminForm" action="<?php echo htmlspecialchars(JUri::getInstance()->toString()); ?>" method="post">
 <div class="list-group user-checklist">
 	
 	<?php if(count($this->checklists['user'])): ?>

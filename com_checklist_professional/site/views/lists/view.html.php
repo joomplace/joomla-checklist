@@ -13,10 +13,12 @@ jimport('joomla.application.component.view');
 class ChecklistViewLists extends JViewLegacy
 {
 	protected $pagination;
-	
+    protected $state;
+
 	function display($tpl = null) 
 	{
-		$model = $this->getModel();
+        $this->state = $this->get('State');
+        $model = $this->getModel();
 
 		$allow_edit = false;
         $user = JFactory::getUser();
@@ -40,9 +42,8 @@ class ChecklistViewLists extends JViewLegacy
 			if(!$userid && $user->id) $allow_edit = true;
 			
 			$this->allow_edit = $allow_edit;
+            $this->checklists = $this->get('Checklists');
 			$this->pagination = $this->get('Pagination');
-			$this->checklists = $this->get('Checklists');
-
 		}
 
 		$uid = ($userid) ? $userid : $user->id;
