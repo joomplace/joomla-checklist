@@ -97,7 +97,7 @@ class ChecklistModelLists extends JModelList
 		if($userid && $userid == $user->id) $this->_allow_edit = true;
 		if(!$userid && $user->id) $this->_allow_edit = true;
 
-		$limit_string = (!$isTotal) ? " LIMIT {$limitstart}, {$limit}" : "";
+		$limit_string = (!$isTotal && $limit != 0) ? " LIMIT {$limitstart}, {$limit}" : "";
 
 		if($this->_allow_edit){
 
