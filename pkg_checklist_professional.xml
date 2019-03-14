@@ -8,7 +8,7 @@
     <authorUrl>www.joomplace.com</authorUrl>
     <copyright>(C) JoomPlace, www.joomplace.com</copyright>
     <license>GNU/GPL http://www.gnu.org/copyleft/gpl.html</license>
-    <version>1.1.1</version>
+    <version>1.1.2</version>
     <files folder="packages">
         <file type="component" id="com_checklist">com_checklist_professional.zip</file>
         <file type="module" id="checklist" client="site">mod_checklist_lastten.zip</file>
