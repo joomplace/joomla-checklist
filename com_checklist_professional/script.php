@@ -72,9 +72,12 @@ class com_checklistInstallerScript
 
     function postflight($type, $parent)
     {
+        $xml = JFactory::getXML(JPATH_COMPONENT_ADMINISTRATOR .'/checklist.xml');
+        $checklist_installed_version = (string)$xml->version;
+
         $app = JFactory::getApplication();
         $db = JFactory::getDBO();
-        $chk_this_version = '1.1.0.004';
+        $chk_this_version = $checklist_installed_version;
         $curr_date = date("Y-m-d", strtotime("-2 months"));
 
         $configDefaultParams = array(

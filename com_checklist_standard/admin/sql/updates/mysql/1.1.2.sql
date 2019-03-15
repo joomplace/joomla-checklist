@@ -1,1 +1,1 @@
-UPDATE `#__checklist_lists` SET `list_access`='1', `comment_access`='1';
+UPDATE `#__checklist_lists` SET `list_access`='9', `comment_access`='9';

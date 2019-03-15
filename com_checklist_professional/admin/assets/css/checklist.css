@@ -374,6 +374,7 @@ margin-left: 24px;
 div.form-horizontal.checklist_control_panel_container {
   float: right;
   margin-right: 15px;
+  width: 47%;
 }
 .checklist_control_panel_table {
   float: right;
