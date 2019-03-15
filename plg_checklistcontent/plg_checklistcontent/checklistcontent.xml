@@ -7,7 +7,7 @@
 	<license>GNU/GPL http://www.gnu.org/copyleft/gpl.html</license>
 	<authorEmail>support@jomplace.com</authorEmail>
 	<authorUrl>www.jomplace.com</authorUrl>
-	<version>1.1.1</version>
+	<version>1.1.2</version>
 	<description></description>
 	<files>
 		<filename plugin="checklistcontent">checklistcontent.php</filename>
