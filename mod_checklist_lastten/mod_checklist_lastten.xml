@@ -7,7 +7,7 @@
 	<license>GNU/GPL http://www.gnu.org/copyleft/gpl.html</license>
 	<authorEmail>support@joomplace.com</authorEmail>
 	<authorUrl>www.joomplace.com</authorUrl>
-	<version>1.1.1</version>
+	<version>1.1.2</version>
 	<description>This module will display a list of the latest created checklists</description>
 	<files>
 		<filename module="mod_checklist_lastten">mod_checklist_lastten.php</filename>
