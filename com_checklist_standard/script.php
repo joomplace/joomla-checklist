@@ -72,7 +72,8 @@ class com_checklistInstallerScript
 
     function postflight($type, $parent)
     {
-        $xml = JFactory::getXML(JPATH_COMPONENT_ADMINISTRATOR .'/checklist.xml');
+        $xml = JFactory::getXML(JPATH_ROOT . DIRECTORY_SEPARATOR . 'administrator' . DIRECTORY_SEPARATOR . 'components' .
+            DIRECTORY_SEPARATOR . 'com_checklist' . DIRECTORY_SEPARATOR . 'checklist.xml');
         $checklist_installed_version = (string)$xml->version;
 
         $app = JFactory::getApplication();
