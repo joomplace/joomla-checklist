@@ -241,9 +241,14 @@ $tag = str_replace("-", "_", $tag);
 </script>
 <?php endif;?>
 
+<?php
+$checklistUserName = JFactory::getUser($this->checklist->user_id)->name;
+$checklistUserName = !empty($checklistUserName) ? ' (' . $checklistUserName . ')' : '';
+?>
+
 <div id="checklist">
 	<header itemscope="" itemtype="http://schema.org/WebApplication">
-		<h1 itemprop="name"><?php echo $this->checklist->title?>&nbsp;(<?php echo $user->name; ?>)</h1>
+        <h1 itemprop="name"><?php echo $this->checklist->title . $checklistUserName; ?></h1>
 	</header>
 	<div class="progress-container">
 	    <progressbar class="checklist-progress">
