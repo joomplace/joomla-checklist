@@ -25,36 +25,32 @@ class ChecklistHelper
 
         	$user = JFactory::getUser();
 			$db = JFactory::getDBO();
+            $query = $db->getQuery(true);
 
-			//Permissions
-			$db->setQuery("SELECT `id` FROM `#__usergroups` WHERE `title` LIKE '%Administrator%'");
-			$adminId = $db->loadResult();
+            $groups = $user->getAuthorisedViewLevels();
+            $checkGroups = array();
+            $allowGroups = array();
 
-			$db->setQuery("SELECT `id` FROM `#__usergroups` WHERE `title` LIKE '%Super%'");
-			$superId = $db->loadResult();
+            foreach ($groups as $group){
+                if(!in_array($group, $checkGroups)){
+                    $checkGroups[] = $group;
 
-			$adminArray = array ($adminId, $superId);
-					
-			$groups = array();
-			foreach ($user->groups as $groupId) {
+                    $query->clear();
+                    $query->select($db->qn('rules'))
+                        ->from($db->qn('#__viewlevels'))
+                        ->where($db->qn('id') .'='. $db->q($group));
+                    $db->setQuery($query);
+                    $rules = $db->loadResult();
 
-				if(!$groupId){
-					//Nothing to do
-				} else {
-					$groups[] = $groupId;
+                    if(!empty($rules)){
+                        $rules = json_decode($rules);
+                        $allowGroups = array_merge($allowGroups, $rules);
+                    }
+                }
+            }
 
-					if(in_array($groupId, $adminArray)){
-						$db->setQuery("SELECT `id` FROM `#__usergroups` WHERE `id` <> '".$groupId."'");
-						$allId = $db->loadColumn();
+            $allowGroups = array_values(array_unique($allowGroups));
 
-						$groups = array_merge($groups, $allId);
-					}
-
-					$groups[] = '-'.$user->id;
-				}
-			}
-
-			return $groups;
+            return $allowGroups;
         }
-		
 }
