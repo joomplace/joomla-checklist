@@ -56,7 +56,7 @@ if($this->config->rating_option){
 <?php }?>
 
 <?php if(count($this->checklists)):?>
-	
+  <form name="adminForm" id="adminForm" action="<?php echo JRoute::_('index.php?option=com_checklist&view=tag'.$itemid);?>" method="post">
 	<ul class="media-list">
 	<li class="media">
 		<a class="pull-left" href="javascript:void(0);">
@@ -138,5 +138,5 @@ if($this->config->rating_option){
 	<div class="checklist-pagination">
 		<?php echo $this->pagination->getListFooter(); ?>
 	</div>
-	</form>
+  </form>
 <?php endif;?>

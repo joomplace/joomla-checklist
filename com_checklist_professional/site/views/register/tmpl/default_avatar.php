@@ -12,6 +12,9 @@ JHtml::_('bootstrap.tooltip');
 $document = JFactory::getDocument();
 $document->addStyleSheet(JURI::root()."components/com_checklist/assets/css/bootstrap.min.css");
 
+$Itemid = JFactory::getApplication()->input->getInt('Itemid', 0);
+$Itemid = $Itemid ? '&Itemid='.$Itemid : '';
+
 if($this->avatar_field != ''){
 	if(file_exists(JPATH_SITE.'/images/checklist/avatar/'.$this->userid.'/thm_'.$this->avatar_field)){
 		$avatar_path = JURI::root().'images/checklist/avatar/'.$this->userid.'/thm_'.$this->avatar_field;
@@ -53,7 +56,8 @@ $document->addStyleDeclaration($css);
 <div class="alert alert-success" id="alert-success"></div>
 <div class="alert alert-danger" id="alert-danger"></div>
 
-<form class="form-horizontal" action="<?php echo JURI::root();?>index.php?option=com_checklist" role="form" method="post" enctype="multipart/form-data" target="" name="profileForm">
+<form class="form-horizontal" action="<?php echo JRoute::_('index.php?option=com_checklist'.$Itemid);?>" role="form"
+      method="post" enctype="multipart/form-data" target="" name="profileForm">
 
 <div class="checklist-user-avatar">
 	<h2 class="chk-header-form"><?php echo JText::_('COM_CHECKLIST_USER_AVATAR')?></h2>

@@ -11,8 +11,10 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 
 JHtml::_('behavior.modal');
 JHtml::_('behavior.calendar');
-
 JHtml::_('bootstrap.tooltip');
+
+$Itemid = JFactory::getApplication()->input->getInt('Itemid', 0);
+$Itemid = $Itemid ? '&Itemid='.$Itemid : '';
 
 $user = JFactory::getUser();
 $document = JFactory::getDocument();
@@ -26,7 +28,8 @@ $document->addStyleDeclaration("
 
 ?>
 
-<form id="searchForm" name="searchForm" class="form-horizontal" role="form" method="post" action="<?php echo JURI::root();?>index.php?option=com_checklist&view=frontend">
+<form id="searchForm" name="searchForm" class="form-horizontal" role="form" method="post"
+    action="<?php echo JRoute::_('index.php?option=com_checklist&view=frontend'.$Itemid);?>">
 <div class="checklist-search-form">
 	<div class="col-sm-10">
 		<input type="text" placeholder="<?php echo JText::_('COM_CHECKLIST_SEARCH_PLACEHOLDER')?>" id="title-search" name="title_search"/>
@@ -97,7 +100,8 @@ $document->addStyleDeclaration("
 </table>
 <div style="clear:both"><br/></div>
 </form>
-<form id="adminForm" name="adminForm" class="form-horizontal" role="form" method="post" action="/<?php echo JURI::root(true);?>index.php?option=com_checklist&view=frontend">
+<form id="adminForm" name="adminForm" class="form-horizontal" role="form" method="post"
+      action="<?php echo JRoute::_('index.php?option=com_checklist&view=frontend'.$Itemid);?>">
 <?php if(count($this->available_checklists)):?>
 	
 	<?php if($this->available_checklists[0]->lists['liststyle'] == 'list'){?>
@@ -117,12 +121,10 @@ $document->addStyleDeclaration("
 			  <div>
 			  	  <div style="float:left;">
 			  	  	<?php if(count($this->tags_data[$checklist->id])){
-						
-						$Itemid = JFactory::getApplication()->input->get('Itemid');
 						$tags_arr = array();
 						foreach($this->tags_data[$checklist->id] as $tags){
 							foreach ($tags as $tag) {
-								$tags_arr[] = '<a href="'.JRoute::_('index.php?option=com_checklist&view=tag&id='.$tag['id'].'&Itemid='.$Itemid).'">'.$tag['name'].'</a>';
+								$tags_arr[] = '<a href="'.JRoute::_('index.php?option=com_checklist&view=tag&id='.$tag['id'].$Itemid).'">'.$tag['name'].'</a>';
 							}
 							
 						}
@@ -210,12 +212,10 @@ $document->addStyleDeclaration("
 
 					    		<div class="checklist-info">
 							  	  	<?php if(count($this->tags_data[$checklists[$j]->id])){
-										
-										$Itemid = JFactory::getApplication()->input->get('Itemid');
 										$tags_arr = array();
 										foreach($this->tags_data[$checklists[$j]->id] as $tags){
 											foreach ($tags as $tag) {
-												$tags_arr[] = '<a href="'.JRoute::_('index.php?option=com_checklist&view=tag&id='.$tag['id'].'&Itemid='.$Itemid).'">'.$tag['name'].'</a>';
+												$tags_arr[] = '<a href="'.JRoute::_('index.php?option=com_checklist&view=tag&id='.$tag['id'].$Itemid).'">'.$tag['name'].'</a>';
 											}
 											
 										}
