@@ -102,7 +102,7 @@ $itemid = $itemid ? '&Itemid='.$itemid : '';
 	  </li>
 	<?php } ?>
 </ul>
-<form class="form-horizontal" role="form" method="post" action="<?php echo JRoute::_('index.php?option=com_checklist&view=users'.$itemid);?>">
+<form id="adminForm" name="adminForm" class="form-horizontal" role="form" method="post" action="<?php echo JRoute::_('index.php?option=com_checklist&view=users'.$itemid);?>">
 	<div class="checklist-pagination">
 		<?php echo $this->pagination->getListFooter(); ?>
 	</div>
