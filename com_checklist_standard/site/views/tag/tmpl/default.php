@@ -35,7 +35,9 @@ $document->addStyleDeclaration("
 ?>
 
 <?php if(count($this->checklists)):?>
-  <form name="adminForm" id="adminForm" action="<?php echo JRoute::_('index.php?option=com_checklist&view=tag'.$itemid);?>" method="post">
+  <form name="adminForm" id="adminForm"
+        action="<?php echo /*JRoute::_('index.php?option=com_checklist&view=tag'.$itemid);*/ htmlspecialchars(JUri::getInstance()->toString());?>"
+        method="post">
 	<ul class="media-list">
 	<li class="media">
 		<a class="pull-left" href="javascript:void(0);">

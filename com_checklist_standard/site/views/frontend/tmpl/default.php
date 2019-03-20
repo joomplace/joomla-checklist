@@ -29,7 +29,7 @@ $document->addStyleDeclaration("
 ?>
 
 <form id="searchForm" name="searchForm" class="form-horizontal" role="form" method="post"
-    action="<?php echo JRoute::_('index.php?option=com_checklist&view=frontend'.$Itemid);?>">
+    action="<?php echo /*JRoute::_('index.php?option=com_checklist&view=frontend'.$Itemid);*/ htmlspecialchars(JUri::getInstance()->toString());?>">
 <div class="checklist-search-form">
 	<div class="col-sm-10">
 		<input type="text" placeholder="<?php echo JText::_('COM_CHECKLIST_SEARCH_PLACEHOLDER')?>" id="title-search" name="title_search"/>
@@ -100,7 +100,7 @@ $document->addStyleDeclaration("
 <div style="clear:both"><br/></div>
 </form>
 <form id="adminForm" name="adminForm" class="form-horizontal" role="form" method="post"
-      action="<?php echo JRoute::_('index.php?option=com_checklist&view=frontend'.$Itemid);?>">
+      action="<?php echo /*JRoute::_('index.php?option=com_checklist&view=frontend'.$Itemid);*/ htmlspecialchars(JUri::getInstance()->toString());?>">
 <?php if(count($this->available_checklists)):?>
 	
 	<?php if($this->available_checklists[0]->lists['liststyle'] == 'list'){?>
