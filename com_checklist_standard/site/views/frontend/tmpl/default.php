@@ -79,17 +79,16 @@ $document->addStyleDeclaration("
     	<tr>
         	<td valign="center" align="left">
                 <?php if(isset($this->available_checklists[0]->lists)): ?>
-	            <a href="<?php echo JURI::root();?>index.php?option=com_checklist&view=frontend&liststyle=grid">
-	                <?php echo $this->available_checklists[0]->lists['grid_img']; ?>
-	            </a>
-	            <a href="<?php echo JURI::root();?>index.php?option=com_checklist&view=frontend&liststyle=list">
-	                <?php echo $this->available_checklists[0]->lists['list_img']; ?>
-	            </a>
-
-	            &nbsp;&nbsp;&nbsp;<?php echo JText::_('COM_CHECKLIST_SORT_BY');?>&nbsp;
-	            <?php echo $this->available_checklists[0]->lists['sort_by']; ?>
-				&nbsp;
-				<?php echo $this->available_checklists[0]->lists['order_dir'];?>
+	                <a href="<?php echo JRoute::_('index.php?option=com_checklist&view=frontend&liststyle=grid'.$Itemid);?>">
+	                    <?php echo $this->available_checklists[0]->lists['grid_img']; ?>
+	                </a>
+                    <a href="<?php echo JRoute::_('index.php?option=com_checklist&view=frontend&liststyle=list'.$Itemid);?>">
+	                    <?php echo $this->available_checklists[0]->lists['list_img']; ?>
+	                </a>
+                    &nbsp;&nbsp;&nbsp;<?php echo JText::_('COM_CHECKLIST_SORT_BY');?>&nbsp;
+	                <?php echo $this->available_checklists[0]->lists['sort_by']; ?>
+                    &nbsp;
+				    <?php echo $this->available_checklists[0]->lists['order_dir'];?>
                 <?php endif; ?>
 	        </td>
 	    </tr>
