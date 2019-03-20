@@ -72,24 +72,29 @@ class com_checklistInstallerScript
 
     public function preflight($type, $parent)
     {
-        $xml = JFactory::getXML(JPATH_ROOT . DIRECTORY_SEPARATOR . 'administrator' . DIRECTORY_SEPARATOR . 'components' .
-            DIRECTORY_SEPARATOR . 'com_checklist' . DIRECTORY_SEPARATOR . 'checklist.xml');
-        $checklist_old_version = (string)$xml->version;
+        jimport('joomla.filesystem.file');
 
-        if (version_compare('1.1.2', $checklist_old_version) > 0)
+        $checklist_old_xml = JPATH_ROOT . DIRECTORY_SEPARATOR . 'administrator' . DIRECTORY_SEPARATOR . 'components' .
+            DIRECTORY_SEPARATOR . 'com_checklist' . DIRECTORY_SEPARATOR . 'checklist.xml';
+
+        if (JFile::exists($checklist_old_xml))
         {
-            $db = JFactory::getDbo();
-            $query = $db->getQuery(true);
-            $fields = array(
-                $db->qn('list_access') . '=' . $db->q(1),
-                $db->qn('comment_access') . '=' . $db->q(1)
-            );
-            $conditions = array();
-            $query->update($db->qn('#__checklist_lists'))
-                ->set($fields)
-                ->where($conditions);
-            $db->setQuery($query)
-                ->execute();
+            $xml = JFactory::getXML($checklist_old_xml);
+            $checklist_old_version = (string)$xml->version;
+            if (version_compare('1.1.2', $checklist_old_version) > 0) {
+                $db = JFactory::getDbo();
+                $query = $db->getQuery(true);
+                $fields = array(
+                    $db->qn('list_access') . '=' . $db->q(1),
+                    $db->qn('comment_access') . '=' . $db->q(1)
+                );
+                $conditions = array();
+                $query->update($db->qn('#__checklist_lists'))
+                    ->set($fields)
+                    ->where($conditions);
+                $db->setQuery($query)
+                    ->execute();
+            }
         }
     }
 
