@@ -44,7 +44,7 @@ if($this->user->avatar_field != ''){
 <link rel="stylesheet" type="text/css" href="<?php echo JURI::root()?>components/com_checklist/assets/css/profile.css">
 <div class="chk-profile-form">
 	<h2 class="chk-header-form"><?php echo JText::_('COM_CHECKLIST_EDIT_PROFILE');?></h2>
-	<form class="form-horizontal" action="<?php echo JURI::root();?>index.php?option=com_checklist<?php echo $this->itemid;?>" role="form" method="post" enctype="multipart/form-data" target="" name="profileForm" id="profileForm">
+	<form class="form-horizontal" action="<?php echo JRoute::_('index.php?option=com_checklist'.$this->itemid);?>" role="form" method="post" enctype="multipart/form-data" target="" name="profileForm" id="profileForm">
 	  <div class="form-group">
 	    <label for="uname" class="col-sm-2 control-label"><?php echo JText::_('COM_CHECKLIST_USER_NAME_PROFILE');?></label>
 	    <div class="col-sm-10">

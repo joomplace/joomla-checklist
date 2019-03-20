@@ -12,9 +12,9 @@ JHtml::_('bootstrap.tooltip');
 $user = JFactory::getUser();
 $document = JFactory::getDocument();
 $document->addStyleSheet(JURI::root()."components/com_checklist/assets/css/bootstrap.min.css");
-$itemid = JFactory::getApplication()->input->get('Itemid', 0);
-$itemid = ($itemid) ? '&Itemid='.$itemid : '';
 
+$itemid = JFactory::getApplication()->input->getInt('Itemid', 0);
+$itemid = $itemid ? '&Itemid='.$itemid : '';
 ?>
 <!-- Add fancyBox -->
 <link rel="stylesheet" href="<?php echo JURI::root();?>components/com_checklist/assets/fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
