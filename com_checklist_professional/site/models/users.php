@@ -18,6 +18,20 @@ class ChecklistModelUsers extends JModelList
 		parent::__construct($config);
 	}
 	
+    protected function populateState($ordering = null, $direction = null)
+    {
+        $app = JFactory::getApplication();
+
+        $limit = $app->input->get('limit', $app->get('list_limit', 0), 'uint');
+        $limitstart = $app->input->getInt('limitstart', 0);
+
+        $limitstart = ($limit != 0) ? (floor($limitstart / $limit) * $limit) : 0;
+
+        $this->setState('user.limit', $limit);
+        $this->setState('user.start', $limitstart);
+    }
+
+
 	public function getTotal()
 	{
 		if (empty($this->_total))
@@ -32,7 +46,7 @@ class ChecklistModelUsers extends JModelList
 
 		if (empty($this->_pagination))
 		{
-			$this->_pagination = new JPagination($this->getTotal(), $this->getState('filter.limitstart'), $this->getState('filter.limit'));
+            $this->_pagination = new JPagination($this->getTotal(), $this->getState('user.start'), $this->getState('user.limit'));
 		}
 
 		return $this->_pagination;
@@ -68,12 +82,8 @@ class ChecklistModelUsers extends JModelList
 
 	public function getUsers($isTotal = 0)
 	{
-		$app = JFactory::getApplication();
-		$limit = $app->getUserStateFromRequest('users.filter.limit', 'limit', 5);
-		$this->setState('filter.limit', $limit);
-
-		$limitstart = $app->getUserStateFromRequest('users.filter.limitstart', 'limitstart', 0);
-		$this->setState('filter.limitstart', $limitstart);
+        $limit = $this->getState('user.limit');
+        $limitstart = $this->getState('user.start');
 
 		$db = JFactory::getDBO();
 		
