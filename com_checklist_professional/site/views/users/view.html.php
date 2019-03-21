@@ -12,16 +12,16 @@ jimport('joomla.application.component.view');
 
 class ChecklistViewUsers extends JViewLegacy
 {
+    protected $state;
 	protected $pagination;
-	
+	protected $users;
+	protected $lists;
+
 	function display($tpl = null) 
 	{
-        $user = JFactory::getUser();
-		$app = JFactory::getApplication();
-		
+        $this->state = $this->get('State');
 		$this->pagination = $this->get('Pagination');
-		$this->users = $this->get('Users');	
-		
+		$this->users = $this->get('Users');
 		$this->lists = $this->get('Lists');
 
 		parent::display($tpl);
