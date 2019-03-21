@@ -87,17 +87,12 @@ class ChecklistModelUsers extends JModelList
 
 		$db = JFactory::getDBO();
 		
-		if($limit){
-			$limit_string = (!$isTotal) ? " LIMIT {$limitstart}, {$limit}" : "";
-		} elseif(!$limit) {
-			$limit_string = "";
-		}
+        $limit_string = (!$isTotal && $limit != 0) ? " LIMIT {$limitstart}, {$limit}" : "";
 
 		$db->setQuery("SELECT `u`.*, `chk_u`.* FROM `#__users` AS `u` LEFT JOIN `#__checklist_users` AS `chk_u` ON `chk_u`.`user_id` = `u`.`id`".$limit_string);
 		$users = $db->loadObjectList();
 
 		return $users;
-
 	}
 
 }
