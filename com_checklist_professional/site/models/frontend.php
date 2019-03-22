@@ -18,6 +18,19 @@ class ChecklistModelFrontend extends JModelList
         parent::__construct($config);
     }
 
+    protected function populateState($ordering = null, $direction = null)
+    {
+        $app = JFactory::getApplication();
+
+        $limit = $app->input->get('limit', $app->get('list_limit', 0), 'uint');
+        $limitstart = $app->input->getInt('limitstart', 0);
+
+        $limitstart = ($limit != 0) ? (floor($limitstart / $limit) * $limit) : 0;
+
+        $this->setState('list.limit', $limit);
+        $this->setState('list.start', $limitstart);
+    }
+
     public function getTotal()
     {
         if (empty($this->_total)) {
@@ -29,30 +42,23 @@ class ChecklistModelFrontend extends JModelList
 
     public function getPagination()
     {
-
         if (empty($this->_pagination)) {
-            $this->_pagination = new JPagination($this->getTotal(), $this->getState('filter.limitstart'), $this->getState('filter.limit'));
+            $this->_pagination = new JPagination($this->getTotal(), $this->getState('list.start'), $this->getState('list.limit'));
         }
-
         return $this->_pagination;
     }
 
     public function getChecklists($isTotal = 0)
     {
-
         require_once(JPATH_SITE . '/administrator/components/com_checklist/models/configuration.php');
         $configurationModel = JModelLegacy::getInstance('Configuration', 'ChecklistModel');
         $this->config = $configurationModel->GetConfig();
 
-        $user = JFactory::getUser();
+        $app = JFactory::getApplication();
         $db = JFactory::getDBO();
 
-        $app = JFactory::getApplication();
-        $limit = $app->getUserStateFromRequest('frontend.filter.limit', 'limit', 5);
-        $this->setState('filter.limit', $limit);
-
-        $limitstart = $app->getUserStateFromRequest('frontend.filter.limitstart', 'limitstart', 0);
-        $this->setState('filter.limitstart', $limitstart);
+        $limit = $this->getState('list.limit');
+        $limitstart = $this->getState('list.start');
 
         $title_search = $app->getUserStateFromRequest('frontend.filter.title_search', 'title_search');
         $this->setState('filter.title_search', $title_search);
@@ -107,7 +113,7 @@ class ChecklistModelFrontend extends JModelList
         }
 
         if ($limit) {
-            $limit_string = (!$isTotal) ? " LIMIT {$limitstart}, {$limit}" : "";
+            $limit_string = (!$isTotal && $limit != 0) ? " LIMIT {$limitstart}, {$limit}" : "";
         } elseif (!$limit) {
             $limit_string = "";
         }
@@ -206,8 +212,6 @@ class ChecklistModelFrontend extends JModelList
     public function getRatings($available_checklists)
     {
         $db = JFactory::getDBO();
-        $user = JFactory::getUser();
-
         if (count($available_checklists)) {
             foreach ($available_checklists as &$checklist) {
                 $db->setQuery("SELECT AVG(`rate`) FROM `#__checklist_rating` WHERE `checklist_id` = '" . $checklist->id . "'");
@@ -220,13 +224,9 @@ class ChecklistModelFrontend extends JModelList
 
     public function getUser($uid)
     {
-
-        $app = JFactory::getApplication();
         $db = JFactory::getDBO();
-
         $db->setQuery("SELECT u.`id` as `user_id`, u.`name`, chk_u.* FROM `#__checklist_users` AS `chk_u` LEFT JOIN `#__users` AS u ON u.`id` = chk_u.`user_id` WHERE u.`id` = '" . $uid . "'");
         $data = $db->loadObject();
-
         return $data;
     }
 
@@ -234,10 +234,8 @@ class ChecklistModelFrontend extends JModelList
     {
         $db = JFactory::getDBO();
         $tags_array = array();
-
         $db->setQuery("SELECT t.`name`, t.`id` FROM `#__checklist_tags` as t LEFT JOIN `#__checklist_list_tags` as l ON l.`tag_id` = t.`id` WHERE l.`checklist_id` = '" . $checklist_id . "'");
         $tags_array[$checklist_id] = $db->loadAssocList();
-
         return $tags_array;
     }
 
@@ -253,7 +251,6 @@ class ChecklistModelFrontend extends JModelList
         if ($user->id == $userid) {
             $db->setQuery("SELECT COUNT(`id`) FROM `#__checklist_lists` WHERE `id` = '" . $checklist_id . "' AND `user_id` = '" . $user->id . "' AND `default` = '1'");
             $my = $db->loadResult();
-
             if ($my) {
                 return 0;
             }
@@ -264,7 +261,6 @@ class ChecklistModelFrontend extends JModelList
 
     public function getClone()
     {
-
         $db = JFactory::getDBO();
         $user = JFactory::getUser();
 
@@ -290,7 +286,6 @@ class ChecklistModelFrontend extends JModelList
             } else {
                 $db->setQuery("SELECT `title` FROM `#__checklist_lists` WHERE `id` = '" . $checklist_id . "'");
                 $title = $db->loadResult();
-
                 $alias = str_replace(" ", "-", strtolower($title)) . "-" . $checklist_id;
             }
 
@@ -337,7 +332,6 @@ class ChecklistModelFrontend extends JModelList
             $db->setQuery("INSERT INTO `#__checklist_items` (`id`, `checklist_id`, `group_id`, `task`, `tips`, `optional`, `ordering`) VALUES " . implode(',', $values));
             $db->query();
         }
-
 
         //Clone tags
         $db->setQuery("SELECT * FROM `#__checklist_list_tags` WHERE `checklist_id` = '" . $id . "'");

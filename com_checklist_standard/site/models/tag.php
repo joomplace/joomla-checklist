@@ -17,7 +17,20 @@ class ChecklistModelTag extends JModelList
 	{
 		parent::__construct($config);
 	}
-	
+
+    protected function populateState($ordering = null, $direction = null)
+    {
+        $app = JFactory::getApplication();
+
+        $limit = $app->input->get('limit', $app->get('list_limit', 0), 'uint');
+        $limitstart = $app->input->getInt('limitstart', 0);
+
+        $limitstart = ($limit != 0) ? (floor($limitstart / $limit) * $limit) : 0;
+
+        $this->setState('list.limit', $limit);
+        $this->setState('list.start', $limitstart);
+    }
+
 	public function getTotal()
 	{
 		if (empty($this->_total))
@@ -32,7 +45,7 @@ class ChecklistModelTag extends JModelList
 
 		if (empty($this->_pagination))
 		{
-			$this->_pagination = new JPagination($this->getTotal(), $this->getState('filter.limitstart'), $this->getState('filter.limit'));
+            $this->_pagination = new JPagination($this->getTotal(), $this->getState('list.start'), $this->getState('list.limit'));
 		}
 
 		return $this->_pagination;
@@ -55,20 +68,16 @@ class ChecklistModelTag extends JModelList
 			$tag_id = $params->get('tag_id', 0);
 		}
 
-		$limit = $app->getUserStateFromRequest('tag.filter.limit', 'limit', 5);
-		$this->setState('filter.limit', $limit);
-
-		$limitstart = $app->getUserStateFromRequest('tag.filter.limitstart', 'limitstart', 0);
-		$this->setState('filter.limitstart', $limitstart);
+        $limit = $this->getState('list.limit');
+        $limitstart = $this->getState('list.start');
 		
 		$checklists = array();
 		
 		if($limit){
-			$limit_string = (!$isTotal) ? " LIMIT {$limitstart}, {$limit}" : "";
+            $limit_string = (!$isTotal && $limit != 0) ? " LIMIT {$limitstart}, {$limit}" : "";
 		} elseif(!$limit) {
 			$limit_string = "";
 		}
-		
 
 		$now = time();
 		$groups = ChecklistHelper::getAllowGroups();
@@ -88,7 +97,7 @@ class ChecklistModelTag extends JModelList
 	{
 		$app = JFactory::getApplication();
 		$db = JFactory::getDBO();
-		$tag_id = $app->input->get('id');
+		$tag_id = $app->input->getInt('id', 0);
 
 		$db->setQuery("SELECT `name` FROM `#__checklist_tags` WHERE `id` = '".$tag_id."'");
 		$tag_name = $db->loadResult();
@@ -116,5 +125,4 @@ class ChecklistModelTag extends JModelList
 
 		return 1;
 	}
-
 }
