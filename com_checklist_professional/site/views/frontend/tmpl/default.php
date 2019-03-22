@@ -116,6 +116,7 @@ if($this->config->rating_option){
 	</tbody>
 </table>
 <div style="clear:both"><br/></div>
+    <input type="hidden" name="filter_order_Dir" value="<?php echo $this->available_checklists[0]->lists['filter_order_Dir'];?>" />
 </form>
 <form id="adminForm" name="adminForm" class="form-horizontal" role="form" method="post"
       action="<?php echo /*JRoute::_('index.php?option=com_checklist&view=frontend'.$Itemid);*/ htmlspecialchars(JUri::getInstance()->toString());?>">
