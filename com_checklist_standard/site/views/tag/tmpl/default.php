@@ -8,6 +8,7 @@
 */
 defined('_JEXEC') or die('Restricted Access');
 JHtml::_('bootstrap.tooltip');
+JHtml::_('script', 'system/core.js', false, true);
 
 $itemid = ($this->itemid) ? "&Itemid=".$this->itemid : "";
 

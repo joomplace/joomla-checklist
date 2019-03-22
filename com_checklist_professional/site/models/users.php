@@ -27,8 +27,8 @@ class ChecklistModelUsers extends JModelList
 
         $limitstart = ($limit != 0) ? (floor($limitstart / $limit) * $limit) : 0;
 
-        $this->setState('user.limit', $limit);
-        $this->setState('user.start', $limitstart);
+        $this->setState('list.limit', $limit);
+        $this->setState('list.start', $limitstart);
     }
 
 
@@ -46,7 +46,7 @@ class ChecklistModelUsers extends JModelList
 
 		if (empty($this->_pagination))
 		{
-            $this->_pagination = new JPagination($this->getTotal(), $this->getState('user.start'), $this->getState('user.limit'));
+            $this->_pagination = new JPagination($this->getTotal(), $this->getState('list.start'), $this->getState('list.limit'));
 		}
 
 		return $this->_pagination;
@@ -82,8 +82,8 @@ class ChecklistModelUsers extends JModelList
 
 	public function getUsers($isTotal = 0)
 	{
-        $limit = $this->getState('user.limit');
-        $limitstart = $this->getState('user.start');
+        $limit = $this->getState('list.limit');
+        $limitstart = $this->getState('list.start');
 
 		$db = JFactory::getDBO();
 		
