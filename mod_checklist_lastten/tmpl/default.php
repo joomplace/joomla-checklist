@@ -17,6 +17,10 @@ $sec_tbl = 1;
 $document = JFactory::getDocument();
 $document->addStyleSheet(JURI::root()."modules/mod_checklist_lastten/tmpl/style.css");
 
+$itemid = JFactory::getApplication()->input->getInt('Itemid', 0);
+$itemid = $itemid ? '&Itemid='.$itemid : '';
+
+
 ?>
 <div class="moduletable checklist_container cmodule">
 <?php
@@ -34,7 +38,7 @@ if(count($checklists)){
 			$usr_d = JText::_('MOD_CHECKLIST_MOD_NO_AUTHOR');
 		}
 		
-		echo "<div class='checklist-row row".$sec_tbl."'><div class='checklist-title'><a href='".JRoute::_('index.php?option=com_checklist&view=checklist&id='.$one_checklist->checklist_id)."'>".$one_checklist->title."</a></div><div class='checklist-author'><span>".JText::_('MOD_CHECKLIST_CHECKLIST_AUTHOR')."</span>".$usr_d."</div></div><div style='clear:both;'></div>";
+		echo "<div class='checklist-row row".$sec_tbl."'><div class='checklist-title'><a href='".JRoute::_('index.php?option=com_checklist&view=checklist&id='.$one_checklist->checklist_id.$itemid)."'>".$one_checklist->title."</a></div><div class='checklist-author'><span>".JText::_('MOD_CHECKLIST_CHECKLIST_AUTHOR')."</span>".$usr_d."</div></div><div style='clear:both;'></div>";
 		if ($sec_tbl == 1) $sec_tbl = 0;
 		else $sec_tbl = 1;
 	}
