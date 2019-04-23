@@ -11,7 +11,7 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 
 JHtml::_('behavior.modal');
 JHtml::_('behavior.calendar');
-JHtml::_('bootstrap.tooltip');
+JHtml::_('bootstrap.tooltip', '.hasTooltip', array('viewport'=>'body'));
 
 $Itemid = JFactory::getApplication()->input->getInt('Itemid', 0);
 $Itemid = $Itemid ? '&Itemid='.$Itemid : '';

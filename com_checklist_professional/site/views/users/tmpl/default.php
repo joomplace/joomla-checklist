@@ -7,7 +7,7 @@
 * @license GNU/GPL http://www.gnu.org/copyleft/gpl.html
 */
 defined('_JEXEC') or die('Restricted Access');
-JHtml::_('bootstrap.tooltip');
+JHtml::_('bootstrap.tooltip', '.hasTooltip', array('viewport'=>'body'));
 JHtml::_('script', 'system/core.js', false, true);
 
 $user = JFactory::getUser();

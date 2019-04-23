@@ -8,7 +8,7 @@
 */
 
 defined( '_JEXEC' ) or die( 'Restricted access' );
-JHtml::_('bootstrap.tooltip');
+JHtml::_('bootstrap.tooltip', '.hasTooltip', array('viewport'=>'body'));
 
 $user = JFactory::getUser();
 

@@ -9,7 +9,7 @@
 defined('_JEXEC') or die('Restricted Access');
 
 JHTML::_('behavior.calendar');
-JHtml::_('bootstrap.tooltip');
+JHtml::_('bootstrap.tooltip', '.hasTooltip', array('viewport'=>'body'));
 
 $user = JFactory::getUser();
 $document = JFactory::getDocument();
