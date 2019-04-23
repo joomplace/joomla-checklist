@@ -8,7 +8,7 @@
 */
 
 defined( '_JEXEC' ) or die( 'Restricted access' );
-JHtml::_('bootstrap.tooltip');
+JHtml::_('bootstrap.tooltip', '.hasTooltip', array('viewport'=>'body'));
 
 $document = JFactory::getDocument();
 $document->addStyleSheet(JURI::root()."components/com_checklist/assets/css/bootstrap.min.css");
