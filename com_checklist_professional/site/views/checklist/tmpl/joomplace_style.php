@@ -248,7 +248,7 @@ $checklistUserName = !empty($checklistUserName) ? ' (' . $checklistUserName . ')
 
 <div id="checklist">
 	<header itemscope="" itemtype="http://schema.org/WebApplication">
-        <h1 itemprop="name"><?php echo $this->checklist->title . $checklistUserName; ?></h1>
+        <h1 itemprop="name"><?php echo $this->checklist->title /*. $checklistUserName*/ ; ?></h1>
 	</header>
 	<div class="progress-container">
 	    <progressbar class="checklist-progress">

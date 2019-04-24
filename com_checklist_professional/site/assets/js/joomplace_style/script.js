@@ -92,13 +92,14 @@
     function openDetailsElement(detail) {
 
         var ul = (detail.nextElementSibling || detail.nextSibling);
+
         for (var i = 0; i < details.length; i++) {
-            if (details[i] !== detail) {
+            if ((details[i] !== detail) && details[i].id && details[i].id.indexOf("details-") === 0) {
                 var d = (details[i].nextElementSibling || details[i].nextSibling);
                 d.style.maxHeight = "0";
             }
             details[i].className = '';
-        }        
+        }
 
         if (ul.style.maxHeight !== '500px') {
             ul.style.maxHeight = '500px';
