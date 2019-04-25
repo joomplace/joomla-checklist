@@ -20,8 +20,7 @@ class modChecklistLasttenHelper
 	public static function getChecklists(&$params)
 	{
 		$time = time();
-		$database = JFactory::getDBO();
-		$result = array();
+		$db = JFactory::getDBO();
 		$v_content_count 	= intval( $params->get( 'checklist_count', 10 ) );
 		$checklist_id		 	= trim( $params->get( 'checklistid' ) );
 		
@@ -37,13 +36,27 @@ class modChecklistLasttenHelper
 			}
 		}
 		$query .= "\n ORDER BY l.`id` DESC LIMIT 0,".$v_content_count;
-		$database->SetQuery($query);
-		$checklists = $database->LoadObjectList();
+		$db->SetQuery($query);
+		$checklists = $db->LoadObjectList();
 
 		if (count($checklists) == 0) {
-			$checklists = array(); 
+			return array();
 		}
-		
+
+        $Itemid = JFactory::getApplication()->input->getInt('Itemid', 0);
+        $option = JFactory::getApplication()->input->get('option', '');
+        if($option != 'com_checklist'){
+            $query = $db->getQuery(true);
+            $query->select($db->qn('id'))
+                ->from($db->qn('#__menu'))
+                ->where($db->qn('link') . ' LIKE \'index.php?option=com_checklist%\'');
+            $db->setQuery($query);
+            $Itemid = (int)$db->loadResult();
+        }
+        foreach ($checklists as $checklist){
+            $checklist->Itemid = $Itemid;
+        }
+
 		return $checklists;
 	}
 }

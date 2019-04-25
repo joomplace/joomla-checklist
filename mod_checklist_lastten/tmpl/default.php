@@ -8,24 +8,15 @@
 * @Copyright Copyright (C) JoomPlace, www.joomplace.com
 * @license GNU/GPL http://www.gnu.org/copyleft/gpl.html
 */
-
 // no direct access
-
 defined( '_JEXEC' ) or die( 'Restricted access' );
+
 $sec_tbl = 1;
-
-$document = JFactory::getDocument();
-$document->addStyleSheet(JURI::root()."modules/mod_checklist_lastten/tmpl/style.css");
-
-$itemid = JFactory::getApplication()->input->getInt('Itemid', 0);
-$itemid = $itemid ? '&Itemid='.$itemid : '';
-
-
+JFactory::getDocument()->addStyleSheet(JURI::root()."modules/mod_checklist_lastten/tmpl/style.css");
 ?>
 <div class="moduletable checklist_container cmodule">
 <?php
-
-if(count($checklists)){
+if(!empty($checklists)){
 	foreach ($checklists as $one_checklist) {
 
 		if($one_checklist->name != '' AND $one_checklist->username != ''){
@@ -37,8 +28,10 @@ if(count($checklists)){
 		} else {
 			$usr_d = JText::_('MOD_CHECKLIST_MOD_NO_AUTHOR');
 		}
-		
-		echo "<div class='checklist-row row".$sec_tbl."'><div class='checklist-title'><a href='".JRoute::_('index.php?option=com_checklist&view=checklist&id='.$one_checklist->checklist_id.$itemid)."'>".$one_checklist->title."</a></div><div class='checklist-author'><span>".JText::_('MOD_CHECKLIST_CHECKLIST_AUTHOR')."</span>".$usr_d."</div></div><div style='clear:both;'></div>";
+
+		$Itemid = !empty($one_checklist->Itemid) ? '&Itemid='.$one_checklist->Itemid : '';
+
+		echo "<div class='checklist-row row".$sec_tbl."'><div class='checklist-title'><a href='".JRoute::_('index.php?option=com_checklist&view=checklist&id='.$one_checklist->checklist_id.$Itemid)."'>".$one_checklist->title."</a></div><div class='checklist-author'><span>".JText::_('MOD_CHECKLIST_CHECKLIST_AUTHOR')."</span>".$usr_d."</div></div><div style='clear:both;'></div>";
 		if ($sec_tbl == 1) $sec_tbl = 0;
 		else $sec_tbl = 1;
 	}
@@ -47,6 +40,5 @@ if(count($checklists)){
 	}
 	
 }
-
 ?>
 </div>
