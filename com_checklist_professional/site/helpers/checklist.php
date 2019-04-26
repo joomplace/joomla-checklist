@@ -7,7 +7,9 @@
 * @license GNU/GPL http://www.gnu.org/copyleft/gpl.html
 */
 defined( '_JEXEC' ) or die( 'Restricted access' );
- 
+
+use Joomla\CMS\Access\Access;
+
 /**
  * Checklist Deluxe component helper.
  */
@@ -23,6 +25,10 @@ class ChecklistHelper
 
         public static function getAllowGroups(){
 
+            $user = JFactory::getUser();
+            return Access::getGroupsByUser($user->id);
+
+            /*
         	$user = JFactory::getUser();
 			$db = JFactory::getDBO();
             $query = $db->getQuery(true);
@@ -52,5 +58,6 @@ class ChecklistHelper
             $allowGroups = array_values(array_unique($allowGroups));
 
             return $allowGroups;
+            */
         }
 }
