@@ -8,22 +8,34 @@
 * @Copyright Copyright (C) JoomPlace, www.joomplace.com
 * @license GNU/GPL http://www.gnu.org/copyleft/gpl.html
 */
-
 defined('_JEXEC') or die('Restricted access');
 
 class modChecklistTagsHelper
 {
-	function getList(&$params)
+    public static function getList(&$params)
 	{
 	    $db = JFactory::getDBO();
-        $mainframe =& JFactory::getApplication();
-
         $db->setQuery("SELECT COUNT(lt.`checklist_id`) as list_count, t.`name`, t.`id` FROM `#__checklist_tags` as t LEFT JOIN `#__checklist_list_tags` as lt ON lt.`tag_id` = t.`id` GROUP BY lt.`tag_id`");
         $tagCloud	= $db->loadObjectList();
-    	
-        if (count($tagCloud))
-          return $tagCloud;
-    	
-    	return array();
+        if (empty($tagCloud)){
+            return array();
+        }
+
+        $jinput = JFactory::getApplication()->input;
+        $Itemid = $jinput->getInt('Itemid', 0);
+        $option = $jinput->get('option', '');
+        if($option != 'com_checklist'){
+            $query = $db->getQuery(true);
+            $query->select($db->qn('id'))
+                ->from($db->qn('#__menu'))
+                ->where($db->qn('link') . ' LIKE \'index.php?option=com_checklist%\'');
+            $db->setQuery($query);
+            $Itemid = (int)$db->loadResult();
+        }
+        foreach ($tagCloud as $tag){
+            $tag->Itemid = $Itemid;
+        }
+
+    	return $tagCloud;
     }
 }

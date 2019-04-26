@@ -8,17 +8,16 @@
 * @Copyright Copyright (C) JoomPlace, www.joomplace.com
 * @license GNU/GPL http://www.gnu.org/copyleft/gpl.html
 */
-
-defined('_JEXEC') or die('Restricted access'); 
-
+defined('_JEXEC') or die('Restricted access');
 ?>
 <div class="checklist-tagscloud<?php echo $params->get('moduleclass_sfx'); ?>">
     <div id="checklist-tags-mod">
-    <?php if(count($list)):?>
+    <?php if(!empty($list)):?>
 		<?php foreach ($list as $tag) {
 			$list_count = ($tag->list_count <= 9) ? ($tag->list_count - 1) : 9;
+            $Itemid = !empty($tag->Itemid) ? '&Itemid='.$tag->Itemid : '';
 		?>
-			<a href="<?php echo JRoute::_('index.php?option=com_checklist&view=tag&id='.$tag->id);?>" class="tag<?php echo $list_count;?>"><?php echo $tag->name;?></a>
+			<a href="<?php echo JRoute::_('index.php?option=com_checklist&view=tag&id='.$tag->id.$Itemid);?>" class="tag<?php echo $list_count;?>"><?php echo $tag->name;?></a>
 		<?php }?>
     <?php endif;?>
     </div>
