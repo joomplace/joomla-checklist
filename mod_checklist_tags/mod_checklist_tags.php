@@ -14,11 +14,10 @@ defined('_JEXEC') or die('Restricted access');
 require_once(dirname(__FILE__).'/helper.php');
 
 $mainframe = JFactory::getApplication();
-$doc =& JFactory::getDocument(); 
+$doc = JFactory::getDocument();
 	
 $file = JURI::root().'modules/mod_checklist_tags/tmpl/checklist_tags.css';
 $doc->addStyleSheet($file);
 
 $list = modChecklistTagsHelper::getList($params);
 require(JModuleHelper::getLayoutPath('mod_checklist_tags'));
-
