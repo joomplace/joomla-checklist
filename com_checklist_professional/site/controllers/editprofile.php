@@ -47,7 +47,9 @@ class ChecklistControllerEditprofile extends JControllerAdmin
 				$db->updateObject('#__checklist_users', $user_data, 'user_id');
 			}
 
-			$this->setRedirect(JURI::root().'index.php?option=com_checklist&view=users', 'Profile successfully saved');
+            $itemId = $this->input->getInt('Itemid', 0);
+            $append = $itemId ? '&Itemid=' . $itemId : '';
+			$this->setRedirect(JRoute::_(JURI::root().'index.php?option=com_checklist&view=users' . $append, false), 'Profile successfully saved');
 			return;
 		}
 
