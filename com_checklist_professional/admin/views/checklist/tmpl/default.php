@@ -682,6 +682,11 @@ $document->addScript(JURI::root()."components/com_checklist/assets/js/joomplace_
 			});
 			
 			jQuery(".markdown-editor").markdown();
+
+            setTimeout(function () {
+                jQuery('#markdown-editor0').val( jQuery(element).closest('form').find('textarea').val() );
+            }, 500);
+
 		},
 		
 		bindItemHeaderTools: function(){
