@@ -15,15 +15,23 @@ class ChecklistModelRatings extends JModelList
 {
 	public function __construct($config = array())
 	{
-		if (empty($config['filter_fields'])) { $config['filter_fields'] = array('l.title', 'u.name', 'r.rate'); }
+		if (empty($config['filter_fields'])) {
+		    $config['filter_fields'] = array(
+		        'title', 'l.title',
+                'name', 'u.name',
+                'rate', 'r.rate'
+            );
+		}
+
 		parent::__construct($config);
 	}
 	
-	protected function populateState($ordering = null, $direction = null)
+	protected function populateState($ordering = 'u.name', $direction = 'DESC')
 	{
 		$search = $this->getUserStateFromRequest('com_checklist.filter.search', 'filter_search');
 		$this->setState('filter.search', $search);
-		parent::populateState();
+
+		parent::populateState($ordering, $direction);
 	}
 
 	protected function getListQuery() 
@@ -43,9 +51,9 @@ class ChecklistModelRatings extends JModelList
 			$query->where('u.`name` LIKE '.$search.' OR l.`title` LIKE '.$search);
 		}
 
-		$orderCol	= $this->state->get('list.ordering','name');
+		$orderCol	= $this->state->get('list.ordering','u.name');
 		$orderDirn	= $this->state->get('list.direction','DESC');
-		$query->order($db->escape('`'.$orderCol.'` '.$orderDirn));
+        $query->order($db->escape($orderCol) . ' ' . $db->escape($orderDirn));
 		
 		return $query;
 	}

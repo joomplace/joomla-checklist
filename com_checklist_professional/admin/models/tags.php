@@ -15,15 +15,22 @@ class ChecklistModelTags extends JModelList
 {
 	public function __construct($config = array())
 	{
-		if (empty($config['filter_fields'])) { $config['filter_fields'] = array('id','t.name'); }
+		if (empty($config['filter_fields'])) {
+		    $config['filter_fields'] = array(
+		        'id', 't.id',
+                'name', 't.name'
+            );
+		}
+
 		parent::__construct($config);
 	}
 	
-	protected function populateState($ordering = null, $direction = null)
+	protected function populateState($ordering = 't.name', $direction = 'DESC')
 	{
 		$search = $this->getUserStateFromRequest('com_checklist.filter.search', 'filter_search');
 		$this->setState('filter.search', $search);
-		parent::populateState();
+
+		parent::populateState($ordering, $direction);
 	}
 
 	protected function getListQuery() 
@@ -40,9 +47,9 @@ class ChecklistModelTags extends JModelList
 			$query->where('t.`name` LIKE '.$search);
 		}
 
-		$orderCol	= $this->state->get('list.ordering','name');
+		$orderCol	= $this->state->get('list.ordering','t.name');
 		$orderDirn	= $this->state->get('list.direction','DESC');
-		$query->order($db->escape('`'.$orderCol.'` '.$orderDirn));
+        $query->order($db->escape($orderCol) . ' ' . $db->escape($orderDirn));
 		
 		return $query;
 	}

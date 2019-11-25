@@ -15,15 +15,25 @@ class ChecklistModelLists extends JModelList
 {
 	public function __construct($config = array())
 	{
-		if (empty($config['filter_fields'])) { $config['filter_fields'] = array('l.id','l.title','l.publish_date','l.default', 'l.user_id'); }
+		if (empty($config['filter_fields'])) {
+		    $config['filter_fields'] = array(
+		        'id', 'l.id',
+                'title', 'l.title',
+                'publish_date', 'l.publish_date',
+                'default', 'l.default',
+                'user_id', 'l.user_id'
+            );
+		}
+
 		parent::__construct($config);
 	}
 	
-	protected function populateState($ordering = null, $direction = null)
+	protected function populateState($ordering = 'l.title', $direction = 'DESC')
 	{
 		$search = $this->getUserStateFromRequest('com_checklist.filter.search', 'filter_search');
 		$this->setState('filter.search', $search);
-		parent::populateState();
+
+		parent::populateState($ordering, $direction);
 	}
 
 	public function getTagList()
@@ -83,9 +93,13 @@ class ChecklistModelLists extends JModelList
 			$query->where('l.`user_id` <> 0');
 		}
 
-		$orderCol	= $this->state->get('list.ordering','title');
+		$orderCol	= $this->state->get('list.ordering','l.title');
 		$orderDirn	= $this->state->get('list.direction','DESC');
-		$query->order($db->escape('`'.$orderCol.'` '.$orderDirn));
+
+        if($orderCol == 'default'){
+            $orderCol = '`default`';
+        }
+        $query->order($db->escape($orderCol) . ' ' . $db->escape($orderDirn));
 		
 		return $query;
 	}

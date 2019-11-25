@@ -15,15 +15,26 @@ class ChecklistModelUsers extends JModelList
 {
 	public function __construct($config = array())
 	{
-		if (empty($config['filter_fields'])) { $config['filter_fields'] = array('u.id','u.name','u.username','u.email', 'u.lastvisitDate','u.registerDate'); }
+		if (empty($config['filter_fields'])) {
+		    $config['filter_fields'] = array(
+		        'id', 'u.id',
+                'name', 'u.name',
+                'username', 'u.username',
+                'email', 'u.email',
+                'lastvisitDate', 'u.lastvisitDate',
+                'registerDate', 'u.registerDate'
+            );
+		}
+
 		parent::__construct($config);
 	}
 	
-	protected function populateState($ordering = null, $direction = null)
+	protected function populateState($ordering = 'u.name', $direction = 'DESC')
 	{
 		$search = $this->getUserStateFromRequest('com_checklist.filter.search', 'filter_search');
 		$this->setState('filter.search', $search);
-		parent::populateState();
+
+		parent::populateState($ordering, $direction);
 	}
 
 	protected function getListQuery() 
@@ -33,7 +44,6 @@ class ChecklistModelUsers extends JModelList
 
 		$query->select('u.*');
 		$query->from('#__users as u');
-
 		$query->join('LEFT', '`#__checklist_users` as cu ON cu.`user_id` = u.`id`');
 
 		$search = $this->getState('filter.search');
@@ -42,15 +52,15 @@ class ChecklistModelUsers extends JModelList
 			$query->where('u.`name` LIKE '.$search);
 		}
 
-		$orderCol	= $this->state->get('list.ordering','name');
+		$orderCol	= $this->state->get('list.ordering','u.name');
 		$orderDirn	= $this->state->get('list.direction','DESC');
-		$query->order($db->escape('`'.$orderCol.'` '.$orderDirn));
+        $query->order($db->escape($orderCol) . ' ' . $db->escape($orderDirn));
 		
 		return $query;
 	}
 
-	static public function delete($cid){
-
+	static public function delete($cid)
+    {
 		$db = JFactory::getDBO();
 		$option = "com_checklist";
 		if (count( $cid )) {

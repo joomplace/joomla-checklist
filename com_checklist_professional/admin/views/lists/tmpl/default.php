@@ -27,6 +27,8 @@ $extension = 'com_checklist';
 $sortFields = $this->getSortFields();
 $today = time();
 
+$defaultlist = JFactory::getApplication()->input->getInt('defaultlist', 0);
+$defaultlist_url = $defaultlist ? '&defaultlist='.$defaultlist : '';
 ?>
 <script type="text/javascript">
 	Joomla.orderTable = function() {
@@ -49,7 +51,7 @@ $today = time();
 	}
 </style>
 <?php echo $this->loadTemplate('menu');?>
-<form action="<?php echo JRoute::_('index.php?option=com_checklist&view=lists'); ?>" method="post" name="adminForm" id="adminForm">
+<form action="<?php echo JRoute::_('index.php?option=com_checklist&view=lists'.$defaultlist_url); ?>" method="post" name="adminForm" id="adminForm">
     <?php if (!empty( $this->sidebar)) : ?>
 	<div id="j-sidebar-container" class="span2">
 		<?php echo $this->sidebar; ?>
