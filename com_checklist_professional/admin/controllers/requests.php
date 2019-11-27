@@ -116,11 +116,16 @@ class ChecklistControllerRequests extends JControllerAdmin
 		$mailer->setSubject($subject);
 		$mailer->setBody($body);
 
-        $send = $mailer->Send();
-		if ( $send !== true ) {
-		    echo 'Error sending email: ' . $send->__toString();
-		    die;
-		}
+        try {
+            $mailResult = $mailer->send();
+            if ($mailResult === false) {
+                echo 'Error sending email: ' . $mailer->ErrorInfo;
+                die;
+            }
+        } catch (RuntimeException $e) {
+            echo 'Error(s) sending email. Error(s): ' . $e->getMessage();
+            die;
+        }
 
 		return true;
 
