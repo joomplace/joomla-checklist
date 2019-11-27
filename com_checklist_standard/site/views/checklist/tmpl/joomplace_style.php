@@ -318,6 +318,15 @@ $checklistUserName = !empty($checklistUserName) ? ' (' . $checklistUserName . ')
 	
 	Checklist.initApplication();
 
+    jQuery(function ($) {
+        $('.chr-dialog-window').on('click', function () {   //Edit with Markdown Editor
+            var text = $(this).closest('form').find('textarea').val();
+            setTimeout(function () {
+                $('.markdown-editor').val(text);
+            }, 500);
+        });
+    });
+
 </script>
 
 <?php if ($this->config->social_google_plus_use == 1) { ?>

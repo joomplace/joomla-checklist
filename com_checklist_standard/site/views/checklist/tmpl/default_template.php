@@ -333,6 +333,14 @@ $checklistUserName = !empty($checklistUserName) ? ' (' . $checklistUserName . ')
                 });
             });
         }
+
+        $('.chr-dialog-window').on('click', function () {   //Edit with Markdown Editor
+            var text = $(this).closest('form').find('textarea').val();
+            setTimeout(function () {
+                $('.markdown-editor').val(text);
+            }, 500);
+        });
+
     });
 
 </script>
