@@ -18,9 +18,9 @@ class ChecklistControllerDashboard_items extends JControllerAdmin
 		parent::__construct($config);
 	}
 
-	public function getModel($name = 'Dashboard_items', $prefix = 'ChecklistModel')
+	public function getModel($name = 'Dashboard_items', $prefix = 'ChecklistModel', $config = array('ignore_request' => true))
 	{
-		$model = parent::getModel($name, $prefix, array('ignore_request' => true));
+		$model = parent::getModel($name, $prefix, $config);
 		return $model;
 	}
 

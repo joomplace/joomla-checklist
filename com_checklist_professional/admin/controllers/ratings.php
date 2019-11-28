@@ -19,9 +19,9 @@ class ChecklistControllerRatings extends JControllerAdmin
 		parent::__construct($config);
 	}
 	
-	public function getModel($name = 'Rating', $prefix = 'ChecklistModel') 
+	public function getModel($name = 'Rating', $prefix = 'ChecklistModel', $config = array('ignore_request' => true))
 	{
-		$model = parent::getModel($name, $prefix, array('ignore_request' => true));
+		$model = parent::getModel($name, $prefix, $config);
 		return $model;
 	}
 

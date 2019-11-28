@@ -9,9 +9,9 @@
 
 class ChecklistControllerSampledata extends JControllerAdmin
 {
-	public function getModel($name = 'Sampledata', $prefix = 'ChecklistModel', $config = array())
+	public function getModel($name = 'Sampledata', $prefix = 'ChecklistModel', $config = array('ignore_request' => true))
 	{
-		return parent::getModel($name, $prefix, array('ignore_request' => true));
+		return parent::getModel($name, $prefix, $config);
 	}
 
 	public function install()
