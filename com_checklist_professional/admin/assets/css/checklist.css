@@ -166,9 +166,7 @@ margin-left: 24px;
 
 {
 
-  float:left; 
-
-  width:720px;
+  float:left;
 
 }
 
@@ -447,4 +445,9 @@ td.checklist_control_panel_news_cell {
 }
 .checklist_control_panel_news {
   padding: 0 10px 0 0;
+}
+
+.checklist-dashboard-accordion{
+    margin-bottom: 0 !important;
+    padding: 10px 5px;
 }
