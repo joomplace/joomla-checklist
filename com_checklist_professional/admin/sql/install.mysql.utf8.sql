@@ -91,7 +91,6 @@ CREATE TABLE IF NOT EXISTS `#__checklist_users` (
   `website_field` varchar(40) NOT NULL,
   `twitter_field` varchar(100) NOT NULL,
   `facebook_field` varchar(100) NOT NULL,
-  `google_field` varchar(100) NOT NULL,
   `description_field` text NOT NULL,
   `avatar_field` varchar(150) NOT NULL
 ) DEFAULT CHARSET=utf8;

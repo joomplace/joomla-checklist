@@ -21,11 +21,6 @@
                 labelclass="control-label" required="false">
 		</field>
 
-		<field name="google_field" type="text" default="" size="30"
-				label="COM_CHECKLIST_GOOGLE_PLUS" 
-                labelclass="control-label" required="false">
-		</field>
-
 		<field name="description_field" type="textarea" class="inputbox" label="COM_CHECKLIST_DESCRIPTION_FIELD" required="false" default=""/>
 
 	</fieldset>
