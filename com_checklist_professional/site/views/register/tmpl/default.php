@@ -91,12 +91,6 @@ $document->addStyleSheet(JURI::root()."components/com_checklist/assets/css/boots
 	    </div>
 	  </div>
 	  <div class="form-group">
-	    <label for="google" class="col-sm-2 control-label"><?php echo JText::_('COM_CHECKLIST_GOOGLE_PLUS_REGISTER')?></label>
-	    <div class="col-sm-10">
-	      <input type="text" name="google_field" class="form-control" id="google" placeholder="Google Plus" value="">
-	    </div>
-	  </div>
-	  <div class="form-group">
 	  	<label for="description" class="col-sm-2 control-label"><?php echo JText::_('COM_CHECKLIST_ABOUT_REGISTER')?></label>
 	  	<div class="col-sm-10">
 			<textarea class="form-control" id="description" name="description_field" rows="3"></textarea>

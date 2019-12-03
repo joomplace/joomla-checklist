@@ -147,14 +147,6 @@ $checklistUserName = !empty($checklistUserName) ? ' (' . $checklistUserName . ')
 ?>
 	<div class="checklist-social-btn">
 
-		<?php if($this->config->social_google_plus_use):?>
-		<!-- Google plus -->
-		<div class="checklist-social-btn">
-			<div class="g-plusone" data-width="70" data-size="<?php echo $this->config->social_google_plus_size?>" data-annotation="<?php echo $this->config->social_google_plus_annotation ?>" href="<?php echo $pageLink ?>">
-			</div>
-		</div>
-		<?php endif;?>
-
 		<?php if($this->config->social_twitter_use):?>
 		<!-- Twitter -->
         <div class="checklist-social-btn">
@@ -328,19 +320,6 @@ $checklistUserName = !empty($checklistUserName) ? ' (' . $checklistUserName . ')
     });
 
 </script>
-
-<?php if ($this->config->social_google_plus_use == 1) { ?>
-	
-<script type="text/javascript">
-window.___gcfg = {lang: '<?php echo $this->config->social_google_plus_language; ?>'};
-(function() {
-	var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-	po.src = 'https://apis.google.com/js/plusone.js';
-	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-})();
-</script>
-	
-<?php } ?>
 
 <?php if ($this->config->social_twitter_use == 1) { ?>
 	

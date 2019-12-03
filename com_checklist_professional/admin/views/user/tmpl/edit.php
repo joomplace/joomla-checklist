@@ -127,14 +127,6 @@ Joomla.submitbutton = function(task)
 						<?php echo $this->form->getInput('facebook_field'); ?>
 					</div>
 		        </div>
-		        <div class="control-group">
-	                <div class="control-label">
-					    <?php echo $this->form->getLabel('google_field'); ?>
-	                </div>
-					<div class="controls">
-						<?php echo $this->form->getInput('google_field'); ?>
-					</div>
-				</div>
 				<div class="control-group">
 	                <div class="control-label">
 					    <?php echo $this->form->getLabel('description_field'); ?>

@@ -111,10 +111,6 @@ class com_checklistInstallerScript
 
         $configDefaultParams = array(
             'component_version' => $chk_this_version,
-            'social_google_plus_use' => 1,
-            'social_google_plus_size' =>'medium',
-            'social_google_plus_annotation' => 'inline',
-            'social_google_plus_language' => 'en-US',
             'social_twitter_use' => 1,
             'social_twitter_size' => 'standart',
             'social_twitter_annotation' => 'horizontal',
