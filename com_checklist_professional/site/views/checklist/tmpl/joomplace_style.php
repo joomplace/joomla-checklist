@@ -947,7 +947,18 @@ $checklistUserName = !empty($checklistUserName) ? ' (' . $checklistUserName . ')
 			Checklist.bindChecked();
 		<?php }?>
 			Checklist.bindClickToTips();
-			jQuery('.progress-container').scrollToFixed();
+
+            if(jQuery('#t3-mainnav').length
+                && jQuery('#t3-mainnav').hasClass('navbar-fixed-top')
+                    && jQuery('#t3-mainnav').css('position') == 'fixed')
+            {   //demo-site
+                //jQuery('.progress-container').scrollToFixed({
+                //    marginTop: 95
+                //});
+            } else {
+                jQuery('.progress-container').scrollToFixed();
+            }
+
 		},
 		
 		PreventDefaultAction: function(event){
