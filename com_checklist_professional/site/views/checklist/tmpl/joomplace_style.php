@@ -910,6 +910,9 @@ $checklistUserName = !empty($checklistUserName) ? ' (' . $checklistUserName . ')
 			});
 			
 			jQuery(".markdown-editor").markdown();
+
+            var text = jQuery(element).closest('form').find('textarea').val();
+            jQuery('.markdown-editor').val(text);
 		},
 		
 		bindItemHeaderTools: function(){
@@ -1039,15 +1042,6 @@ $checklistUserName = !empty($checklistUserName) ? ' (' . $checklistUserName . ')
 		}
 
 	}
-
-    jQuery(function ($) {
-        $('.chr-dialog-window').on('click', function () {   //Edit with Markdown Editor
-            var text = $(this).closest('form').find('textarea').val();
-            setTimeout(function () {
-                $('.markdown-editor').val(text);
-            }, 500);
-        });
-    });
 
 </script>
 
