@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="component" version="3.x" method="upgrade" >
 	<name>COM_CHECKLIST</name>
-	<creationDate>February 2019</creationDate>
+	<creationDate>April 2020</creationDate>
 	<author>JoomPlace Team</author>
 	<copyright>(C) JoomPlace, www.joomplace.com</copyright>
 	<license>GNU/GPL http://www.gnu.org/copyleft/gpl.html</license>
