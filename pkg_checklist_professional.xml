@@ -2,7 +2,7 @@
 <extension type="package" version="3.x" method="upgrade">
     <name>Joomla Checklist Professional Package</name>
     <author>Joomplace Team</author>
-    <creationDate>February 2019</creationDate>
+    <creationDate>April 2020</creationDate>
     <packagename>checklist_professional</packagename>
     <authorEmail>support@joomplace.com</authorEmail>
     <authorUrl>www.joomplace.com</authorUrl>
