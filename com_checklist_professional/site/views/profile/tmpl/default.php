@@ -160,9 +160,6 @@ if($this->user->avatar_field != ''){
 				<?php if($this->user->facebook_field != ''){?>
 					<span class="chk-authorfacebook"><i class="chk-icon-facebook"></i><a href="<?php echo $this->user->facebook_field;?>" target="_blank" rel="nofollow" class="chk-facebook-link">Facebook</a></span>
 				<?php } ?>
-				<?php if($this->user->google_field != ''){?>
-					<span class="chk-authorgoogleplus"><i class="chk-icon-google-plus-2"></i><a href="<?php echo $this->user->google_field;?>" target="_blank" rel="nofollow" class="chk-googleplus-link">Google+</a></span>
-				<?php } ?>
 	        </div>
 	        <div class="chk-user-description">
 	    		<?php echo $this->user->description_field ?>
