@@ -18,39 +18,29 @@ $document->addScript(JURI::root()."components/com_checklist/assets/js/modernizr-
 $document->addScript(JURI::root()."components/com_checklist/assets/js/joomplace_style/script.js");
 
 ?>
-
 <style>
-	
-	.li-handle label:hover{
+	.li-handle label:hover {
 		cursor:move;
 	}
-
-	.checklist-section-header:hover{
+	.checklist-section-header:hover {
 		cursor: move;
 	}
-
 	.chk-tools {
 		float:none;
 	}
-	
-	.form-horizontal .form-group input[type="text"]
-	{
+	.form-horizontal .form-group input[type="text"] {
 		width:90%;
 		margin:5px !important;
 	}
-
-	.form-horizontal .form-group textarea
-	{
+	.form-horizontal .form-group textarea {
 		width:90%;
 		margin:5px !important;
+        min-height: 200px;
 	}
-
-	.checklist-group-tools div
-	{
+	.checklist-group-tools div {
 		margin-top:5px;
 		margin-bottom: 5px;
 	}
-
 </style>
 <?php echo $this->loadTemplate('menu');?>
 <div id="j-sidebar-container" class="span2">
