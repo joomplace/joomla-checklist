@@ -631,6 +631,7 @@
 #checklist textarea {
     overflow: auto; /* 1 */
     vertical-align: top; /* 2 */
+	min-height: 200px !important;
 }
 
 /* ==========================================================================
