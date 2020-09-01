@@ -816,6 +816,9 @@
 {
 	width:107% !important;
 }
+.chk-edititem-form textarea.form-control {
+	min-height: 200px !important;
+}
 
 .chk-edititem-form textarea.form-control
 {

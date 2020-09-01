@@ -849,6 +849,9 @@ input.form-control{
 {
 	width:90% !important;
 }
+.chk-edititem-form textarea.form-control {
+	min-height: 200px !important;
+}
 
 .chk-arrow{
 	border-color: #EDEDED transparent transparent;
