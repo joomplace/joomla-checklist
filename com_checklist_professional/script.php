@@ -88,10 +88,10 @@ class com_checklistInstallerScript
                     $db->qn('list_access') . '=' . $db->q(1),
                     $db->qn('comment_access') . '=' . $db->q(1)
                 );
-                $conditions = array();
+                //$conditions = array();
                 $query->update($db->qn('#__checklist_lists'))
-                    ->set($fields)
-                    ->where($conditions);
+                    ->set($fields);
+                //    ->where($conditions);
                 $db->setQuery($query)
                     ->execute();
             }
