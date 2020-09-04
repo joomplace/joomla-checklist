@@ -83,10 +83,16 @@ class ChecklistViewLists extends JViewLegacy
     */
 	protected function addToolBar() 
     {
+        $canDo = JHelperContent::getActions('com_checklist', 'list');
+
         JToolBarHelper::addNew('list.add');
 		JToolBarHelper::editList('list.edit');
 		JToolBarHelper::deleteList('', 'lists.delete');
-        	
+
+        if ($canDo->get('core.create') && $canDo->get('core.edit')) {
+            JToolBarHelper::custom('lists.copy_lists', 'copy.png', 'copy_f2.png', 'COM_CHECKLIST_LISTS_COPY');
+        }
+
 		JToolBarHelper::divider();    
     }
 	

@@ -159,4 +159,23 @@ class ChecklistModelLists extends JModelList
 		
 		return true;
 	}
+
+    public function copy_lists(&$pks)
+    {
+        $pks = (array) $pks;
+
+        JLoader::register('ChecklistModelFrontend', JPATH_SITE . '/components/com_checklist/models/frontend.php');
+        $checklistModelFrontend = new ChecklistModelFrontend();
+
+        foreach ($pks as $i => $pk)
+        {
+            if (!$checklistModelFrontend->getClone($pk, true)) {
+                $this->setError($checklistModelFrontend->getError());
+                return false;
+            }
+        }
+
+        return true;
+    }
+
 }

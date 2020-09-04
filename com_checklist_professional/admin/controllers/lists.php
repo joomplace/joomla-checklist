@@ -69,4 +69,34 @@ class ChecklistControllerLists extends JControllerAdmin
 	    return true;
     }
 
+    public function copy_lists()
+    {
+        $this->checkToken();
+
+        $cid = $this->input->get('cid', array(), 'array');
+
+        if($this->input->get('option') == 'com_checklist'
+            && $this->input->get('layout') == 'edit'
+             && $this->input->getInt('id')
+        ) {
+            $cid = array( $this->input->getInt('id', 0) );
+        }
+
+        if (!is_array($cid) || count($cid) < 1) {
+            $this->setMessage(JText::_('COM_CHECKLIST_NO_ITEM_SELECTED'), 'warning');
+            $this->setRedirect(JRoute::_('index.php?option=com_checklist&view=lists&defaultlist=0'));
+        } else {
+            $model = $this->getModel();
+            $cid = ArrayHelper::toInteger($cid);
+
+            if ($model->copy_lists($cid)) {
+                $this->setMessage(JText::plural('COM_CHECKLIST_N_ITEMS_COPIED', count($cid)));
+            } else {
+                $this->setMessage($model->getError(), 'error');
+            }
+        }
+
+        $this->setRedirect('index.php?option=com_checklist&view=lists&defaultlist=0');
+    }
+
 }

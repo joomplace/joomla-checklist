@@ -208,53 +208,66 @@ class ChecklistModelFrontend extends JModelList
         return 1;
     }
 
-    public function getClone()
+    public function getClone($id=0, $copyFromAdmin=false)
     {
         $db = JFactory::getDBO();
         $user = JFactory::getUser();
-
         $app = JFactory::getApplication();
-        $id = $app->input->get('id');
 
-        $db->setQuery("SELECT * FROM `#__checklist_lists` WHERE `id` = '" . $id . "' AND `default` = '1'");
+        if(!$id){
+            $id = $app->input->getInt('id', 0);
+        }
+
+        if($copyFromAdmin) {
+            $db->setQuery("SELECT * FROM `#__checklist_lists` WHERE `id` = '" . $id . "'");
+        } else {
+            $db->setQuery("SELECT * FROM `#__checklist_lists` WHERE `id` = '" . $id . "' AND `default` = '1'");
+        }
         $checklist = $db->loadObject();
 
         $checklist->id = '';
-        $checklist->user_id = $user->id;
+        if($copyFromAdmin) {
+            $checklist->title = $checklist->title . ' (' . date("Y-m-d H:i:s") . ')';
+        }
+        if(!$copyFromAdmin || ($copyFromAdmin && !(int)$checklist->user_id)) {
+            $checklist->user_id = $user->id;
+        }
         $checklist->default = 0;
 
         $db->insertObject("#__checklist_lists", $checklist, "id");
         $checklist_id = $db->insertid();
 
-        if ($checklist_id) {
-            $db->setQuery("SELECT `alias` FROM `#__checklist_lists` WHERE `id` = '" . $checklist_id . "'");
-            $alias = $db->loadResult();
-
-            if ($alias) {
-                $alias = $alias . "-" . $checklist_id;
-            } else {
-                $db->setQuery("SELECT `title` FROM `#__checklist_lists` WHERE `id` = '" . $checklist_id . "'");
-                $title = $db->loadResult();
-                $alias = str_replace(" ", "-", strtolower($title)) . "-" . $checklist_id;
-            }
-
-            $db->setQuery("UPDATE `#__checklist_lists` SET `alias` = '" . $alias . "' WHERE `id` = '" . $checklist_id . "'");
-            $db->execute();
+        if (!$checklist_id) {
+            return false;
         }
+
+        $db->setQuery("SELECT `alias`, `title` FROM `#__checklist_lists` WHERE `id` = '" . $checklist_id . "'");
+        $newChecklist = $db->loadObject();
+        $alias = $newChecklist->alias;
+
+        if ($alias) {
+            $alias = $alias . "-" . $checklist_id;
+        } else {
+            $title = $newChecklist->title;
+            $alias = str_replace(" ", "-", strtolower($title)) . "-" . $checklist_id;
+        }
+
+        $db->setQuery("UPDATE `#__checklist_lists` SET `alias` = '" . $alias . "' WHERE `id` = '" . $checklist_id . "'");
+        $db->execute();
 
         $db->setQuery("SELECT * FROM `#__checklist_groups` WHERE `checklist_id` = '" . $id . "'");
         $groups = $db->loadObjectList();
 
         $values = array();
-        if (count($groups)) {
+        if (!empty($groups)) {
             foreach ($groups as $group) {
                 $values[] = "('', '" . $checklist_id . "', " . $db->quote($group->title) . ", '" . $group->ordering . "')";
             }
         }
 
-        if (count($values)) {
+        if (!empty($values)) {
             $db->setQuery("INSERT INTO `#__checklist_groups` (`id`, `checklist_id`, `title`, `ordering`) VALUES " . implode(',', $values));
-            $db->query();
+            $db->execute();
         }
 
         $db->setQuery("SELECT `id` FROM `#__checklist_groups` WHERE `checklist_id` = '" . $checklist_id . "' ORDER BY `ordering`");
@@ -267,7 +280,7 @@ class ChecklistModelFrontend extends JModelList
         $items = $db->loadObjectList();
 
         $values = array();
-        if (count($old_groups) && count($items)) {
+        if (!empty($old_groups) && !empty($items)) {
             foreach ($old_groups as $ii => $old_group) {
                 foreach ($items as $item) {
                     if ($item->group_id == $old_group) {
@@ -277,20 +290,19 @@ class ChecklistModelFrontend extends JModelList
             }
         }
 
-        if (count($values)) {
+        if (!empty($values)) {
             $db->setQuery("INSERT INTO `#__checklist_items` (`id`, `checklist_id`, `group_id`, `task`, `tips`, `optional`, `ordering`) VALUES " . implode(',', $values));
-            $db->query();
+            $db->execute();
         }
 
         //Clone tags
         $db->setQuery("SELECT * FROM `#__checklist_list_tags` WHERE `checklist_id` = '" . $id . "'");
         $tags = $db->loadObjectList();
 
-        if (count($tags)) {
+        if (!empty($tags)) {
             foreach ($tags as $tag) {
                 $tag->id = '';
                 $tag->checklist_id = $checklist_id;
-
                 $db->insertObject('#__checklist_list_tags', $tag, 'id');
             }
         }
