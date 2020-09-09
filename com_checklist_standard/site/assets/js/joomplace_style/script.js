@@ -147,7 +147,6 @@
     }
 
     function reset() {
-
         document.getElementById("reset").onclick = function () {
             resetInner();
             return false;
@@ -185,7 +184,7 @@
         findCheckboxes();
         initialize();
         calculateProgress();
-        reset();
+        //reset();
 
         if (localStorage.length === 0){
             if ( /Safari/i.test(navigator.userAgent)){
