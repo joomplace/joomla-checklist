@@ -206,7 +206,7 @@ $checklistUserName = !empty($checklistUserName) ? ' (' . $checklistUserName . ')
 			findCheckboxes();
 			initialize();
 			calculateProgress();
-			reset();
+			//reset();
 			
 			if (localStorage.length === 0) {
 
@@ -267,6 +267,7 @@ $checklistUserName = !empty($checklistUserName) ? ' (' . $checklistUserName . ')
 		
 		ajaxResetChecked: function(){
             if(confirm("<?php echo JText::_('COM_CHECKLIST_CHECKLIST_RESET_CHECKED')?>")){
+                resetInner();
                 var checklist_id = jQuery("#checklist_id").val();
                 Checklist.doAjax('checklist.resetchecked', {id: checklist_id}, Checklist.successFunction);
             }
