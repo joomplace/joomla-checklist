@@ -880,8 +880,10 @@ $checklistUserName = !empty($checklistUserName) ? ' (' . $checklistUserName . ')
 		},
 		
 		ajaxResetChecked: function(){
-			var checklist_id = jQuery("#checklist_id").val();
-			Checklist.doAjax('checklist.resetchecked', {id: checklist_id}, Checklist.successFunction);
+            if(confirm("<?php echo JText::_('COM_CHECKLIST_CHECKLIST_RESET_CHECKED')?>")){
+                var checklist_id = jQuery("#checklist_id").val();
+                Checklist.doAjax('checklist.resetchecked', {id: checklist_id}, Checklist.successFunction);
+            }
 		},
 
 		ajaxCheckedItem: function(element){
