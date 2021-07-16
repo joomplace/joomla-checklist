@@ -756,6 +756,9 @@
     @-ms-viewport {
         width: 430px;
     }
+	.rating-result {
+		position: inherit;
+	}
 }
 
 #checklist{
