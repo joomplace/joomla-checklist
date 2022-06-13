@@ -278,7 +278,7 @@ class com_checklistInstallerScript
         foreach ($queries as $query) {
             $query = trim($query);
 
-            if ($query != '' && $query{0} != '#') {
+            if ($query != '' && $query[0] != '#') {
                 $db->setQuery($query);
 
                 if (!$db->execute()) {
