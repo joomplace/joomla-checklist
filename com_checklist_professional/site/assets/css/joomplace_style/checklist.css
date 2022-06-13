@@ -785,6 +785,12 @@ you can use the generic selector below, but it's slower:
 
 }
 
+@media screen and (max-width: 580px) {
+	.rating-result {
+		top: 19px !important;
+	}
+}
+
 @media print {
     body {
         width: 850px;
@@ -894,6 +900,11 @@ you can use the generic selector below, but it's slower:
 	float:right;
 	margin-bottom: 10px;
 	margin-right: 15px;
+}
+@media screen and (max-width: 580px) {
+	.checklist-edit-mode, .checklist-view-mode {
+		margin-top: 22px;
+	}
 }
 
 .chk-print:before{

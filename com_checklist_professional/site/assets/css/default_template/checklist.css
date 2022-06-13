@@ -741,6 +741,12 @@
 
 }
 
+@media screen and (max-width: 580px) {
+	.rating-result {
+		top: 19px !important;
+	}
+}
+
 @media print {
     body {
         width: 850px;
