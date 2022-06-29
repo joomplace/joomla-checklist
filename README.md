@@ -17,7 +17,7 @@ By integrating CheckList maker into your Joomla! website you offer a unique expe
 - <b>Advertising</b>. CheckList notes and tips is an ideal platform for placing advertisements and making an additional profit! If you are an event planner, for example, you can use "Order a wedding cake" item note of your wedding checklist for advertising a bakery.
 - <b>Personal & business management</b>. Create checklists that will allow your website visitors to manage business tasks and increase work productivity, plan a vacation or event, make a shopping list, control weight loss program, follow a healthy lifestyle, start renovating project & etc.
 
-# <b>FEATURES</b>
+<h2><b>FEATURES</b></h2>
 
 <b>SPECIAL MANAGEMENT OPTIONS</b>
 - Back End - Admin can create, manage any checklists, create public checklists and set view rights;
